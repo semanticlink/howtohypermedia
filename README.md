@@ -2,7 +2,7 @@
 
 [How to Hypermedia](https://howtohypermedia.semanticlink.io) is a tutorial website to learn all about how you could implement a REST-style of architecture on a TODO list! The layout and functionality is a fork of [howtographql.com](https://www.howtographql.com/) which was built by [Prisma](https://www.prisma.io) and many amazing contributors. All content on the site is completely free and open-source.
 
-[![](http://i.imgur.com/67oYe9q.png)](https://howtohypermedia.semanticlink.io)
+[![](howtohypermedia.png)](https://howtohypermedia.semanticlink.io)
 
 ## Content
 

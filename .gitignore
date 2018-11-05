@@ -12,3 +12,4 @@ lib/
 .cache
 public
 public*
+.env.production

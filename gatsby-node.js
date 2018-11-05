@@ -3,6 +3,16 @@ const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin'
 const xmldom = require('xmldom')
 const {syncToAlgolia} = require('./algoliasync')
 
+// see const { request } = require("graphql-request");
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
+// Note: if building on a pipeline these need to be included as environment variables
+const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID;
+const ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY;
+const ALGOLIA_INDEX = process.env.ALGOLIA_INDEX || 'howtohypermedia';
+
 exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
   const { createNodeField } = boundActionCreators
   let slug
@@ -70,7 +80,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
         if (process.env.NODE_ENV === 'production') {
           try {
-            syncToAlgolia(result.data)
+            console.log("Algolia: using " + ALGOLIA_APP_ID);
+            syncToAlgolia(result.data, ALGOLIA_APP_ID, ALGOLIA_API_KEY, ALGOLIA_INDEX)
           } catch (e) {
             console.log('Warning: Algolia Error')
           }

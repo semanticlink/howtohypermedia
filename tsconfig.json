@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "lib": ["es7", "dom"],
+    "allowJs": true,
+    "noUnusedLocals": true,
+    "types": [
+      "@types/node"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".cache"
+  ]
+}

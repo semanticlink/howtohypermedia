@@ -1,0 +1,20 @@
+{
+  "name": "styled-jsx-plugin",
+  "version": "0.1",
+  "description": "Adds SSR support for styled-jsx",
+  "author": "Tim Suchanek <tim.suchanek@gmail.com>",
+  "dependencies": {
+    "transform-runtime": "^0.0.0",
+    "ts-loader": "^2.0.3",
+    "typescript": "^2.2.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1"
+  },
+  "keywords": [
+    "gatsby",
+    "typescript"
+  ],
+  "license": "MIT",
+  "main": "index.js"
+}

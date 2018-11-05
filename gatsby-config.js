@@ -1,7 +1,13 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
+const GA_TRACKING_ID = process.env.GA_TRACKING_ID || '';
+
 module.exports = {
   siteMetadata: {
     title: `How to Hypermedia`,
-    siteUrl: `https://howtohypermedia.com`,
+    siteUrl: `https://howtohypermedia.semanticlink.io`,
   },
   plugins: [
     {
@@ -46,12 +52,12 @@ module.exports = {
     `gatsby-plugin-typescript`,
     `styled-jsx-plugin`,
     `gatsby-plugin-react-helmet`,
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   options: {
-    //     trackingId: 'UA-74131346-111',
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: GA_TRACKING_ID,
+      },
+    },
     // `gatsby-plugin-offline`
   ],
 }

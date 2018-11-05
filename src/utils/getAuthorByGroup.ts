@@ -7,5 +7,5 @@ export function getAuthorByGroup(group: string): Author {
     return authors[stack.authorName]
   }
 
-  return authors['Nikolas Burk']
+  return authors['Semantic Link Project']
 }

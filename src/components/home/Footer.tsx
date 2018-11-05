@@ -1,6 +1,6 @@
-import * as React from 'react'
-import Icon from 'graphcool-styles/dist/components/Icon/Icon'
-import { $v } from 'graphcool-styles'
+import * as React from "react";
+import Icon from "graphcool-styles/dist/components/Icon/Icon";
+import { $v } from "graphcool-styles";
 
 export default function Footer() {
   return (
@@ -34,16 +34,16 @@ export default function Footer() {
         }
       `}</style>
       <span>
-        Made with <span className="love"> ♥ </span> by{' '} SemanticLink Project based on the work by
-        <a href="https://www.prisma.io" target="_blank">Prisma</a>
+        Made by{" "} Semantic Link Project <br/>(thanks to tutorial format by <a href="https://www.prisma.io"
+                                                                                 target="_blank">Prisma</a>)
       </span>
       <div className="logos">
-        <a href="https://twitter.com/semanticlink" target="_blank">
-          <img src={require('../../assets/icons/twitter.svg')} alt="" />
+        <a href="https://twitter.com/semantic_link" target="_blank">
+          <img src={require("../../assets/icons/twitter.svg")} alt=""/>
         </a>
         <a href="https://github.com/semanticlink/" target="_blank">
           <Icon
-            src={require('graphcool-styles/icons/fill/github.svg')}
+            src={require("graphcool-styles/icons/fill/github.svg")}
             color={$v.black}
             width={28}
             height={28}
@@ -51,5 +51,5 @@ export default function Footer() {
         </a>
       </div>
     </div>
-  )
+  );
 }

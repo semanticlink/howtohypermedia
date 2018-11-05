@@ -52,7 +52,7 @@ export default function Steps({
           color: $pink !important;
         }
       `}</style>
-      {steps.map((step, index) => {
+      {(steps || []).map((step, index) => {
         let duration: any = null
         if (showDuration && step.duration && step.duration > 0) {
           duration = (

@@ -47,7 +47,7 @@ The api client uses (Axios) to make HTTP requests the hood. In the example above
 
 Register the interceptor at the bootstrap of the Vue application
 
-```js{1,5}(path=".../todo-aspnetcore-vue/client/src/api.js")
+```js{1,5}(path="...todo-aspnetcore-vue/client/src/api.js")
 import {setInterceptors} from 'semantic-link-utils/http-interceptors';
 
 ...
@@ -71,7 +71,7 @@ new Vue({
 
 Register an axios interceptor to set `Accept` and `X-Requested-Headers`.
 
-```js{22-23}(path=".../todo-aspnetcore-vue/client/src/lib/semantic-link-utils/http-interceptors.js")
+```js{22-23}(path="...todo-aspnetcore-vue/client/src/lib/semantic-link-utils/http-interceptors.js")
 import axios from 'axios';
 
 /**
@@ -108,7 +108,7 @@ export const setInterceptors = options => {
 
 Query the html page to get the URL off the 'self' link (eg &lt;link rel="self" href="http://localhost:5000/" />) and provide it to the &lt;Resource> vue component to be processed through the 'apiUri' property
 
-```js{8,11}(path=".../todo-aspnetcore-vue/client/src/api.js")
+```js{8,11}(path="...todo-aspnetcore-vue/client/src/api.js")
 /**
  * This view sets up the application including the ondemand authentication (login) and
  * the application being offline
@@ -129,7 +129,7 @@ new Vue({
 
 Resource.vue retrieves the representation and holds a copy in-memory (before it is processed on the screen)
 
-```js(path=".../todo-apnetcore-vue/client/src/components/api/Resource.vue")
+```js(path="...todo-apnetcore-vue/client/src/components/api/Resource.vue")
 // Resource.vue
 <script>
     import axios from 'axios';

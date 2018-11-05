@@ -83,7 +83,7 @@ For code blocks, you should include special annotations that provide more contex
 
 This is the syntax for the different annotations:
 
-#### Adding a filename
+#### Adding a filename (1)
 
 When adding a filename to indicate that this code can be found as such in a file in the example project, use the following syntax:
 
@@ -104,6 +104,23 @@ const ALL_LINKS_QUERY = gql`
 This information will be displayed on top of the code block and will link to the actual file on GitHub:
 
 ![](http://imgur.com/VyyZk5v.png)
+
+#### Adding a filename (2)
+
+When adding a filename (without a slash between the dots and repository) to indicate that this code can be found as such in a file in the example project
+that is different to the current tutorial module:
+
+<pre><code>```js(path="...todo-aspnetcore-vue/client/src/components/api/Resource.vue")
+<template>
+
+    <b-form>
+
+<template>
+```
+</code></pre>
+
+This information will be displayed on top of the code block and will link to the actual file on GitHub:
+
 
 #### Adding a directory path a terminal command
 

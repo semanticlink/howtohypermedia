@@ -21,7 +21,7 @@ Please note that APIs that implement batch delete are likely to break these rule
 
 Resource.vue deletes the 'self' link URI on the representation (using `link.delete`) and then does some checking to confirm it is deleted before redirecting
 
-```js{33}(path=".../todo-apnetcore-vue/client/src/components/api/Resource.vue")
+```js{33}(path="...todo-apnetcore-vue/client/src/components/api/Resource.vue")
 // Resource.vue
 <script>
     import axios from 'axios';

@@ -1,8 +1,8 @@
-import * as React from 'react'
-import CopyButton from '../CopyButton'
-import { $v } from 'graphcool-styles'
-import Icon from 'graphcool-styles/dist/components/Icon/Icon'
-import { extractGroup } from '../../utils/graphql'
+import * as React from "react";
+import CopyButton from "../CopyButton";
+import { $v } from "graphcool-styles";
+import Icon from "graphcool-styles/dist/components/Icon/Icon";
+import { extractGroup } from "../../utils/graphql";
 
 interface Props {
   children?: JSX.Element
@@ -11,34 +11,52 @@ interface Props {
   nocopy?: string
 }
 
+/**
+ * Creates a github link. The link to a github repository defaults to the group unless
+ * the link starts with triple dots '...' and no slash and then it constructs an external
+ * repository
+ *
+ * There are two types of links:
+ *
+ *    - group (no triple dots) client/src/components/Resource.vue
+ *    - external ...todo-aspnetcore
+ *
+ * @param group
+ * @param path
+ */
 function getGithubLink(group: string, path?: string) {
   if (!path) {
-    return ''
+    return "";
   }
 
   // remove all preceding dots and slashes
-  const trimmedPath = path.replace(/^[\.\/]*/g, '')
+  const trimmedPath = path.replace(/^[\.\/]*/g, "");
 
   // we assume that the path always includes the directory of the app itself like follows:
   // .../hackernews-react-apollo/src/styles/index.css
-  const firstSlash = trimmedPath.indexOf('/')
-  const normalizedPath = trimmedPath.slice(firstSlash + 1, trimmedPath.length)
+  const firstSlash = trimmedPath.indexOf("/");
 
-  return `https://github.com/semanticlink/howtohypermedia/${group}/blob/master/${normalizedPath}`
+  // test for leading elipse without a slash after it
+  // if so, don't use the group of the tutorial module
+  if (/^\.{3}[^/]/.test(path)) {
+    group = trimmedPath.slice(0, firstSlash);
+  }
+  const normalizedPath = trimmedPath.slice(firstSlash + 1, trimmedPath.length);
+  return `https://github.com/semanticlink/${group}/blob/master/${normalizedPath}`;
+
 }
 
 export default function Pre({
-  children,
-  path,
-  className,
-  nocopy,
-  ...rest,
-}: Props) {
-  const isBash = className ? className.includes('bash') : false
-  const group = extractGroup(location.pathname)
-  // console.log('group')
-  const showCopy = nocopy ? !(nocopy === 'true') : true
-  const link = getGithubLink(group, path)
+                              children,
+                              path,
+                              className,
+                              nocopy,
+                              ...rest
+                            }: Props) {
+  const isBash = className ? className.includes("bash") : false;
+  const group = extractGroup(location.pathname);
+  const showCopy = nocopy ? !(nocopy === "true") : true;
+  const link = getGithubLink(group, path);
   return (
     <div className="pre-container">
       <style jsx={true}>{`
@@ -80,9 +98,9 @@ export default function Pre({
         }
       `}</style>
       {path &&
-        <a className="path" href={link} target="_blank">
-          {isBash
-            ? <span className="path-sh">
+      <a className="path" href={link} target="_blank">
+        {isBash
+          ? <span className="path-sh">
                 <span>$</span>
                 <svg
                   width="4"
@@ -91,45 +109,45 @@ export default function Pre({
                   xmlns="http://www.w3.org/2000/svg"
                   fill="rgba(0,0,0,0.2)"
                 >
-                  <rect x="0" y="0" width="4" height="12" />
+                  <rect x="0" y="0" width="4" height="12"/>
                 </svg>
               </span>
-            : <Icon
-                src={require('graphcool-styles/icons/fill/github.svg')}
-                color={$v.gray30}
-                width={14}
-                height={14}
-              />}
-          <span>{path}</span>
-        </a>}
+          : <Icon
+            src={require("graphcool-styles/icons/fill/github.svg")}
+            color={$v.gray30}
+            width={14}
+            height={14}
+          />}
+        <span>{path}</span>
+      </a>}
       <pre className={className} {...rest}>
         {children}
         {showCopy &&
-          <span className="copy-button">
-            <CopyButton text={childrenToString(children)} />
+        <span className="copy-button">
+            <CopyButton text={childrenToString(children)}/>
           </span>}
       </pre>
     </div>
-  )
+  );
 }
 
 export function childrenToString(children): string {
-  if (typeof children === 'string') {
-    return children
+  if (typeof children === "string") {
+    return children;
   }
 
-  if (typeof children === 'undefined') {
-    return ''
+  if (typeof children === "undefined") {
+    return "";
   }
 
   return children
     .map(el => {
-      if (typeof el === 'string') {
-        return el
+      if (typeof el === "string") {
+        return el;
       }
       {
-        return childrenToString(el.props.children)
+        return childrenToString(el.props.children);
       }
     })
-    .join('')
+    .join("");
 }

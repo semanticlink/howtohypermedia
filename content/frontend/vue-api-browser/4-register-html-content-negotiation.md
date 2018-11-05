@@ -10,7 +10,7 @@ Content negotiation should be orthogonal and only be required to be configured u
 
 Register the HTML formatter in the pipeline adding to the `OutputFormatters`
 
-```csharp{18-21}(path=".../todo-aspnetcore-vue/api/Api/Startup.cs")
+```csharp{18-21}(path="...todo-aspnetcore-vue/api/Api/Startup.cs")
 public class Startup
 {
 
@@ -44,7 +44,7 @@ public class Startup
 
 Below is the original example of the API home should be able to respond to a request for `text/html` as well as 'application/json. Included is the controller code as well as the construction of the representation.
 
-```csharp{13-20}(path=".../todo-aspnetcore-vue/api/Api/Controllers/HomeController.cs")
+```csharp{13-20}(path="...todo-aspnetcore-vue/api/Api/Controllers/HomeController.cs")
 [Route("")]
 public class HomeController : Controller
 {
@@ -72,7 +72,7 @@ public class HomeController : Controller
 ```
 
 
-```csharp(path=".../todo-aspnetcore-vue/api/App/RepresentationExtensions/ApiRepresentationExtensions.cs")
+```csharp(path="...todo-aspnetcore-vue/api/App/RepresentationExtensions/ApiRepresentationExtensions.cs")
 public static class ApiRepresentationExtensions
 {
    public static ApiRepresentation ToRepresentation(this ApiVersion api, IUrlHelper url)

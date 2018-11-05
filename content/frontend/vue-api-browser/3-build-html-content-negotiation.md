@@ -14,7 +14,7 @@ Note: the injected `ApiClientSettings` is included below for completeness.
 
 Generate the HTML from the in-memory resource (`LinkedRepresentation`).
 
-```csharp(path=".../todo-aspnetcore-vue/api/Api/Web/HtmlFormMediaFormatter.cs")
+```csharp(path="...todo-aspnetcore-vue/api/Api/Web/HtmlFormMediaFormatter.cs")
 
 public class HtmlMediaFormatter : TextOutputFormatter
 {
@@ -116,7 +116,7 @@ public class HtmlMediaFormatter : TextOutputFormatter
 
 Include being able to map the JSON `appsettings.json` configuration to a class
 
-```csharp(path=".../todo-aspnetcore-vue/api/Api/Web/ApiClientSettings.cs")
+```csharp(path="...todo-aspnetcore-vue/api/Api/Web/ApiClientSettings.cs")
 /// <summary>
 ///     Setting for the api client html to pick the external javascript
 /// </summary>

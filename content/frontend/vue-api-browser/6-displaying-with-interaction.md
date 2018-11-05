@@ -22,7 +22,7 @@ The purpose of this part of the tutorial isn't to explain the HTML markup per se
 
 Read the code below to see the top-level implementation of these additions in `Resource.vue`. It retrieves the resource and then parses it to display it as html (but look like a stripped down JSON) and then adds the buttons and drop targets.
 
-```js{73-127}(path=".../todo-apnetcore-vue/client/src/components/api/Resource.vue")
+```js{73-127}(path="...todo-apnetcore-vue/client/src/components/api/Resource.vue")
 // Resource.vue
 <script>
 

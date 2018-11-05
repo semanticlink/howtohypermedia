@@ -67,7 +67,8 @@
     "start-lan": "gatsby develop -H `ifconfig | grep \"inet \" | grep -v 127.0.0.1 | awk '{print $2}' | head -n 1` --port 4000",
     "build": "gatsby build",
     "precommit": "lint-staged",
-    "prettier": "prettier --single-quote --no-semi --trailing-comma all --write *.{ts,tsx}"
+    "prettier": "prettier --single-quote --no-semi --trailing-comma all --write *.{ts,tsx}",
+    "publish": "aws s3 cp public/ \"s3://howtohypermedia.semanticlink.io/\" --recursive"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

@@ -39,3 +39,19 @@ yarn start # http://localhost:4000/
 > Note: If you are running Node 10, you might need to downgrade (ie use `nvm`)
 
 > Note2: If you're using Node 8, you might need to invoke `npm install -g node-gyp` before you're starting the app. More info [here](https://github.com/gatsbyjs/gatsby/issues/1754).
+
+## Build
+
+Environment variables required for production build:
+
+```
+ALGOLIA_APP_ID=
+ALGOLIA_API_KEY=
+GA_TRACKING_ID=
+```
+
+> Note: the build script will pick up either environment variables or `.env.production` variables.
+
+## Publish
+
+See [readme](./deployment/Readme.md).

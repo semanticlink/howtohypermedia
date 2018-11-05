@@ -13,3 +13,5 @@ lib/
 public
 public*
 .env.production
+.terraform
+*.tfstate.backup

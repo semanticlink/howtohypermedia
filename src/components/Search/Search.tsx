@@ -62,8 +62,14 @@ class Search extends React.Component<Props, State> {
   )
   constructor(props) {
     super(props)
-    this.client = algolia('EGOD51Z7AV', '8cfa9fa05850587f0624c13b4df797b1')
-    this.index = this.client.initIndex('howtographql')
+
+    // NOTE: handing through compile-time environment variables to the client in v1 is harder
+    // than it needs to be.
+    // FIX THIS: if going to v2 see https://www.gatsbyjs.org/docs/environment-variables/
+
+    // These are read-only keys
+    this.client = algolia('X0QXFM9JVE', 'bc5ffd98742de2961e4852c29ccc0483')
+    this.index = this.client.initIndex('howtohypermedia')
 
     this.state = {
       focused: false,

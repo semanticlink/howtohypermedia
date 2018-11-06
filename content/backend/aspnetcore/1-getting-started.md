@@ -1,17 +1,17 @@
 ---
-title: Getting Started
-pageTitle: "Building and running the api browser client and API"
-description: "Learn how to build a general purpose client to browse over the API "
+title: Introduction
+pageTitle: Building and running the hypermedia API
+description: "Learn how to build a hypermedia API "
 ---
 
-Before learning about how to write a general purpose client, let's start by running the existing one.
+Before learning about how to write a hypermedia API, let's start by running the existing one. To do this best, you should start up the API and the client api.
 
 The live demo:
 
 * [api.todo.semanticlink.io](https://api.todo.semanticlink.io)
 * credentials (`test-1@semanticlink.io` with password `1234qwerZXCV`)
 
-![api in a browser](api-browser.png)
+![todo api](../../frontend/vue-api-browser/api-browser.png)
 
 ### Run demo server and client
 

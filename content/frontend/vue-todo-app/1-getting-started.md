@@ -1,17 +1,17 @@
 ---
-title: Getting Started
-pageTitle: "Building and running the api browser client and API"
-description: "Learn how to build a general purpose client to browse over the API "
+title: Getting started
+pageTitle: Building and running the todo client and API
+description: "Learn how to build a todo client to use the hypermedia API "
 ---
 
-Before learning about how to write a general purpose client, let's start by running the existing one.
+Before learning about how to write a todo client across the hypermedia API, let's start by running the existing one.
 
 The live demo:
 
 * [api.todo.semanticlink.io](https://api.todo.semanticlink.io)
 * credentials (`test-1@semanticlink.io` with password `1234qwerZXCV`)
 
-![api in a browser](api-browser.png)
+![todo app](todo-app.png)
 
 ### Run demo server and client
 
@@ -96,16 +96,5 @@ yarn dev
 </Instruction>
 
 It will open a browser in `http://localhost:8080`
-
-4. Browse the API
-
-<Instruction>
-
-Open the browser in `http://locahost:5000`
-
-```bash
-open http://localhost:5000
-```
-</Instruction>
 
 At some stage, you will need to authenticate. The credentials are at the top of the page.

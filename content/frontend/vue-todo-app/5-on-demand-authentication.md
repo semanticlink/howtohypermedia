@@ -1,7 +1,7 @@
 ---
 title: On-demand Authentication
-pageTitle: 
-description: ""
+pageTitle: Authenticate using headers on each request
+description: "Be able to create and renew authentication tokens when the server requests valid authentication tokens"
 ---
 
 On-demand authentication is mapping a remote authenticated user to an identity in the local system (aka API). If this requirement is not satisfied then the API can respond that the client requires to present a valid authentication token. The API should present the client with options. The creation of a valid token may be then be satisifed elsewhere.

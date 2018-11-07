@@ -2,9 +2,6 @@
 title: On-demand Authentication
 pageTitle: 
 description: ""
-question: ?
-answers: ["", "", "", ""]
-correctAnswer: 0
 ---
 
 On-demand authentication is mapping a remote authenticated user to an identity in the local system (aka API). If this requirement is not satisfied then the API can respond that the client requires to present a valid authentication token. The API should present the client with options. The creation of a valid token may be then be satisifed elsewhere.

@@ -12,7 +12,7 @@ const authors: Author[] = [
   {
     avatar: require("../assets/icons/semanticlink.svg"),
     bio: "the team",
-    job: "Everythink",
+    job: "Every-think",
     link: "https://twitter.com/semantic_link",
     name: "semantic link project"
   }

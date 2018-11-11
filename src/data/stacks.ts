@@ -3,22 +3,22 @@ import { Stack } from "../types";
 
 const data: Stack[] = [
   {
-    title: "Vue across the api",
+    title: "Vue todo API browser",
     type: "frontend",
     key: "vue-api-browser",
     images: [
       require("../assets/icons/vue.svg")
     ],
     content: {
-      title: "Vue + SemanticLink",
+      title: "Vue + API browser",
       description:
-        "Get started with Vue and deal with single api resources"
+        "Learn how to browse a hypermedia API with a general purpose client build in Vue"
     },
     authorName: "semantic link project",
     comingSoon: false
   },
   {
-    title: "Vue + application cache",
+    title: "Vue todo app",
     type: "frontend",
     key: "vue-todo-app",
     images: [
@@ -27,24 +27,25 @@ const data: Stack[] = [
     content: {
       title: "Vue + todo",
       description:
-        "Learn how to use Vue with semantic link to create a todo app with an application cache"
+        "Learn how to use Vue to create a todo app that consumes a hypermedia-based todo API"
     },
     authorName: "semantic link project",
     comingSoon: false
   },
   {
-    title: "ASP.NET Core",
+    title: "ASP.NET Core todo API",
     type: "backend",
     key: "aspnetcore",
     images: [
       require("../assets/icons/dotnet-core.png")
     ],
     content: {
-      title: "AspNetCore",
+      title: "AspNetCore + todo API",
       description:
-        "Learn to build the Api with AspNetCore"
+        "Learn to build the todo hypermedia API with AspNetCore"
     },
-    authorName: "semantic link project"
+    authorName: "semantic link project",
+    comingSoon: false
   }
 ];
 

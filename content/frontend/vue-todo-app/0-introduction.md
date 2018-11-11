@@ -13,7 +13,7 @@ The tutorial is written using Vue and covers:
 * client-side urls and routing
 * binding views to representation (through client-side application cache)
 * on-demand authentication
-* admin view to cloning todos
+* admin view to cloning todos (through sync utilities that build on client-side application cache)
 
 
 [ TODO: need to two pictures one of the app and the other of the admin ]

@@ -35,7 +35,7 @@ const data: Stack[] = [
   {
     title: "ASP.NET Core todo API",
     type: "backend",
-    key: "aspnetcore",
+    key: "aspnetcore-todo-api",
     images: [
       require("../assets/icons/dotnet-core.png")
     ],

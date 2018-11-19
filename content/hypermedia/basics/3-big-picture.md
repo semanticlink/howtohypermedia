@@ -22,3 +22,7 @@ A more formal way to understand this is explained in the diagram below showing t
 ![](clients-binding.png)
 
 Source: [DDD & REST - Domain Driven APIs for the web - Oliver Gierke](https://youtu.be/NdZqeAAIHzc?t=2506)
+
+
+Steve Klabnik's 30 minute video [Designing Hypermedia APIs](https://www.youtube.com/watch?v=0PB_pO_jU38) and [slidedeck](https://steveklabnik.github.io/hypermedia-presentation/#2)
+

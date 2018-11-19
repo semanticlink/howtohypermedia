@@ -1,0 +1,61 @@
+@startuml
+
+' Semantic Link collection-based logical model that occurs either side of the across-the-wire (ie serialised per media type) representations
+
+' Note that this modelling is based on ATOM feed documents
+
+abstract class LinkedRepresentation  <<A, #00FF00) >> #PaleGreen{
+    Links : WebLink[]
+}
+
+class WebLink {
+   Rel : string
+   HRef : string
+   Title : string?
+   Type : string?
+}
+
+class FeedRepresentation <<C, #00FF00) >> #PaleGreen{
+    Items : FeedItemRepresentation[]
+}
+
+class FeedItemRepresentation  {
+    Id : string
+    Title : string
+    Published : DateTime?
+    Updated : DateTime?
+    Author : string?
+    Categories : string[]?
+}
+
+' Mark the links for ease of reading
+LinkedRepresentation <|-down- FeedRepresentation : is a
+FeedItemRepresentation .left. FeedRepresentation
+LinkedRepresentation .right. WebLink
+
+
+
+note top of LinkedRepresentation #white
+    <b>Singleton</b> representation
+    inherit
+    LinkedRepresentation
+endnote
+
+note bottom of FeedRepresentation #white
+ <b>Collection</b> representation
+ are instantiated ¡as
+ FeedRepresentation
+endnote
+
+note top of WebLink
+    Rel is a link relation
+    eg IANA or Custom
+endnote
+
+note "URI of resource" as uri
+
+WebLink . uri : HRef
+FeedItemRepresentation . uri : Id becomes \nthe 'self' link rel
+
+
+@enduml

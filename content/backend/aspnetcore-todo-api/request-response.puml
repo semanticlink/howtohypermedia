@@ -1,0 +1,84 @@
+@startuml
+
+' Request/Response
+
+actor HTTP
+boundary Controller
+control UriFactory
+control RepresentationFactory
+entity Representation
+entity Model
+
+== Initialisation ==
+
+Controller --> UriFactory : Map Uri \nto Action
+note left: RouteAttribute\n(on Action \nwith RouteName \nand params)
+note right: RouteName
+
+== Request ==
+
+HTTP -> Controller: Matched URI to action
+activate Controller
+
+'alt Request with optional body (ie POST/PUT/PATCH) case
+
+'Controller -> RepresentationFactory : deserialised representation
+'activate RepresentationFactory
+
+' From Representation
+'RepresentationFactory --> Model : map representation to model
+'deactivate RepresentationFactory
+'activate Model
+
+'Model --> RepresentationFactory : return model
+'deactivate Model
+'activate RepresentationFactory
+'RepresentationFactory --> Controller : return model
+'deactivate RepresentationFactory
+
+'else Request with params (ie GET/DELETE and also POST/PUT/PATCH)
+
+' From Persistence
+Controller --> Model : fetch on criteria
+activate Model
+Model --> Controller : return model
+deactivate Model
+note right Model: Persistence hydration \nof model
+
+'end
+== Response ==
+
+Controller -> RepresentationFactory : construct representation
+deactivate Controller
+activate RepresentationFactory
+
+RepresentationFactory -> Representation
+activate Representation
+note right Representation : Serialisable \nrepresentation
+
+RepresentationFactory -> RepresentationFactory : build up links
+activate RepresentationFactory #DarkSalmon
+RepresentationFactory -> UriFactory : context + params to build uri
+activate UriFactory
+note left UriFactory : Map RouteName to params \nback into Controller
+RepresentationFactory <- UriFactory : return URI
+deactivate UriFactory
+deactivate RepresentationFactory
+
+RepresentationFactory -> RepresentationFactory : map model to representation
+activate RepresentationFactory #DarkSalmon
+RepresentationFactory -> UriFactory : context + params to build uri
+activate UriFactory
+RepresentationFactory <- UriFactory : return URI
+deactivate UriFactory
+deactivate RepresentationFactory
+
+deactivate UriFactory
+Representation --> RepresentationFactory
+deactivate Representation
+RepresentationFactory -> Controller : return representation
+
+deactivate RepresentationFactory
+Controller --> HTTP : Serialise response to media type
+
+@enduml

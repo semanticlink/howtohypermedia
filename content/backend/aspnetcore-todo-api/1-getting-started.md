@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Getting Started
 pageTitle: Building and running the hypermedia API
 description: "Learn how to build a hypermedia API "
 ---

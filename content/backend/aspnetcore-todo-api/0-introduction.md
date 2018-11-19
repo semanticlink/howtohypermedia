@@ -11,9 +11,15 @@ Using hypermedia means that we have a self-contained API with one starting point
 ### The repeatables (doing hypermedia)
 
 * modelling representations (collections and singletons)
-* linking representations
-* modelling the domain
-* persisting the domain
+* modelling the domain through link relations
+* constructing representations
+    * singleton
+    * collection (feed representation)
+    * virtual (redirect)
+    * search (a form)
+* create representation (on collection with create-form)
+* update singleton (with edit-form)
+* update collection
 * authorisation
 
 ### The one-offs (wiring up hypermedia)
@@ -26,4 +32,4 @@ Using hypermedia means that we have a self-contained API with one starting point
 * CORS
 * authentication
 * authorisation
-
+* persisting resources

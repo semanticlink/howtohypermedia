@@ -1,10 +1,7 @@
 ---
 title: Modelling Representations
-pageTitle: The simplest representation - the root API
-description: "Learn the mechanics of request/response of respresentation in an MVC framework with the root API representation containing links and a version"
-question: ?
-answers: ["", "", "", ""]
-correctAnswer: 0
+pageTitle: Modelling linked representations
+description: "Learn how the linked representation is the base to singletons and collections but collections are modelled through feed representations."
 ---
 
 
@@ -27,22 +24,17 @@ The Semantic Link conventions on hypermedia revolve around different ways to bui
 * Links: a set of information to identify a representation and the nature of its relationship as a `link relation` or "vocabulary" (is a set of `WebLink`s)
 * Link Relation: a descriptive attribute that defines the type of link, or the relationship between the source and destination resources. These are known at design and come in at least two forms: IANA and custom (eg also Schema.org, Microformats, Dublin Core and Activity Streams)
 * IANALinkRelations: a [published set](https://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1) of publicly, well-known link relations
-* CustomLinkRelations: specific to the domain (ie todo) of the application to model singletons and collection representations
+* CustomLinkRelations: specific to the domain (ie todo) of the application to model singletons and collection representations (see next tutorial page)
 
-> Note: modelling representations requires links and most formal hypermedia types model collections—this is independent of the media type that is send across the wire (aka the Strategy/Representor Pattern). We cover input and output serialisers in a later tutorial
+> Note: modelling representations requires links and most formal hypermedia types model collections—this is independent of the media type that is send across the wire (aka the Strategy/Representor Pattern). Input and output serialisers are covered in a later tutorial.
 
 <Instruction>
 
-Read the underlying code base. The custom link relations are specific to the application (hence in Domain) and the reused anatomy is in an external library (but inline for the tutorial!)
+Read the underlying code base.
 
 ```bash
 .
 │
-├── ApiResources.puml  <-- the overview diagram is <b>really important</b>
-│
-├── Domain
-│   ├── LinkRelations
-│   │   └── CustomLinkRelation.cs
 └── SemanticLink
     ├── FeedItemRepresentation.cs
     ├── FeedRepresentation.cs
@@ -231,11 +223,9 @@ namespace SemanticLink
 
 ### Link relations
 
-#### IANA
+Below for completeness is an example of the IANA link relations that are generally used. This is an incomplete set of IANA itself as well not containing link relations from other accepted sources.
 
-The current set of IANA link relations generally used.
-
-> Note: this is an incomplete set of IANA itself as well not containing link relations from other accepted sources.
+> Note: the next tutorial deals with custom link relations which make up the "domain" of the application
 
 <Instruction>
 
@@ -341,157 +331,4 @@ namespace SemanticLink
 ```
 
 </Instruction>
-
-#### Custom
-
-These are the domain link relations contained in the one place.
-
-<Instruction>
-
-Create custom link relations used through the API.
-
-```csharp(path="...todo-aspnetcore-vue/api/Domain/LinkRelations/CustomLinkRelation.cs")
-namespace Domain.LinkRelations
-{
-    public static class CustomLinkRelation
-    {
-        ///************************************
-        ///
-        ///   Form links
-        ///
-        ///************************************
-        public const string Search = "search";
-
-        public const string Submit = "submit";
-
-
-        ///************************************
-        ///
-        ///   Authentication/context links
-        ///
-        ///************************************
-
-        ///<summary>
-        ///    Collection of different authenticate strategies available
-        /// </summary>
-        public const string Authenticate = "authenticate";
-        public const string Authenticator = "authenticator";
-
-        /// <summary>
-        ///     Link to the configuration of the Auth0 service
-        /// </summary>
-        public const string Auth0 = "auth0";
-
-        /// <summary>
-        ///     Link to the collection available to the authenticated user
-        /// </summary>
-        public const string Me = "me";
-
-        /// <summary>
-        ///     Tenants collection for authenticated users
-        /// </summary>
-        public const string Tenants = "tenants";
-        public const string Tenant = "tenant";
-
-        /// <summary>
-        ///     Users collection on a tenant
-        /// </summary>
-        public const string Users = "users";
-
-
-        ///************************************
-        ///
-        ///   DOMAIN links
-        ///
-        ///************************************
-        /// <summary>
-        ///     Todo collection for a user/tenant
-        /// </summary>
-        public const string Todos = "todos";
-
-        /// <summary>
-        ///    Tags (categories) available on a todo
-        /// </summary>
-        public const string Tags = "tags";
-    }
-}
-```
-
-</Instruction>
-
-### Documenting/Modelling the domain (custom link relations)
-
-For completeness, as you add new custom link relations, it means that you are extending the domain. Modelling it in the domain diagram first is __strongly__ advised. This section will provide the `puml` file that the resulting diagram for compleleness. Reference both forms back to the custom link relations.
-
-<Instruction>
-
-Create a puml file for the diagram.
-
-```text(path="...todo-aspnetcore-vue/api/ApiResources.puml")
-@startuml
-
-class home as "Home/Root of the API"
-home : version
-' home +--|> tenant : tenants
-home +--|> tag : tags
-home #-left-|> todoState : states
-home .--|> user : me
-home +--|> user : users
-
-class tag as "tag"
-tag : name
-tag +--|> todo : todos
-
-class tenant as "tenant"
-tenant : name
-tenant +--|> user : users
-tenant +--|> todo : todos
-
-
-class todo as "todo"
-todo : many
-todo : state
-todo +--> todo : todos
-todo #--|> todoState
-todo +--|> comment : comments
-todo +--|> tag : tags
-
-class comment as "comment"
-comment : many
-note top
-  Not implemented
-end note
-
-'
-' Integration Support
-' ===================
-'
-
-class user as "User"
-note top
-  A user encapsulates the
-  concept of identity in
-  the system
-end note
-user : name
-user +--|> tenant : tenants
-user +--|> todo : todos
-
-
-'
-' Enumeration resources
-' =====================
-'
-
-class todoState  as "Todo States (enum)"
-todoState : name
-todoState : description
-
-
-@enduml
-```
-
-</Instruction>
-
-![todo api](../../hypermedia/advanced/todo-api.png)
 

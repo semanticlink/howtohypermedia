@@ -1,6 +1,6 @@
 ---
-title: GET api root representation
-pageTitle: The simplest representation - the root API
+title: Constructing Representations
+pageTitle: Construct the simplest representation - the root/home of the API
 description: "Learn the code mechanics of request/response of representation in an MVC framework with the root API representation containing links and a version"
 question: ?
 answers: ["", "", "", ""]

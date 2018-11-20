@@ -1,5 +1,6 @@
 import * as React from 'react'
 import '../styles/prism-ghcolors.css'
+import '../styles/tables.css'
 import { MarkdownRemark, RelayConnection } from '../types'
 import App from '../components/App'
 import Sidebar from '../components/Tutorials/Sidebar'

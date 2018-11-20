@@ -16,7 +16,7 @@ Using hypermedia means that we have a self-contained API with one starting point
     * singleton
     * collection (feed representation)
     * virtual (redirect)
-* constructing searches
+* constructing searchable resources
 * create representation (on collection with create-form)
 * update singleton (with edit-form)
 * update collection

@@ -10,10 +10,10 @@ This example constructs an edit form for use to update a resource on a singleton
 
 ### Goal
 
-* Udpate a resource with an `edit-form` link relation
+* Update a resource with an `edit-form` link relation
 * Create cachable edit form (designed to be put back onto the resource)
 
-### Anatomy of search
+### Anatomy of update
 
 | Method | link rel    | associated route    | notes
 | -------|-------------|---------------------|-------

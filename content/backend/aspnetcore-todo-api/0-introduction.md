@@ -23,6 +23,8 @@ Using hypermedia means that we have a self-contained API with one starting point
 
 ### The one-offs (wiring up hypermedia)
 
+Currently this tutorial does not include explaining what is in the code base.
+
 * content negotiation
 * URI construction and deconstruction
 * caching strategies
@@ -30,5 +32,6 @@ Using hypermedia means that we have a self-contained API with one starting point
 * persistence bootstrapping
 * CORS
 * authentication
-* authorisation
+* authorisation (resource-based model rather than role-based)
 * persisting resources (and writing authorisation rules)
+* test strategies

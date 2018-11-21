@@ -19,8 +19,7 @@ Using hypermedia means that we have a self-contained API with one starting point
 * constructing searchable resources
 * create representation (on collection with create-form)
 * update singleton (with edit-form)
-* update collection
-* authorisation
+* update collection (with edit-form and different mime-types)
 
 ### The one-offs (wiring up hypermedia)
 
@@ -32,4 +31,4 @@ Using hypermedia means that we have a self-contained API with one starting point
 * CORS
 * authentication
 * authorisation
-* persisting resources
+* persisting resources (and writing authorisation rules)

@@ -26,10 +26,11 @@ Later approaches to applications using HTTP have followed this hypermedia approa
 
 ### Why *How to Hyperemdia*?
 
-Hypermedia does feel like it is for the dedicated. These tutorials have grown out of a frustration that there aren't enough examples making concrete discussion quite hard around the pros and cons of designs. Examples are notoriously hard to get right in the sweetspot between simplicity and complexity. There are at least two other trends that align with hypermedia remaining niche:
+Hypermedia does feel like it is for the dedicated. These tutorials have grown out of a frustration that there aren't enough examples making concrete discussion quite hard around the pros and cons of designs. Examples are notoriously hard to get right in the sweetspot between simplicity and complexity. There are other trends that align with hypermedia remaining niche:
 
 - __too many microformats__: the fundamentals of hypermedia are pretty straightforward and many of the conventions found in microformats confuse understanding design issues of hypermedia. Because each microformats solves its own underlying issue, the tutorials should help you better assess what you need.
 - __not enough tooling__: mainstream adoption has been hindered because of tooling. Tooling has been hindered because of understanding. Understanding has been hindered because of lack of examples. There is a lack of adoption because there aren't enough examples (out in the wild). Get the picture? These examples may help with adoption.
+- __microformats aren't hypermedia__: designing a hypermedia network of data requires more than a microformat. Many anti-patterns still occur even with microformats: URI construction, RPC-JSON-over-HTTP, overly large messages, poor cachability.
 
 ### Approach
 
@@ -44,5 +45,10 @@ If you want to understand more about design then the Hypermedia fundamentals and
 ### Samples: `API` and `client` structure
 
 Tutorials are split between the API and the client. The api is the thing that we work against—it needs to replace the database in our thinking as 'the' integration point of solutions. The client is something that can work against the api and there can multiple clients to an api, be developed at a different rate to the api development and consume the api to varying levels of complexity and scale.
+
+The essence of these tutorials are to present in diffferent language and frameworks implementations where there is:
+
+- one API: all clients walk its network of data
+- three clients: rich-client user interface, general-purpose client to navigate the API, machine-to-machine provisioning client
 
 All tutorial code can be cloned and are outlined in each Getting Started section.

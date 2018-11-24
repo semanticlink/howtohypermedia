@@ -1,5 +1,5 @@
 ---
-title: More Hypermedia Concepts
+title: Forms Modelling
 pageTitle: "Hypermedia requires forms"
 description: "Learn about advanced concepts of the hypermedia like forms and affordances"
 description: "Links and Forms are used to update resources and controlled by the server"

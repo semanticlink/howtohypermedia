@@ -1,5 +1,5 @@
 ---
-title: Client-side Application Cache
+title: Client-Side Application Cache
 pageTitle: ""
 description: ""
 question: ?

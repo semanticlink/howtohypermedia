@@ -1,18 +1,28 @@
 ---
 title: Todo Domain
 pageTitle: "TODO app domain API"
-description: "Learn about different security aspects and strategies for your Api, such as authentication, authorisation and auditing, and the one-front door strategy."
-question: Which one of these strategies is not a valid way to defend your system?
-answers: ["Make your system cater for each security attack vector", "Have one strategy only", "Write simple, understandable code that is boilerplate", "Make your code subtle and obscure"]
-correctAnswer: 3
+description: "Learn about domain of the API"
+question: How do you best learn about how to use an API?
+answers: ["Read the documentation", "Try the API and explore data required", "Build up your knowledge in the context of a map and learn the specifics of conntectedness through practice", "Trick question: all APIs are hard to learn and use"]
+correctAnswer: 2
 ---
 
-### Modelling the API via collections
+### Modelling the API (via collections)
+
+Below is a diagram of the Todo domain that is the API. Its notion is explained in [a previous chapter api modelling](../1-api-modelling). The key point of this diagram is to be able to reason about the context and paths of resources. Its goal is not to see everthing but rather to see the essential complexity of the domain. Link relations like self, up and even edit-form, create-form and submit are accidental complexity at this level of abstraction.
+
+This model is best understood in the context of a working knowledge with the netword of data itself—which is why the API needs a general purpose client to make browsing the API part of the discovery (and learning process) of the domain. You can [browse the API here](https://api.todo.semanticlink.io).
+
+> Note: this diagram is a logical model of the domain and contains the heart of the domain including future resources. It also doesn't contain authorisation/authentication aspects.
 
 ![](todo-api.png)
 
+<Instruction>
+
+Create your own 'puml' file (based on dot notation) here from the network of data.
+
 ```dot
-class home as "Home/Root of the API" <<H, #00FF00) >>
+class home as "Home/Root of the API" &lt;&lt;H, #00FF00) >>
 home : version
 ' home +--|> tenant : tenants
 home +--|> tag : tags
@@ -24,13 +34,13 @@ class tag as "tag"
 tag : name
 tag +--|> todo : todos
 
-class tenant as "tenant"  <<O, #00FF00) >>
+class tenant as "tenant"  &lt;&lt;O, #00FF00) >>
 tenant : name
 tenant +--|> user : users
 tenant +--|> todo : todos
 
 
-class todo as "todo"   <<I, #0000FF) >>
+class todo as "todo"   &lt;&lt;I, #0000FF) >>
 todo : many
 todo : state
 todo +--> todo : todos
@@ -49,7 +59,7 @@ end note
 ' ===================
 '
 
-class user as "User"  <<A, #00FFFF) >>
+class user as "User"  &lt;&lt;A, #00FFFF) >>
 note top
   A user encapsulates the
   concept of identity in
@@ -65,11 +75,14 @@ user +--|> todo : todos
 ' =====================
 '
 
-class todoState  as "Todo States (enum)" <<E, #FF7700) >>
+class todoState  as "Todo States (enum)" &lt;&lt;E, #FF7700) >>
 todoState : name
 todoState : description
 
 ```
 
+</Instruction>
 
-We could specific it via https://mnot.github.io/I-D/json-home/
+### Future extensions
+
+Currently, this approach is manual and not generated from the API itself. In a public API (ie one that you don't control both the API and the client(s)), you may want use the 'home' link relation at the root of the API (see [json-home](https://mnot.github.io/I-D/json-home/)).

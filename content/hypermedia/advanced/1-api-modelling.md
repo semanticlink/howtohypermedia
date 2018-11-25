@@ -1,10 +1,10 @@
 ---
 title: API Modelling
 pageTitle: "Modelling the API through collections"
-description: "Learn about how collections are modelled in hypermedia"
-question: Which statement about hypermedia servers is correct?
-answers: ["", "", "", ""]
-correctAnswer: 2
+description: "Learn about how collections and singletons are modelled in hypermedia"
+question: Which statement about hypermedia servers is not correct?
+answers: ["Modelling hypermedia on collections is not the only approach", "Modelling on collections can be separated from the across-the-wire microformat", "Collections are just sets of singleton resources", "None of the above"]
+correctAnswer: 3
 ---
 
 ### Introduction
@@ -12,11 +12,15 @@ How To Hypermedia models the API based on collections and is not specific to any
 
 ###  Overview of the Semantic Link model
 
-The Semantic Link conventions on hypermedia revolve around different ways to build up resources as representations with link relations. Representations are generally referred to as a singleton or collection resource. A collection has a number of items each of which in turn are a representation. In any representation the link relations can also refer to another representation.
+The Semantic Link conventions on hypermedia revolve around different ways to build up resources as representations with link relations.
+
+* A **representation** has `links` to other representations and the attributes of the representation itself.
+
+Representations are generally referred to as a singleton or collection resource. A collection has a number of items each of which in turn are a representation. In any representation the link relations can also refer to another representation.
 
 <Instruction>
 
-Read more as a recursive structure
+Structurally
 
 ```bash
 .
@@ -28,9 +32,9 @@ Read more as a recursive structure
 
 </Instruction>
 
-### Concrete implementation of the Semantick Link model
+### Concrete implementation of the Semantic Link model
 
-The next step is that the implementation has a slightly different abstraction. Singleton representations are concrete LinkedRepresentations and Collection representations are FeedRepresentations where its items become LinkedRepresentations. These abstractions align with buidling the way the Web works.
+The next step is that the implementation has a slightly different abstraction. Singleton representations are concrete LinkedRepresentations and Collection representations are FeedRepresentations where its items become LinkedRepresentations. These abstractions align with building the way the Web works.
 
 #### Resources
 
@@ -89,13 +93,20 @@ This diagram is one way to view the domain at its highest level. It should indic
 Look at the model below to understand that:
 
 * Home singleton (root of the network of data)
-* `tags` link rel to a collection of `tag` representations
-* `users` link rel to a collection of `user` representations
-* `me` link rel to a specific `user` representation (in this case this is also a virtual resource because it redirects to a specific)
+* `tags` link rel to a collection of `tag` representations in the items
+* `users` link rel to a collection of `user` representations in the items
+* `me` link rel to a specific `user` representation (in this case this is also a virtual resource redirecting to another user representation)
+
+This diagram can be read as, the root (which has a version number) links to two collections and also a virtual resource to an item in one of those collections.
 
 ![](diagram-example.png)
 
 #### Diagram Key
+
+- yellow box: singleton representation
+- line with circle: named collection representation based on the link relation where the joining representation is an item
+- line only: singleton representation through the link relation
+- dotted line: virtual resource through the link relation
 
 ![](diagram-key.png)
 

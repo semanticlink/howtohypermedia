@@ -5,28 +5,10 @@ description: "Learn how the linked representation is the base to singletons and 
 ---
 
 
-### Quick Overview of the Semantic Link model
 
-The Semantic Link conventions on hypermedia revolve around different ways to build up resources as representations with link relations. Put differently, semantic link models in-memory representations as singetons and collections which are then serialised as across-the-wire representations (eg - Cj, HAL, SIREN, JSON-LD + hydra, UBER or ATOM-like JSON or XML)
+### Semantic Link model
 
-![modelling representations](modelling-representations.png)
-
-#### Resources
-
-* LinkedRepresentation: all representations have links (inherit `LinkedRepresentation`)
-* Singleton representation: is a LinkedRepresentation because it inherits from LinkedRepresentation and is its own first-class citizen
-* Collection representation: is a logical resource which is an instantiated FeedRepresentation with references to zero-to-many singleton resources
-* FeedRepresentation: is a sparsely populated collection representation, where each item is populated as a FeedItemRepresentation (note: collections can also be modelled with multiple link rels of the same name)
-* FeedItemRepresentation: minimal set of information to identify a resource, eg the location (URI) and title
-
-##### Links
-
-* Links: a set of information to identify a representation and the nature of its relationship as a `link relation` or "vocabulary" (is a set of `WebLink`s)
-* Link Relation: a descriptive attribute that defines the type of link, or the relationship between the source and destination resources. These are known at design and come in at least two forms: IANA and custom (eg also Schema.org, Microformats, Dublin Core and Activity Streams)
-* IANALinkRelations: a [published set](https://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1) of publicly, well-known link relations
-* CustomLinkRelations: specific to the domain (ie todo) of the application to model singletons and collection representations (see next tutorial page)
-
-> Note: modelling representations requires links and most formal hypermedia types model collections—this is independent of the media type that is send across the wire (aka the Strategy/Representor Pattern). Input and output serialisers are covered in a later tutorial.
+The API uses the Semantic Link model as it basis. Go check out api modelling in the advanced section. You'll now do an implementation.
 
 <Instruction>
 
@@ -41,39 +23,6 @@ Read the underlying code base.
     ├── IanaLinkRelation.cs
     ├── LinkedRepresentation.cs
     └── WebLink.cs
-
-```
-
-</Instruction>
-
-<Instruction>
-
-In pseudo code:
-
-```uml
-abstract class LinkedRepresentation {
-    Links : WebLink[]
-}
-
-class WebLink {
-   Rel : string
-   HRef : string
-   Title : string?
-   Type : string?
-}
-
-class FeedRepresentation {
-    Items : FeedItemRepresentation[]
-}
-
-class FeedItemRepresentation  {
-    Id : string
-    Title : string
-    Published : DateTime?
-    Updated : DateTime?
-    Author : string?
-    Categories : string[]?
-}
 
 ```
 

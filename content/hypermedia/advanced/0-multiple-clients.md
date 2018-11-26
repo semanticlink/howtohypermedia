@@ -1,7 +1,7 @@
 ---
 title: Multiple clients
 pageTitle: "Writing Clients Overview Tutorial"
-description: "Learn that most APIs ahould have multiple types of clients."
+description: "Learn that most APIs should have multiple types of clients."
 question: What types of clients are likely to be already running against any API?
 answers: ["Mobile vs browser", "Machine-to-machine and GUI-to-machine", "People-to-data and application-to-api", "All of the above"]
 correctAnswer: 3
@@ -9,11 +9,11 @@ correctAnswer: 3
 
 [TODO - video walking through the clients]
 
-How to Hypermedia has code samples for three different types of clients. This chapter gives context of how each of these clients are different. These clients are separated out each of them deal with representations on the client to different extents and for different ends.
+There are multiple types of clients that can walk across the API. Earlier solutions were concerned with different devices and languages (eg mobile vs desktop, browser vs native, React vs Vue). These people-to-date and GUI-to-machine  concerns are still issues but solving these technical concerns alone is not enough. As well, hypermedia requires clients that solve machine-to-machine and application-to-api concerns. The underlying design in this approach is how can the client reconstruct state and get the server to converge on a new state? Whilst at the same time not require human interpretation/intervention.
 
-[TODO - change the labels)
+**How to Hypermedia** has code samples for three different types of clients. This chapter gives context of how each of these clients are different. These clients are separated out each of them deal with representations on the client to different extents and for different ends.
 
-![](separate-client-api.png)
+![multiple clients](multiple-clients.png)
 
 ### Summary of clients
 

@@ -11,6 +11,8 @@ Hypermedia benefits from affordances. These are hints from the server about what
 
 Forms can also provide information to the client on how to display the information when there is human input required.
 
+![form modelling](form-modelling.png)
+
 There are a number of situations that use forms:
 
 * create a resource on a collection

@@ -8,7 +8,11 @@ correctAnswer: 3
 ---
 
 ### Introduction
+
 How To Hypermedia models the API based on collections and is not specific to any microformat (eg HAL, Collection+JSON, SIREN, JSON-LD + hydra, UBER or ATOM). This chapter explains the names/objects used throughout the tutorials for reference. Understanding this will help with understanding the approach to forms and the diagram representation of the TODO domain. Note: the collection always needs to be serialised to or deserialised from the across-the-wire format that the client requests. Most implementations will require multiple mime types and thus this tutorial sees those types as orthogonal and can be dealted with via programming patterns (eg Representator/Strategy) within the runtime framework pipeline.
+
+
+![api modelling](api-modelling.png)
 
 ###  Overview of the Semantic Link model
 

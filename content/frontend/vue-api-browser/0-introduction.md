@@ -11,6 +11,8 @@ correctAnswer: 2
 
 Using hypermedia means that we have a self contained API that should make it easy to browse the API just as we would web pages. This means that we can easily view, create, update and delete through the browser!
 
+![](../../hypermedia/advanced/single-resource.png)
+
 ### What is a general purpose client?
 
 A general purpose client for a browser is the ability to:

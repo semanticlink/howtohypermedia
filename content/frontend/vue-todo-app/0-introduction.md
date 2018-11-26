@@ -15,5 +15,11 @@ The tutorial is written using Vue and covers:
 * on-demand authentication
 * admin view to cloning todos (through sync utilities that build on client-side application cache)
 
+### Two views
 
-[ TODO: need to two pictures one of the app and the other of the admin ]
+#### Todo App
+
+![combination-resource](../../hypermedia/advanced/combination-resource.png)
+
+#### Admin
+![processing-resource](../../hypermedia/advanced/processing-resource.png)

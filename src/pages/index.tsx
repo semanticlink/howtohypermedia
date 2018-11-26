@@ -25,9 +25,9 @@ export default (props: Props) => {
   const steps = extractSteps(props.data.mds);
   const title = "How to Hypermedia - A tutorial for the dedicated";
   const overrideDescription =
-    "Hypermeida tutorial to go from zero to production covering basics and advanced concepts in different languages across the api and client implementations.";
+    "Hypermedia tutorial covering basics and advanced concepts in different languages across API and client implementations.";
   const description =
-    "Hypermedia tutorial to go from zero to production covering all basics and advanced concepts.";
+    "Hypermedia tutorial covering all basics and advanced concepts.";
   return (
     <App history={props.history} steps={steps} location={props.location}>
       <CustomHelmet title={title} description={description} overrideDescription={overrideDescription}/>

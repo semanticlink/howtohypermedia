@@ -1,6 +1,6 @@
 # Writing Guidelines for HowToHypermedia Tutorial Tracks
 
-This document describes writing guidelines and best practices for the HowToHypermeida tutorial tracks (frontend + backend). These instructions are based on How To GraphQL.
+This document describes writing guidelines and best practices for the How to Hypermedia tutorial tracks (frontend + backend). These instructions are based on How To GraphQL.
 
 ## Document Format
 
@@ -188,7 +188,7 @@ const client = new ApolloClient({
 
 ### Include every step
 
-HowToHypermeida contains detailed step-by-step tutorials where readers start from scratch and work towards the expected outcome. It's important the every single instruction is listed for the reader. You should aim to separate paragraphs with explanatory or illustrative content from those that actually contain instructions since instructions will be visually highlighted.
+How to Hypermedia contains detailed step-by-step tutorials where readers start from scratch and work towards the expected outcome. It's important the every single instruction is listed for the reader. You should aim to separate paragraphs with explanatory or illustrative content from those that actually contain instructions since instructions will be visually highlighted.
 
 ### Use You/Your/You'll & Command the reader
 

@@ -39,3 +39,14 @@ Currently, at this stage it is easier to keep everything in one repository becau
 ### What is hoped out of __How to Hypermedia__?
 
 That on getting some examples built that are comparable, there is a pragmatic step forwards such that somebody comes up with that secret sauce that move hypermedia from the dedicated to the mainstream. It is likely that a query abstraction (like Neo4j's graphite or GraphQL) over the top of a good client application cache (per client). On the API, there must be a better way that all this boilerplate code. Yet, that tends towards a domain specific langugage (DSL) that moves away from a general purpose language where it by repetition and exception, the essential and accidental are separated. So perhaps it will come from a simplified-REST-inspired-without-the-legacy-bloat serverless-side framework that has clean relative (ie not a flat namespaced) routing. Put differently, the current decades old approaches to MVC make the simple aspects that we should almost get for free way too hard and time consuming. [/end of rant]
+
+### What books/resources are there on Hypermedia?
+
+* Mike Amundsen: eg [Designing and Implementing Hypermedia APIs](https://www.infoq.com/articles/hypermedia-api-tutorial-part-one)
+    * [Building Hypermedia APIs with HTML5 and Node: Creating Evolvable Hypermedia Applications](http://shop.oreilly.com/product/0636920020530.do)
+    * [RESTful Web APIs: Services for a Changing World](http://shop.oreilly.com/product/0636920028468.do)
+    * [RESTful Web Clients: Enabling Reuse Through Hypermedia](http://shop.oreilly.com/product/0636920037958.do)
+* Irakli Nadareishvili: [Video](http://youtu.be/_UG7u7ARTfM%3Ft=35m25s) and [Transcript](https://www.freshblurbs.com/blog/2013/10/22/web-of-apis-hypermedia-collection-document.html) of a Talk on Hypermedia
+* Steve Klabnik: [Designing Hypermedia APIs](http://www.designinghypermediaapis.com/)and [Video](https://www.youtube.com/watch?v=g4sqydY3hHU)
+* Roy Fielding: [Representational State Transfer (REST)”](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
+* [API StyleBook](http://apistylebook.com/): collection of resources for API designers (from various providers like Atlassian, Google, Microsoft, PayPal, Redhat)

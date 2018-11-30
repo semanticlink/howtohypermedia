@@ -6,7 +6,7 @@ question: What is a benefit of a network of data?
 answers: ["It should be easy navigated through a browser", "We can user simple clients that can update resources", "It is a fast way to start understanding a domain", "All of the above!"]
 correctAnswer: 3
 duration: 10
-videoId: smaYY8tPcAU
+videoId: BO-aDVp8LbQ
 ---
 
 A well designed hypermedia API is both human and machine readable and actionable. Here are some of the key aspects that are illustrated in the video. Note: this video uses the general purpose client for navigating and interacting with the API (because not all functionality is available in the browser).

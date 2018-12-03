@@ -43,7 +43,7 @@ export default function ChooseTutorialStep({ active, onClick }: Props) {
           left: -2px;
         }
         .choose-tutorial-step.active, .choose-tutorial-step.active span:before {
-          border-color: $pink;
+          border-color: $blue;
         }
         span {
           @p: .black80;

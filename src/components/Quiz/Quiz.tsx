@@ -76,7 +76,7 @@ class Quiz extends React.Component<Props & QuizState, {}> {
             content: "";
           }
           .quiz-title .title {
-            @p: .pink, .bgWhite, .ph10, .f14, .fw6, .z2, .ttu, .tracked;
+            @p: .blue, .bgWhite, .ph10, .f14, .fw6, .z2, .ttu, .tracked;
           }
           .question {
             @p: .tc, .fw6, .mt38, .lhTitle, .center;
@@ -253,7 +253,7 @@ function Answer({ text, onClick, checked, correct }: AnswerProps) {
           @p: .ml16, .black50, .f16;
         }
         .answer.checked.correct span {
-          @p: .pink;
+          @p: .blue;
         }
         .answer.checked:not(.correct) span {
           @p: .strike, .black20;

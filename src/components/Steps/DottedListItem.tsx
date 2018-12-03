@@ -60,10 +60,10 @@ const DottedListItem = ({
           transition: color .15s ease-in-out;
         }
         .dotted-list-item:not(.done):hover {
-          color: $pink !important;
+          color: $blue !important;
         }
         .dotted-list-item:not(.done):hover::before {
-          border-color: $pink;
+          border-color: $blue;
           margin-top: -2px !important;
           left: -13px;
           width: 20px;
@@ -113,7 +113,7 @@ const DottedListItem = ({
         } /* first rules */
         .dotted-list-item.light.first:not(.small)::before,
         .dotted-list-item.active::before {
-          border-color: $pink !important;
+          border-color: $blue !important;
         }
         .dotted-list-item.light.first::before {
           margin-top: 0 !important;
@@ -128,7 +128,7 @@ const DottedListItem = ({
           padding-top: 0 !important;
         }
         .dotted-list-item.first.light:not(.small) :global(.list-item) {
-          @p: .pink;
+          @p: .blue;
         }
         .first .checkmark {
           margin-top: -5px;
@@ -146,7 +146,7 @@ const DottedListItem = ({
           background-image: linear-gradient(
             to top,
             rgba(225, 225, 225, 0.0),
-            $pink
+            $blue
           );
           width: 2px;
         }
@@ -218,7 +218,7 @@ const DottedListItem = ({
           @p: .white, .noUnderline;
         }
         .done:not(.active) :global(.title) {
-          color: #EB7BBC !important;
+          color: $blue !important;
         }
         .dotted-list-item:not(.first) .before-glow {
           @p: .db, .absolute;
@@ -227,7 +227,7 @@ const DottedListItem = ({
           left: -2px;
           background-image: linear-gradient(
             to top,
-            $pink 20%,
+            $blue 20%,
             rgba(225, 225, 225, 0.0)
           );
           width: 2px;
@@ -248,7 +248,7 @@ const DottedListItem = ({
           background-image: linear-gradient(
             to top,
             rgba(225, 225, 225, 0.0),
-            $pink 80%
+            $blue 80%
           );
           width: 2px;
         }
@@ -269,7 +269,7 @@ const DottedListItem = ({
           src={require('../../assets/icons/video.svg')}
           width={10}
           height={10}
-          color={$v.pink}
+          color={$v.blue}
         />
       </div>
       {done &&

@@ -29,7 +29,7 @@ export default class NewsletterSignup extends React.Component<Props, State> {
       <button className={cn({ invalid })} onClick={this.submit}>
         <style jsx={true}>{`
           button {
-            @p: .bgPink, .white, .br2, .flexFixed, .f16, .fw6, .pv10, .ph16, .pointer, .ttu, .buttonShadow;
+            @p: .bgBlue, .white, .br2, .flexFixed, .f16, .fw6, .pv10, .ph16, .pointer, .ttu, .buttonShadow;
             border: none;
           }
           button.invalid {

@@ -14,7 +14,7 @@ export default function TutorialTitleStep({ title, pinkLine }: Props) {
           @p: .bl, .bBlack20, .pb25, .pl25, .relative, .bw2;
         }
         .tutorial-title-step.pinkLine {
-          border-color: $pink;
+          border-color: $blue;
         }
         h3 {
           @p: .black30, .f14, .ttu, .fw6, .mb25, .tracked;

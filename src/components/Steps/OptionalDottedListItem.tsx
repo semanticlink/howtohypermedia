@@ -34,7 +34,7 @@ const OptionalDottedListItem = ({
           transition: border-color .15s ease-in-out;
         }
         div.optional-dotted-list-item.active::before {
-          border-color: $pink;
+          border-color: $blue;
         }
         .optional-dotted-list-item {
           @p: .pv16, .f20, .pl38, .relative;
@@ -56,13 +56,13 @@ const OptionalDottedListItem = ({
           @p: .black80;
         }
         div.optional-dotted-list-item.active :global(span) {
-          @p: .pink;
+          @p: .blue;
         }
         div.optional-dotted-list-item.small::before {
           margin-top: 3px;
         }
         .done:not(.active) :global(span) {
-          color: $pink40 !important;
+          color: $darkBlue40 !important;
         }
         .checkmark {
           @p: .absolute, .z2;
@@ -75,14 +75,14 @@ const OptionalDottedListItem = ({
 
         /* :hover */
         .optional-dotted-list-item:not(.done):hover::before {
-          border-color: $pink;
+          border-color: $blue;
           margin-top: 4px !important;
           left: -13px;
           width: 20px;
           height: 20px;
         }
         .optional-dotted-list-item.small:not(.done):hover::before {
-          border-color: $pink;
+          border-color: $blue;
           margin-top: -2px !important;
           left: -13px;
           width: 20px;
@@ -92,7 +92,7 @@ const OptionalDottedListItem = ({
           transition: color .15s ease-in-out;
         }
         .optional-dotted-list-item:hover :global(span) {
-          color: $pink !important;
+          color: $blue !important;
         }
         .small .play {
           margin-top: 5px;
@@ -118,7 +118,7 @@ const OptionalDottedListItem = ({
           src={require('../../assets/icons/video.svg')}
           width={10}
           height={10}
-          color={$v.pink}
+          color={$v.blue}
         />
       </div>
       {done &&

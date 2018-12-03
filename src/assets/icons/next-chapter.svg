@@ -13,7 +13,7 @@
             <g id="Group-10" transform="translate(103.000000, 787.000000)">
                 <g id="Group-13">
                     <g id="Group-14" transform="translate(1.000000, 6.000000)">
-                        <g id="Group" stroke="#E00083" fill="#FFFFFF">
+                        <g id="Group" stroke="blue" fill="#FFFFFF">
                             <circle id="Oval" cx="5" cy="5" r="5"></circle>
                         </g>
                         <path d="M5,11.1041667 L5,31" id="Line" stroke="url(#linearGradient-1)" stroke-linecap="square"></path>

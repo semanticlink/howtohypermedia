@@ -105,7 +105,7 @@ function Result({ steps, ...state }: Props & QuizState) {
           fill: #e00082;
         }
         h1 {
-          @p: .fw6, .pink;
+          @p: .fw6, .blue;
           font-size: 30px;
         }
         p {
@@ -189,23 +189,23 @@ function Bar({ items, title }: BarProps) {
           @p: .mr4;
         }
         .label {
-          @p: .f12, .fw6, .pink70, .ttu, .mt16;
+          @p: .f12, .fw6, .blue, .ttu, .mt16;
         }
         .l-0 {
           @p: .ba;
           border-color: rgba(0, 0, 0, .15);
         }
         .l-1 {
-          @p: .bgPink40;
+          @p: .bgDarkBlue40;
         }
         .l-2 {
-          @p: .bgPink60;
+          @p: .bgDarkBlue60;
         }
         .l-3 {
-          @p: .bgPink80;
+          @p: .bgDarkBlue80;
         }
         .l-4 {
-          @p: .bgPink;
+          @p: .bgBlue;
         }
         @media (max-width: 580px) {
           div.bar + div.bar {

@@ -69,7 +69,7 @@ class Results extends React.Component<Props, {}> {
           .result :global(a) {
             display: inline-block;
             font-weight: 500;
-            color: $pink;
+            color: $blue;
             font-size: 15px;
             margin-right: 5px;
             margin-bottom: 5px;
@@ -102,7 +102,7 @@ class Results extends React.Component<Props, {}> {
               {index === selectedIndex &&
                 <Icon
                   src={require('graphcool-styles/icons/stroke/arrowRight.svg')}
-                  color={$v.pink}
+                  color={$v.blue}
                   stroke={true}
                   strokeWidth={4}
                   width={10}

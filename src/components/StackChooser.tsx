@@ -121,8 +121,8 @@ class StackChooser extends React.Component<Props, {}> {
           }
           .coming-soon {
             @p: .ttu, .br2, .ba, .dib, .relative, .fw6, .mt10;
-            color: $pink;
-            border-color: $pink;
+            color: $blue;
+            border-color: $blue;
             font-size: 10px;
             padding: 3px 7px;
           }

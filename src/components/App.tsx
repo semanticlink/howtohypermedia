@@ -166,11 +166,11 @@ export default function App({ children, history, steps, location }: Props) {
         } /* Reusable Components */
         .btn {
           @p: .white, .f25, .fw6, .dib, .lhTitle, .pointer;
-          background: linear-gradient(103deg, #EC1D97, #e00082);
-          background-color: $pink;
+          background: linear-gradient(103deg, $blue80, $blue);
+          background-color: $blue;
           background-position: 0 0 ;
           background-repeat: no-repeat;
-          border: solid 2px #e00083;
+          border: solid 2px #$blue;
           padding: 17px 30px 19px;
           border-radius: 6px;
           transition: background-position .25s ease, box-shadow .25s ease;
@@ -193,9 +193,9 @@ export default function App({ children, history, steps, location }: Props) {
           box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
         }
         .btn.passive {
-          @p: .ba, .bw2, .pink;
+          @p: .ba, .bw2, .blue;
           background: white;
-          border-color: $pink30;
+          border-color: $darkBlue30;
         }
         .btn.small {
           @p: .f20, .fw6, .pv16, .ph20;

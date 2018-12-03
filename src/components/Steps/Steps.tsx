@@ -36,7 +36,7 @@ export default function Steps({
     <div className={cn('steps', { pinkBorder })}>
       <style jsx={true}>{`
         .steps.pinkBorder :global(.dotted-list-item) {
-          border-left-color: $pink;
+          border-left-color: $blue;
         }
         .list-item {
           @p: .itemsCenter, .flex;
@@ -49,7 +49,7 @@ export default function Steps({
           @p: .black80, .db, .relative, .z2;
         }
         .active :global(.title) {
-          color: $pink !important;
+          color: $blue !important;
         }
       `}</style>
       {(steps || []).map((step, index) => {

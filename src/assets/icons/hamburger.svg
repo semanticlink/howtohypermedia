@@ -3,7 +3,7 @@
 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 8.63 34.83" style="enable-background:new 0 0 8.63 34.83;" xml:space="preserve">
 <style type="text/css">
-	.hamburger-svg-1{fill:#E00082;}
+	.hamburger-svg-1{fill:blue;}
 	.hamburger-svg-2{fill:#C4C4C4;}
 	.hamburger-svg-3{fill:url(#XMLID_63_);}
 </style>
@@ -16,7 +16,7 @@
 		S2,18.69,2,17.41z M4.31,32.83C3.04,32.83,2,31.8,2,30.52s1.04-2.31,2.31-2.31s2.31,1.04,2.31,2.31S5.59,32.83,4.31,32.83z"/>
 	<linearGradient id="XMLID_63_" gradientUnits="userSpaceOnUse" x1="4.3145" y1="13.2896" x2="4.3145" y2="8.3521">
 		<stop  offset="0" style="stop-color:#C4C4C4"/>
-		<stop  offset="1" style="stop-color:#E00082"/>
+		<stop  offset="1" style="stop-color:blue"/>
 	</linearGradient>
 	<rect id="XMLID_5_" x="3.31" y="8.35" class="hamburger-svg-3" width="2" height="4.94"/>
 </g>

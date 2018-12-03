@@ -64,7 +64,7 @@ export default class Video extends React.Component<Props, State> {
             transition: .25s ease-in-out fill;
           }
           .overlay:hover :global(i) :global(svg) {
-            fill: $pink;
+            fill: $blue;
           }
           .overlay :global(i) {
             @p: .absolute;

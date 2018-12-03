@@ -25,7 +25,7 @@ export default function Checkmark({ checked = true, crossed = false }: Props) {
           width: 20px;
         }
         .checkmark.checked {
-          @p: .bgPink, .bw0;
+          @p: .bgBlue, .bw0;
         }
         .checkmark.crossed {
           @p: .bBlack20;

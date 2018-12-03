@@ -34,7 +34,7 @@ export default function Footer() {
         }
       `}</style>
       <span>
-        Made by{" "} Semantic Link Project <br/>(thanks to tutorial format by <a href="https://www.prisma.io"
+        Made by{" "} Semantic Link Project <br/>(big thanks to tutorial format by <a href="https://www.prisma.io"
                                                                                  target="_blank">Prisma</a>)
       </span>
       <div className="logos">

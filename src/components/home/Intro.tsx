@@ -1,10 +1,10 @@
-import * as React from 'react'
-import IntroSteps from './IntroSteps'
-import { Step } from '../../types'
-import Link from 'gatsby-link'
-import { connect } from 'react-redux'
-import { setOverviewVideoVisible } from '../../actions/ui'
-import Particles from 'react-particles-js'
+import * as React from "react";
+import IntroSteps from "./IntroSteps";
+import { Step } from "../../types";
+import Link from "gatsby-link";
+import { connect } from "react-redux";
+import { setOverviewVideoVisible } from "../../actions/ui";
+import Particles from "react-particles-js";
 
 interface Props {
   steps: { [key: string]: Step[] }
@@ -18,22 +18,22 @@ class Intro extends React.Component<Props, null> {
       <section className="intro">
         <div className="particles">
           <Particles
-            style={ { maxWidth: '100%' } }
-            width={`${typeof window !== 'undefined' && window.innerWidth || 1000}`}
+            style={{ maxWidth: "100%" }}
+            width={`${typeof window !== "undefined" && window.innerWidth || 1000}`}
             height="466"
             params={
               {
                 particles: {
-                  number: {value: 20, density: {enable: !0, value_area: 800}},
-                  color: {value: "#ffc0e5"},
+                  number: { value: 20, density: { enable: !0, value_area: 800 } },
+                  color: { value: "#ffc0e5" },
                   shape: {
                     type: "circle",
-                    stroke: {width: 4, color: "#fdd7ed"},
-                    polygon: {nb_sides: 5}
+                    stroke: { width: 4, color: "#fdd7ed" },
+                    polygon: { nb_sides: 5 }
                   },
-                  opacity: {value: .2, random: !1, anim: {enable: !1, speed: 1, opacity_min: .6, sync: !1}},
-                  size: {value: 1, random: !0, anim: {enable: !1, speed: 40, size_min: .1, sync: !1}},
-                  line_linked: {enable: !0, distance: 150, color: "#ffc0e5", opacity: .3, width: 1},
+                  opacity: { value: .2, random: !1, anim: { enable: !1, speed: 1, opacity_min: .6, sync: !1 } },
+                  size: { value: 1, random: !0, anim: { enable: !1, speed: 40, size_min: .1, sync: !1 } },
+                  line_linked: { enable: !0, distance: 150, color: "#ffc0e5", opacity: .3, width: 1 },
                   move: {
                     enable: !0,
                     speed: 1,
@@ -41,20 +41,24 @@ class Intro extends React.Component<Props, null> {
                     random: !1,
                     straight: !1,
                     out_mode: "out",
-                    attract: {enable: !1, rotateX: 600, rotateY: 1200}
+                    attract: { enable: !1, rotateX: 600, rotateY: 1200 }
                   }
                 },
                 interactivity: {
                   detect_on: "canvas",
-                  events: {onhover: {enable: !1, mode: "repulse"}, onclick: {enable: !0, mode: "push"}, resize: !0},
+                  events: {
+                    onhover: { enable: !1, mode: "repulse" },
+                    onclick: { enable: !0, mode: "push" },
+                    resize: !0
+                  },
                   modes: {
-                    grab: {distance: 400, line_linked: {opacity: 1}},
-                    bubble: {distance: 400, size: 40, duration: 2, opacity: 8, speed: 3},
-                    repulse: {distance: 200},
-                    push: {particles_nb: 4},
-                    remove: {particles_nb: 2}
+                    grab: { distance: 400, line_linked: { opacity: 1 } },
+                    bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+                    repulse: { distance: 200 },
+                    push: { particles_nb: 4 },
+                    remove: { particles_nb: 2 }
                   }
-                },
+                }
               } as any
             }
           />
@@ -124,7 +128,11 @@ class Intro extends React.Component<Props, null> {
         <div className="rest">
           <h1>Hypermedia for the dedicated</h1>
           <p>
-            The free and open-source tutorial (based on a simple a <i>todo</i> app) to learn all around creating and consuming hypermedia APIs.
+            The free and open-source tutorials (based around a simple a <i>todo</i> app) to learn all around creating
+            and consuming hypermedia APIs.
+          </p>
+          <p>
+            <i>Less talk, more code</i>: the tutorials walk you through full working examples of the API and clients.
           </p>
           <div className="center-container btn-container">
             <Link to="/basics/0-introduction/">
@@ -134,8 +142,8 @@ class Intro extends React.Component<Props, null> {
           <IntroSteps steps={this.props.steps} location={this.props.location}/>
         </div>
       </section>
-    )
+    );
   }
 }
 
-export default connect(null, {setOverviewVideoVisible})(Intro)
+export default connect(null, { setOverviewVideoVisible })(Intro);

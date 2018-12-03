@@ -5,9 +5,9 @@ description: "Learn that most APIs should have multiple types of clients."
 question: What types of clients are likely to be already running against any API?
 answers: ["Mobile vs browser", "Machine-to-machine and GUI-to-machine", "People-to-data and application-to-api", "All of the above"]
 correctAnswer: 3
+videoId: hE6ymKeJmsM
+duration: 10
 ---
-
-[TODO - video walking through the clients]
 
 There are multiple types of clients that can walk across the API. Earlier solutions were concerned with different devices and languages (eg mobile vs desktop, browser vs native, React vs Vue). These people-to-date and GUI-to-machine  concerns are still issues but solving these technical concerns alone is not enough. As well, hypermedia requires clients that solve machine-to-machine and application-to-api concerns. The underlying design in this approach is how can the client reconstruct state and get the server to converge on a new state? Whilst at the same time not require human interpretation/intervention.
 

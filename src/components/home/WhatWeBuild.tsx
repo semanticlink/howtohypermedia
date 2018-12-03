@@ -66,7 +66,7 @@ export default function WhatWeBuild() {
         `}</style>
         <h2>What you'll build: A hypermedia todo app</h2>
         <p className="c">
-          Start from scratch and build a fully-tenanted todo app with one of the
+          Work through the key aspects of constructing or consuming a fully-tenanted hypermedia-based todo app with one of the
           detailed step-by-step tutorials. Use the programming language and framework of your choice!
         </p>
         <div className="preview">
@@ -77,11 +77,11 @@ export default function WhatWeBuild() {
           <div className="points">
             <div className="point">
               <Checkmark />
-              <p>Best practices to implement a hypermedia API</p>
+              <p>Practices to implement a hypermedia API</p>
             </div>
             <div className="point">
               <Checkmark />
-              <p>Detailed instructions &amp; explanations</p>
+              <p>Detailed code walk through &amp; explanations</p>
             </div>
             <div className="point">
               <Checkmark />

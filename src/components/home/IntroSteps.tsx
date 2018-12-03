@@ -65,14 +65,15 @@ export default function IntroSteps({ steps, location }: Props) {
             </div>
             <p>
               In the first chapter, you’ll learn about
-              the core concepts of Semantic Link project. {' '}
+              the core concepts in how we design a hypermedia system. {' '}
             </p>
           </div>
           <div className="advanced-graphql">
-            <h3>Advanced concepts (optional)</h3>
+            <h3>Advanced concepts</h3>
             <p>
               Read this chapter to get a broader
-              understanding of the REST ecosystem.
+              understanding of the hypermedia ecosystem that is
+              used throughout all the client and API tutorials.
             </p>
           </div>
         </LeftColumn>

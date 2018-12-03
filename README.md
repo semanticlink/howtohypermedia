@@ -1,6 +1,8 @@
 # How to Hypermedia 🎓
 
-[How to Hypermedia](https://howtohypermedia.semanticlink.io) is a tutorial website to learn all about how you could implement a REST-style of architecture on a TODO list! The layout and functionality is a fork of [howtographql.com](https://www.howtographql.com/) which was built by [Prisma](https://www.prisma.io) and many amazing contributors. All content on the site is completely free and open-source.
+[How to Hypermedia](https://howtohypermedia.semanticlink.io) is a tutorial website to learn all about how you could implement a REST-style of architecture on a TODO list! All content on the site is completely free and open-source.
+
+> Note: the layout and functionality is based on [howtographql.com](https://www.howtographql.com/) which was built by [Prisma](https://www.prisma.io) and many amazing contributors.
 
 [![](howtohypermedia.png)](https://howtohypermedia.semanticlink.io)
 
@@ -38,7 +40,7 @@ yarn start # http://localhost:4000/
 ```
 > Note: If you are running Node 10, you might need to downgrade (ie use `nvm`)
 
-> Note2: If you're using Node 8, you might need to invoke `npm install -g node-gyp` before you're starting the app. More info [here](https://github.com/gatsbyjs/gatsby/issues/1754).
+> Note2: If you're using Node 8, you might need to invoke `npm install -g node-gyp` before you're starting the app. More info in [gatsby issue tracker](https://github.com/gatsbyjs/gatsby/issues/1754).
 
 ## Build
 
@@ -54,4 +56,8 @@ GA_TRACKING_ID=
 
 ## Publish
 
-See [readme](./deployment/Readme.md).
+See [deployment readme](./deployment/Readme.md).
+
+## Being a contributor
+
+Updates and new tutorials are encouraged. Also updates to the API are welcome when required. At this stage, all tutorial code is found in a single repository [todo-hypermedia](https://github.com/semanticlink/todo-hypermedia). That may change as needed. Instructions for contributors are in the [writing guidelines](https://github.com/semanticlink/howtohypermedia/blob/master/meta/writing-guidelines.md).

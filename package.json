@@ -68,7 +68,8 @@
     "build": "gatsby build",
     "precommit": "lint-staged",
     "prettier": "prettier --single-quote --no-semi --trailing-comma all --write *.{ts,tsx}",
-    "publish": "aws s3 cp public/ \"s3://howtohypermedia.semanticlink.io/\" --recursive"
+    "publish": "aws s3 cp public/ \"s3://howtohypermedia.semanticlink.io/\" --recursive",
+    "cache-invalidation": "aws cloudfront create-invalidation --distribution-id E2RL5RJ4H1V7PJ --paths /howtohypermedia.*"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

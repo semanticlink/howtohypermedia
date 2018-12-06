@@ -31,7 +31,7 @@ These are the domain link relations contained in the one place.
 
 Create custom link relations used through the API.
 
-```csharp(path="...todo-aspnetcore-vue/api/Domain/LinkRelations/CustomLinkRelation.cs")
+```csharp(path="...todo-hypermedia/api/Domain/LinkRelations/CustomLinkRelation.cs")
 namespace Domain.LinkRelations
 {
     public static class CustomLinkRelation
@@ -108,7 +108,7 @@ For completeness, as you add new custom link relations, it means that you are ex
 
 Create a puml file for the diagram.
 
-```text(path="...todo-aspnetcore-vue/api/ApiResources.puml")
+```text(path="...todo-hypermedia/api/ApiResources.puml")
 @startuml
 
 class home as "Home/Root of the API"

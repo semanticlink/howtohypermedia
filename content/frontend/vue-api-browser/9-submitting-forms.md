@@ -30,7 +30,7 @@ Remember, that the designer of the API is
 Add a submit to the form.
 
 
-```js(path="...todo-aspnetcore-vue/client/src/components/api/Resource.vue")
+```js(path="...todo-hypermedia/client/src/components/api/Resource.vue")
 
 <template>
 
@@ -116,7 +116,7 @@ Add a submit to the form.
 Read the code below to see the semantics of form submission and that values supplied are matched against the values in a form before submission.
 
 
-```js(path="...todo-aspnetcore-vue/client/src/lib/FormService.js")
+```js(path="...todo-hypermedia/client/src/lib/FormService.js")
 import axios from 'axios';
 import * as link from 'semantic-link';
 import {log} from 'logger';

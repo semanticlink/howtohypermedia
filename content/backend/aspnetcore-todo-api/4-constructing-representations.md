@@ -83,7 +83,7 @@ Below is a way to understand the interaction of the pattern of representation re
 
 Create a domain model for the home api that has the version of the application.
 
-```csharp(path="...todo-aspnetcore-vue/api/Domain/Models/ApiVersion.cs")
+```csharp(path="...todo-hypermedia/api/Domain/Models/ApiVersion.cs")
 namespace Domain.Models
 {
     public class ApiVersion
@@ -99,7 +99,7 @@ namespace Domain.Models
 
 Create a representation for the home api including the serialisation information.
 
-```csharp(path="...todo-aspnetcore-vue/api/Domain/Representation/ApiRepresentation.cs")
+```csharp(path="...todo-hypermedia/api/Domain/Representation/ApiRepresentation.cs")
 using System.Runtime.Serialization;
 using SemanticLink;
 
@@ -124,7 +124,7 @@ namespace Domain.Representation
 
 Create a controller (with version injected) and an method that responds to the root URI.
 
-```csharp{30,38}(path="...todo-aspnetcore-vue/api/Api/Controllers/HomeController.cs")
+```csharp{30,38}(path="...todo-hypermedia/api/Api/Controllers/HomeController.cs")
 using System;
 using Api.RepresentationExtensions;
 using Api.UriFactory;
@@ -179,7 +179,7 @@ namespace Api.Controllers
 
 Create a `ToRepresentation` implementation as an extension method that constructs the `ApiRepresentation` based on the incoming `ApiVersion` model and creates a mandatory 'self' link relation with the `UriFactory`.
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/RepresentationExtensions/ApiRepresentationExtensions.cs")
+```csharp(path="...todo-hypermedia/api/Api/RepresentationExtensions/ApiRepresentationExtensions.cs")
 using Api.UriFactory;
 using Domain.LinkRelations;
 using Domain.Models;
@@ -219,7 +219,7 @@ namespace Api.RepresentationExtensions
 
 Create a `UriFactory` implementation as an extension method which creates a URI string based on the route as configured up in the controller. Note: the URL construction is part of the MVC framework itself and thus needs to be handed through.
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/UriFactory/HomeUriFactory.cs")
+```csharp(path="...todo-hypermedia/api/Api/UriFactory/HomeUriFactory.cs")
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.UriFactory

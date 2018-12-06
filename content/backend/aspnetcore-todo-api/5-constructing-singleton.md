@@ -51,7 +51,7 @@ Read and start to grok the layout of the underlying code base
 
 Create a domain model for the user. Note that in this model the persistence store is DynamoDb.
 
-```csharp(path="...todo-aspnetcore-vue/api/Domain/Models/User.cs")
+```csharp(path="...todo-hypermedia/api/Domain/Models/User.cs")
 using System;
 using System.Collections.Generic;
 using Amazon.DynamoDBv2.DataModel;
@@ -94,7 +94,7 @@ namespace Domain.Models
 
 Create a representation for the user representation including the serialisation information.
 
-```csharp(path="...todo-aspnetcore-vue/api/Domain/Representation/UserRepresentation.cs")
+```csharp(path="...todo-hypermedia/api/Domain/Representation/UserRepresentation.cs")
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -129,7 +129,7 @@ namespace Domain.Representation
 
 Create a controller (with version injected) and an method that responds to the root URI.
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/Controllers/UserController.cs")
+```csharp(path="...todo-hypermedia/api/Api/Controllers/UserController.cs")
 using System.Threading.Tasks;
 using Api.Authorisation;
 using Api.Web;
@@ -181,7 +181,7 @@ namespace Api.Controllers
 
 Create a `ToRepresentation` implementation as an extension method that constructs the `UserRepresentation` based on the incoming `ApiVersion` model and creates a mandatory 'self' link relation with the `UriFactory`.
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/RepresentationExtensions/UserRepresentationExtensions.cs")
+```csharp(path="...todo-hypermedia/api/Api/RepresentationExtensions/UserRepresentationExtensions.cs")
 using System.Linq;
 using Api.UriFactory;
 using Api.Web;
@@ -229,7 +229,7 @@ namespace Api.RepresentationExtensions
 
 Create a `UriFactory` implementation as an extension method which creates a URI string based on the route as configured up in the controller. Note: the URL construction is part of the MVC framework itself and thus needs to be handed through.
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/UriFactory/UserUriFactory.cs")
+```csharp(path="...todo-hypermedia/api/Api/UriFactory/UserUriFactory.cs")
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.UriFactory
@@ -258,7 +258,7 @@ namespace Api.UriFactory
 
 Reuse the `HomeUriFactory` implementation created in the previous tutorial.
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/UriFactory/HomeUriFactory.cs")
+```csharp(path="...todo-hypermedia/api/Api/UriFactory/HomeUriFactory.cs")
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.UriFactory

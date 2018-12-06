@@ -20,7 +20,7 @@ It is quite easy to loose control of this part of the code. One recommendation i
 
 Start with a root representation that has at least the 'self' link and uri (ie sparsely populated). And yes, we have a single (root/global) cache on `this.$root.$api`. This will always be invoked before client routing.
 
-```js(path="...todo-aspnetcore-vue/client/src/App.vue")
+```js(path="...todo-hypermedia/client/src/App.vue")
 // App.vue
 <script>
     import {cache} from 'semantic-link-cache';
@@ -79,7 +79,7 @@ Client routing will now occur and load up a client view. The `apiUri` always inj
 
 Load the representation in the client URL into the cache, create reference that the HTML can bind to.
 
-```js{35}(path="...todo-aspnetcore-vue/client/src/components/app/Todo.vue")
+```js{35}(path="...todo-hypermedia/client/src/components/app/Todo.vue")
 // Todo.vue
 <template>
         ...
@@ -137,7 +137,7 @@ Writing the code that walks the network of data is where you need to have the AP
 
 Write code that walks the link relations (aka the 'domain').
 
-```js(path="...todo-aspnetcore-vue/client/src/domain/todo.js")
+```js(path="...todo-hypermedia/client/src/domain/todo.js")
 import {cache} from 'semantic-link-cache';
 import * as link from 'semantic-link';
 import {log} from 'logger';

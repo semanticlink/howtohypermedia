@@ -426,7 +426,7 @@ In the sample, you can force a create by changing the root resource identity. Th
 
 Force create a new tenant
 
-```js{13-7 }(path="...todo-aspnetcore-vue/client/src/components/app/Admin.vue")
+```js{13-7 }(path="...todo-hypermedia/client/src/components/app/Admin.vue")
         methods: {
             /**
              * Create a new tenant and clones existing lists/tags onto this tenant

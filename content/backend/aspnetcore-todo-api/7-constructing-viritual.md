@@ -43,7 +43,7 @@ Read and start to grok the layout of the underlying code base
 
 Extend the root/home representation of the API to include a 'me' link relation.
 
-```csharp{16}(path="...todo-aspnetcore-vue/api/Api/RepresentationExtensions/ApiRepresentationExtensions.cs")
+```csharp{16}(path="...todo-hypermedia/api/Api/RepresentationExtensions/ApiRepresentationExtensions.cs")
 public static class ApiRepresentationExtensions
 {
     /// <summary>
@@ -111,7 +111,7 @@ namespace Api.UriFactory
 
 Create a route in the controller that uses the authenticated user's id and constructs a redirect to that URI. This URI then redirects back to the URI of a singleton user resource already created in the previous single resource tutorial.
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/Controllers/TodoController.cs")
+```csharp(path="...todo-hypermedia/api/Api/Controllers/TodoController.cs")
 using System.Threading.Tasks;
 using Api.Authorisation;
 using Api.Web;
@@ -171,7 +171,7 @@ namespace Api.Controllers
 
 Create a `UriFactory` implementation as an extension method which creates a URI string based on the route as configured up in the controller. Note: the URL construction is part of the MVC framework itself and thus needs to be handed through.
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/UriFactory/UserUriFactory.cs")
+```csharp(path="...todo-hypermedia/api/Api/UriFactory/UserUriFactory.cs")
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.UriFactory
@@ -201,7 +201,7 @@ namespace Api.UriFactory
 
 Explore the `MakeRedirect` that can be used seeing that redirect is not permanent because different users will require different redirects.
 
-```csharp{14}(path="...todo-aspnetcore-vue/api/SemanticLink-AspnetCore/HttpRequestMessageExtensions.cs:47")
+```csharp{14}(path="...todo-hypermedia/api/SemanticLink-AspnetCore/HttpRequestMessageExtensions.cs:47")
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

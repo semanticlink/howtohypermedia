@@ -52,7 +52,7 @@ Read and start to grok the layout of the underlying code base
 
 Extend the root/home representation of the API to include a 'tenants' link relation.
 
-```csharp{15}(path="...todo-aspnetcore-vue/api/Api/RepresentationExtensions/ApiRepresentationExtensions.cs")
+```csharp{15}(path="...todo-hypermedia/api/Api/RepresentationExtensions/ApiRepresentationExtensions.cs")
 public static class ApiRepresentationExtensions
 {
     /// <summary>
@@ -139,7 +139,7 @@ Read and start to grok the layout of the underlying code base
 
 Create a route in the controller that returns a list of tenants based on the user and the search criteria and includes . The current (simple) implementation returns all tenants and the 'q' value is a filter—this implementation also eager loads tenants (it is a naive implementation for demonstration purposes). Note: humans could type the 'q' param with a value in the URL but this is not a hypermedia self-describing interface (albeit a handy short cut).
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/Controllers/TenantController.cs")
+```csharp(path="...todo-hypermedia/api/Api/Controllers/TenantController.cs")
 using System.Threading.Tasks;
 using Api.Authorisation;
 using Api.Web;
@@ -202,7 +202,7 @@ namespace Api.Controllers
 
 Create a `ToSearchFeedRepresentation` implementation as an extension method that constructs the `FeedRepresentation` with links `up` and to the `search` form. Note: that tenant resources are parented on a user.
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/RepresentationExtensions/TenantRepresentationExtensions.cs")
+```csharp(path="...todo-hypermedia/api/Api/RepresentationExtensions/TenantRepresentationExtensions.cs")
 using System.Collections.Generic;
 using System.Linq;
 using Api.UriFactory;
@@ -332,7 +332,7 @@ Read and start to grok the layout of the underlying code base
 
 Create a route in the controller that returns a list of tenants based on the user and the search criteria. The current (simple) implementation returns all tenants and the 'q' value is filter. Note: humans could type the 'q' param with a value in the URL but this is not a hypermedia self-describing interface (albeit a handy short cut).
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/Controllers/TenantController.cs")
+```csharp(path="...todo-hypermedia/api/Api/Controllers/TenantController.cs")
 using System.Threading.Tasks;
 using Api.Authorisation;
 using Api.Web;
@@ -382,7 +382,7 @@ namespace Api.Controllers
 
 Create a `ToTenantSearchFormRepresentation` method that generates the search form with a `submit` link rel.
 
-```js(path="...todo-aspnetcore-vue/api/Api/RepresentationExtensions/TenantFormRepresentationExtensions.cs")
+```js(path="...todo-hypermedia/api/Api/RepresentationExtensions/TenantFormRepresentationExtensions.cs")
 using Api.UriFactory;
 using Domain.LinkRelations;
 using Domain.Models;
@@ -556,7 +556,7 @@ namespace SemanticLink.Form
 
 Create a `UriFactory` implementation as an extension method which creates a URI string based on the route as configured up in the controller. Note: the URL construction is part of the MVC framework itself and thus needs to be handed through.
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/UriFactory/TenantUriFactory.cs")
+```csharp(path="...todo-hypermedia/api/Api/UriFactory/TenantUriFactory.cs")
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.UriFactory
@@ -657,7 +657,7 @@ Read and start to grok the layout of the underlying code base
 
 Create an incoming tenant search representation that has the search fields (in this case, just 'search').
 
-```js(path="...todo-aspnetcore-vue/api/Domain/Representation/TenantSearchRepresentation.cs")
+```js(path="...todo-hypermedia/api/Domain/Representation/TenantSearchRepresentation.cs")
 using System.Runtime.Serialization;
 
 namespace Domain.Representation
@@ -677,7 +677,7 @@ namespace Domain.Representation
 
 Create a route in the controller that accepts the search representation and returns a redirect in the form of a created resource that the client will follow the Location header. The current (simple) implementation returns a URI with the 'q' value as the filter (that was implemented above).
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/Controllers/TenantController.cs")
+```csharp(path="...todo-hypermedia/api/Api/Controllers/TenantController.cs")
 using System.Threading.Tasks;
 using Api.Authorisation;
 using Api.Web;
@@ -732,7 +732,7 @@ namespace Api.Controllers
 
 Explore the `MakeCreated` that can be used to return a `201 Created` and `Location` header.
 
-```csharp(path="...todo-aspnetcore-vue/api/SemanticLink-AspnetCore/HttpRequestMessageExtensions.cs")
+```csharp(path="...todo-hypermedia/api/SemanticLink-AspnetCore/HttpRequestMessageExtensions.cs")
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

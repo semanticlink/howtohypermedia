@@ -16,7 +16,7 @@ Update is the most complex in the todo app because it does inline editing, multi
 
 
 
-```js(path="...todo-aspnetcore-vue/client/src/components/app/TodoItem.vue")
+```js(path="...todo-hypermedia/client/src/components/app/TodoItem.vue")
 // TodoItem.vue (this is an iterator item on Todo.vue)
 <template>
 

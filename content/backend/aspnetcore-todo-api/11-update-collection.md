@@ -56,7 +56,7 @@ Read and start to grok the layout of the underlying code base. Note that updates
 
 Create a route in the controller that returns a list of tenants based on the user and the search criteria and includes . The current (simple) implementation returns all tenants and the 'q' value is a filter—this implementation also eager loads tenants (it is a naive implementation for demonstration purposes). Note: humans could type the 'q' param with a value in the URL but this is not a hypermedia self-describing interface (albeit a handy short cut).
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/Controllers/TodoController.cs")
+```csharp(path="...todo-hypermedia/api/Api/Controllers/TodoController.cs")
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Api.Authorisation;
@@ -220,7 +220,7 @@ namespace Api.Controllers
 
 Create a `ToSearchFeedRepresentation` implementation as an extension method that constructs the `FeedRepresentation` with links `up` and to the `search` form. Note: that tenant resources are parented on a user.
 
-```csharp{31}(path="...todo-aspnetcore-vue/api/Api/RepresentationExtensions/TagRepresentationExtensions.cs")
+```csharp{31}(path="...todo-hypermedia/api/Api/RepresentationExtensions/TagRepresentationExtensions.cs")
 using System.Collections.Generic;
 using System.Linq;
 using Api.UriFactory;
@@ -294,7 +294,7 @@ namespace Api.RepresentationExtensions
 
 Create a `UriFactory` implementation as an extension method which creates a URI string based on the route as configured up in the controller. Note: the URL construction is part of the MVC framework itself and thus needs to be handed through.
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/UriFactory/TagUriFactory.cs")
+```csharp(path="...todo-hypermedia/api/Api/UriFactory/TagUriFactory.cs")
 using System;
 using Microsoft.AspNetCore.Mvc;
 using SemanticLink;
@@ -370,7 +370,7 @@ Read and start to grok the layout of the underlying code base
 
 Create a `PUT` route in the controller that accepts (`Consumes`) a `text/uri-list` of tags that are either a canonical tag URI or a tag on a todo URI and then saves those Ids on the tags. Note: below is the code underlying `ToTags` for completeness).
 
-```csharp{39,44-49}(path="...todo-aspnetcore-vue/api/Api/Controllers/TodoController.cs")
+```csharp{39,44-49}(path="...todo-hypermedia/api/Api/Controllers/TodoController.cs")
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Api.Authorisation;
@@ -603,7 +603,7 @@ namespace SemanticLink.AspNetCore
 
 Create a `PATCH` route in the controller that accepts (`Consumes`) a `application/json-patch+json` document of tags that are either a canonical tag URI or a tag on a todo URI and then saves those Ids on the tags. Note: look at the source code for extensions method `ToTags` that extracts ids from URIs based on the routes (MVC does this really poorly and requires too much work).
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/Controllers/TodoController.cs")
+```csharp(path="...todo-hypermedia/api/Api/Controllers/TodoController.cs")
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Api.Authorisation;
@@ -713,7 +713,7 @@ namespace Api.Controllers
 
 Create an incoming patch feed representation that is the list of tag URIs.
 
-```js(path="...todo-aspnetcore-vue/api/SemanticLink-AspnetCore/PatchRepresentationExtensions.cs")
+```js(path="...todo-hypermedia/api/SemanticLink-AspnetCore/PatchRepresentationExtensions.cs")
 using System.Collections.Generic;
 
 namespace SemanticLink

@@ -52,7 +52,7 @@ Read and start to grok the layout of the underlying code base
 
 Create a route in the controller that returns a list of tenants based on the user and the search criteria and includes . The current (simple) implementation returns all tenants and the 'q' value is a filter—this implementation also eager loads tenants (it is a naive implementation for demonstration purposes). Note: humans could type the 'q' param with a value in the URL but this is not a hypermedia self-describing interface (albeit a handy short cut).
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/Controllers/TodoController.cs")
+```csharp(path="...todo-hypermedia/api/Api/Controllers/TodoController.cs")
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Api.Authorisation;
@@ -109,7 +109,7 @@ namespace Api.Controllers
 
 Create a `ToSearchFeedRepresentation` implementation as an extension method that constructs the `FeedRepresentation` with links `up` and to the `search` form. Note: that tenant resources are parented on a user.
 
-```csharp{31}(path="...todo-aspnetcore-vue/api/Api/RepresentationExtensions/TodoRepresentationExtensions.cs")
+```csharp{31}(path="...todo-hypermedia/api/Api/RepresentationExtensions/TodoRepresentationExtensions.cs")
 using System.Collections.Generic;
 using System.Linq;
 using Api.UriFactory;
@@ -233,7 +233,7 @@ Read and start to grok the layout of the underlying code base
 
 Create a route in the controller that returns a list of tenants based on the user and the search criteria. The current (simple) implementation returns all tenants and the 'q' value is filter. Note: humans could type the 'q' param with a value in the URL but this is not a hypermedia self-describing interface (albeit a handy short cut).
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/Controllers/TodoController.cs")
+```csharp(path="...todo-hypermedia/api/Api/Controllers/TodoController.cs")
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Api.Authorisation;
@@ -280,7 +280,7 @@ namespace Api.Controllers
 
 Create a `ToTodoCreateFormRepresentation` method that generates the create form (without a `submit` link rel).
 
-```js(path="...todo-aspnetcore-vue/api/Api/RepresentationExtensions/TodoFormRepresentationExtensions.cs")
+```js(path="...todo-hypermedia/api/Api/RepresentationExtensions/TodoFormRepresentationExtensions.cs")
 using Api.UriFactory;
 using Domain.Representation;
 using Domain.Representation.Enum;
@@ -620,7 +620,7 @@ Read and start to grok the layout of the underlying code base
 
 Create an incoming tenant search representation that has the search fields (in this case, just 'search').
 
-```js(path="...todo-aspnetcore-vue/api/Domain/Representation/TodoCreateDataRepresentation.cs")
+```js(path="...todo-hypermedia/api/Domain/Representation/TodoCreateDataRepresentation.cs")
 using System.Runtime.Serialization;
 
 namespace Domain.Representation
@@ -645,7 +645,7 @@ namespace Domain.Representation
 
 Create a route in the controller that accepts the the create representation and returns a `201 Created` with `Location` header to the canonical resource. Also included is the route for that canonical resource
 
-```csharp(path="...todo-aspnetcore-vue/api/Api/Controllers/TodoController.cs")
+```csharp(path="...todo-hypermedia/api/Api/Controllers/TodoController.cs")
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Api.Authorisation;
@@ -718,7 +718,7 @@ namespace Api.Controllers
 
 Explore the `MakeCreated` that can be used to return a `201 Created` and `Location` header.
 
-```csharp(path="...todo-aspnetcore-vue/api/SemanticLink-AspnetCore/HttpRequestMessageExtensions.cs")
+```csharp(path="...todo-hypermedia/api/SemanticLink-AspnetCore/HttpRequestMessageExtensions.cs")
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

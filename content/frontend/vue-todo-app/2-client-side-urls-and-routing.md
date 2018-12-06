@@ -31,7 +31,7 @@ Client URLs need to be able to hold state—that is, you can put them in the cli
 
 Initialise the starting URL and the mappers (include the router which is created below and the uriMapper implementation directly below)
 
-```js(path="...todo-aspnetcore-vue/client/src/app.js")
+```js(path="...todo-hypermedia/client/src/app.js")
 import Vue from 'vue';
 import router from './router';
 import {log} from 'logger';
@@ -75,7 +75,7 @@ new Vue({
 
 Initialise the starting URL and the mappers
 
-```js(path="...todo-aspnetcore-vue/client/src/lib/semantic-link-utils/UriMapping.js")
+```js(path="...todo-hypermedia/client/src/lib/semantic-link-utils/UriMapping.js")
 import {log} from 'logger';
 
 let instance;
@@ -260,7 +260,7 @@ export default UriMapping;
 
 Create a router mechanism and inject it into Vue
 
-```js(path="...todo-aspnetcore-vue/client/src/router.js")
+```js(path="...todo-hypermedia/client/src/router.js")
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import {makeAbsolute, toSitePath} from 'semantic-link-utils/UriMapping';

@@ -36,7 +36,7 @@ This code is external to the todo app although it is found inside the repository
 
 Create a linked representation with serialisation markup. In this form, notice that the `DataContract` attributing helps with serialisation to different formats (eg "linked" helps with XML output and is not see in the JSON form, whereas "links" will be seen in both XML and JSON).
 
-```csharp(path="...todo-aspnetcore-vue/api/SemanticLink/LinkedRepresentation.cs")
+```csharp(path="...todo-hypermedia/api/SemanticLink/LinkedRepresentation.cs")
 using System.Runtime.Serialization;
 
 namespace SemanticLink
@@ -57,7 +57,7 @@ namespace SemanticLink
 
 Create a web link representation.
 
-```csharp(path="...todo-aspnetcore-vue/api/SemanticLink/WebLink.cs")
+```csharp(path="...todo-hypermedia/api/SemanticLink/WebLink.cs")
 using System.Runtime.Serialization;
 
 namespace SemanticLink
@@ -113,7 +113,7 @@ namespace SemanticLink
 
 Create a feed representation. In this form, notice that the `DataContract` attributing helps with serialisation to different formats (eg "feed" helps with XML output to atom and is not see in the JSON form).
 
-```csharp(path="...todo-aspnetcore-vue/api/SemanticLink/FeedRepresentation.cs")
+```csharp(path="...todo-hypermedia/api/SemanticLink/FeedRepresentation.cs")
 using System.Runtime.Serialization;
 
 namespace SemanticLink
@@ -135,7 +135,7 @@ namespace SemanticLink
 
 Create a feed item representation. In this form, notice that the `DataContract` attributing helps with serialisation to different formats (eg "feed-item" helps with XML output to atom and is not see in the JSON form).
 
-```csharp(path="...todo-aspnetcore-vue/api/SemanticLink/FeedItemRepresentation.cs")
+```csharp(path="...todo-hypermedia/api/SemanticLink/FeedItemRepresentation.cs")
 using System;
 using System.Runtime.Serialization;
 
@@ -180,7 +180,7 @@ Below for completeness is an example of the IANA link relations that are general
 
 Create
 
-```csharp(path="...todo-aspnetcore-vue/api/SemanticLink/IanaLinkRelation.cs")
+```csharp(path="...todo-hypermedia/api/SemanticLink/IanaLinkRelation.cs")
 namespace SemanticLink
 {
     /// See http://en.wikipedia.org/wiki/Link_relation

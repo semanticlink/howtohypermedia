@@ -20,7 +20,7 @@ Displaying forms is about allowing users to easily values the API requires the c
 
 Add a vue component that loads up the resources and its form.
 
-```js(path="...todo-aspnetcore-vue/client/src/components/api/Resource.vue")
+```js(path="...todo-hypermedia/client/src/components/api/Resource.vue")
 
 <template>
 
@@ -41,7 +41,7 @@ Add a vue component that loads up the resources and its form.
 Add switches to show the visual element (and populate where necessary).
 
 
-```js(path="...todo-aspnetcore-vue/client/src/components/api/Resource.vue")
+```js(path="...todo-hypermedia/client/src/components/api/Resource.vue")
 
 <template>
 

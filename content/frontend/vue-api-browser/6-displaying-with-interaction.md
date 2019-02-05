@@ -10,6 +10,8 @@ The purpose of this part of the tutorial isn't to explain the HTML markup per se
 
 ### The basic additions
 
+Additions to link relations are:
+
 1. `self` has a delete button (to perform DELETE)
 2. `create-form` loads up the a create form for values to be entered (to perform a POST)
 2. `edit-form` loads up the an edit form and includes the current representation values to be changed (to perform a PUT)

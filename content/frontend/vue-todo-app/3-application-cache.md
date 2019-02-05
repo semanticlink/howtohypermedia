@@ -23,7 +23,7 @@ Start with a root representation that has at least the 'self' link and uri (ie s
 ```js(path="...todo-hypermedia/client/src/App.vue")
 // App.vue
 <script>
-    import {cache} from 'semantic-link-cache';
+    import {query} from 'semantic-network';
     import {apiUri} from 'semantic-link-utils/UriMapping';
 
     export default {
@@ -64,7 +64,7 @@ Start with a root representation that has at least the 'self' link and uri (ie s
              *
              * @type {ApiRepresentation}
              */
-            this.$root.$api = this.$root.$api || cache.create('HEAD', 'api');
+            this.$root.$api = this.$root.$api || query.create('HEAD', {rel: 'api'});
 
         }
     };
@@ -138,22 +138,58 @@ Writing the code that walks the network of data is where you need to have the AP
 Write code that walks the link relations (aka the 'domain').
 
 ```js(path="...todo-hypermedia/client/src/domain/todo.js")
-import {cache} from 'semantic-link-cache';
-import * as link from 'semantic-link';
+import {get, link} from 'semantic-network';
 import {log} from 'logger';
-import {findResourceInCollectionByUri} from 'semantic-link-cache/mixins/collection';
+import {findResourceInCollectionByUri} from 'semantic-network/utils/collection';
+import {FieldType} from 'semantic-network/interfaces';
 
 /**
  * Get the first level of todos (regardless of tenants)
  *
  * @param {ApiRepresentation} apiResource
- * @param {UtilOptions?} options
+ * @param {CacheOptions?} options
  * @returns {Promise<TodoCollectionRepresentation>} sparsely populated
  */
-export const getTodoList = (apiResource, options) =>
-    cache.getSingleton(apiResource, 'me', /me/, options)
-        .then(user => cache.getNamedCollection(user, 'todos', /todos/, options));
+export const getTodoList = (apiResource, options) => {
 
+    log.debug('Looking for todos on root');
+
+    return get(apiResource, /me/, options)
+        .then(user => get(user, /todos/, options));
+};
+
+/**
+ * Get the todos on the todo list
+ * @param {TodoCollectionRepresentation} todoCollection
+ * @param {CacheOptions?} options
+ * @returns {Promise<TodoCollectionRepresentation>}
+ */
+export const getTodos = (todoCollection, options) => {
+
+    log.debug(`Looking for todos on list ${link.getUri(todoCollection, 'self')}`);
+
+    return get(todoCollection, /todos/, {...options, includeItems: true});
+};
+
+/**
+ *
+ * Context: (user)-[todos...]
+ * Looks for: -[todos...]+->[tags...]
+ * @param {TenantCollectionRepresentation} userTenantsCollection
+ * @param {CacheOptions?} options
+ * @returns {Promise}
+ */
+export const getTodosWithTagsOnTenantTodos = (userTenantsCollection, options) => {
+    return get(userTenantsCollection, {rel: /todos/, includeItems: true, batchSize: 1, ...options})
+        .then(userTenantsTodos => get(
+            userTenantsTodos,
+            {
+                ...options,
+                iterateOver: true,
+                rel: /tags/,
+                includeItems: true,
+            }));
+};
 
 /**
  * Get the todo list items based on a uri starting from the root
@@ -163,28 +199,31 @@ export const getTodoList = (apiResource, options) =>
  *
  * @param {ApiRepresentation} apiResource
  * @param {string} todoUri
- * @param {UtilOptions?} options
+ * @param {CacheOptions?} options
  * @returns {Promise<CollectionRepresentation>}
  */
-export const getTodoListByUri = (apiResource, todoUri, options) =>
-     getNamedListByUri(apiResource, todoUri, options)
-        .then(itemResource => cache.getNamedCollectionAndItems(itemResource, 'todos', /todos/, options));
+export const getTodoListByUri = (apiResource, todoUri, options) => {
 
+    return getNamedListByUri(apiResource, todoUri, options)
+        .then(itemResource => get(itemResource, {...options, rel: /todos/, includeItems: true}));
+};
 
 /**
-* Get the name todo list based on a uri starting from the root
-*
-* Context: (api)
-* Looks for: -(me)-[todos...{self:$todoUri}]
-*
-* @param {ApiRepresentation} apiResource
-* @param {string} todoUri
-* @param {UtilOptions?} options
-* @returns {Promise<LinkedRepresentation>}
-*/
-export const getNamedListByUri = (apiResource, todoUri, options) =>
-    getTodoList(apiResource, options)
+ * Get the name todo list based on a uri starting from the root
+ *
+ * Context: (api)
+ * Looks for: -(me)-[todos...{self:$todoUri}]
+ *
+ * @param {ApiRepresentation} apiResource
+ * @param {string} todoUri
+ * @param {CacheOptions?} options
+ * @returns {Promise<LinkedRepresentation>}
+ */
+export const getNamedListByUri = (apiResource, todoUri, options) => {
+    return getTodoList(apiResource, options)
         .then(todosList => findResourceInCollectionByUri(todosList, todoUri));
+};
+
 ```
 
 </Instruction>

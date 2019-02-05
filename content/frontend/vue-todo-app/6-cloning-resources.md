@@ -49,58 +49,127 @@ Load (fully hydrate) the selected tenant on drag. Note: there is magic in here t
 
 ```js{10,64}(path="...todo-aspnetcore/client/src/components/app/Admin.vue")
 <template>
-    <div>
-         <ul>
-            <li v-for="tenant in tenants.items" v-cloak>
+    <div class="hello">
+        <h1>Organisations
+            <drag-and-droppable-model
+                    :model="this.$root.$api"
+                    :context="this.$root.$api"
+                    media-type="application/json"
+                    :dropped="createTenantOnRoot">
+                <b-button
+                        variant="outline"
+                        v-b-tooltip.hover.html.right
+                        title="Drop on to create">
+                    <add w="22px" h="22px"/>
+                </b-button>
+            </drag-and-droppable-model>
+        </h1>
+        <ul>
+            <li v-for="tenant in tenantCollection" v-cloak>
                 <span>{{ tenant.name }}</span>
                 <drag-and-droppable-model
-                    ...
-                    >
+                        :model="tenant"
+                        :async="true"
+                        media-type="application/json"
+                        :dropped="createOrUpdateTenant">
                     <b-button
                             @mousedown="hydrateTenant(tenant)"
                             variant="outline"
                             v-b-tooltip.hover.html.right
-                            title="Drag off to take a copy or drop on to update">
+                            title="Drag off to take a copy or drop on to update"
+                    >
                         <add w="22px" h="22px" title="Drag"/>
                     </b-button>
                 </drag-and-droppable-model>
+
+                <ul v-if="tenant && tenant.todos">
+                    <li v-for="todo in tenant.todos.items" v-cloak>
+                        <b-link @click="gotoTodo(todo)">{{ todo.name }}</b-link>
+                    </li>
+                </ul>
+
             </li>
         </ul>
     </div>
 </template>
 
 <script>
+    import {_} from 'underscore';
+    import {getUri} from 'semantic-link';
     import {log} from 'logger';
+    import {redirectToTodo} from 'router';
     import DragAndDroppableModel from '../DragAndDroppableModel.vue'
+    import {syncTenant} from '../../domain/tenant';
     import bButton from 'bootstrap-vue/es/components/button/button';
-    import bTooltip from 'bootstrap-vue/es/components/tooltip/tooltip'
+    import bLink from 'bootstrap-vue/es/components/link/link';
     import Add from 'vue-ionicons/dist/md-cloud-upload.vue';
+    import bTooltip from 'bootstrap-vue/es/components/tooltip/tooltip'
     import {eventBus} from 'semantic-link-utils/EventBus';
-    import {getTenantsOnUser, getUserTenant, getTodosWithTagsOnTenantTodos} from 'domain/tenant';
-
+    import {getTenantsOnUser, getUserTenant} from 'domain/tenant';
+    import {getTodosWithTagsOnTenantTodos} from 'domain/todo';
+    import {isCollectionEmpty, normalise} from 'semantic-network/utils/collection';
 
 
     export default {
-        components: {DragAndDroppableModel, bButton, add, bTooltip},
+        components: {DragAndDroppableModel, bButton, Add, bTooltip, bLink},
         data() {
             return {
+            
                 /**
                  * Tenants available for the user
-                 * @type {TenantCollectionRepresentation}
                  */
                 tenants: {},
             };
+        },
+        computed: {
+            tenantCollection() {
+                return this.tenants.items ? this.tenants.items : [];
+            }
         },
         created: function () {
 
             log.info(`Loading tenants for user`);
 
-            getTenantsOnUser(this.$root.$api)
-                .then(tenants => getTodosWithTagsOnTenantTodos(tenants)
-                    .then(() => this.tenants = tenants));
+            /**
+             * Strategy One: use the first tenant from a provided list (when authenticated)
+             * @param {ApiRepresentation} apiResource
+             * @param {CacheOptions?} options
+             * @returns {Promise|*}
+             */
+            const loadTenantsWithTodoLists = (apiResource, options) => {
+
+                return getTenantsOnUser(apiResource, options)
+                    .then(tenants => {
+
+                        if (isCollectionEmpty(tenants)) {
+                            this.$notify({
+                                title: "You no longer have any organisation to belong to",
+                                type: 'info'
+                            });
+                            log.info('No tenants found');
+                        }
+
+                        // need to bind the api into the vm data so that
+                        // UI renders with the tree
+                        this.tenants = tenants;
+
+                        return tenants;
+                    })
+                    .then(tenants => getTodosWithTagsOnTenantTodos(tenants, options))
+                    .catch(err => {
+                        this.$notify({
+                            text: err,
+                            type: 'error'
+                        });
+                        log.error(err);
+                    });
+            };
+
+            return loadTenantsWithTodoLists(this.$root.$api, this.$root.options);
 
         },
         methods: {
+
             /**
              * Helper that when a tenant is on start drag that the entire graph is hydrated. Once that is done
              * it hands back off with an event that needs to be listened for.
@@ -112,6 +181,10 @@ Load (fully hydrate) the selected tenant on drag. Note: there is magic in here t
             hydrateTenant(tenant) {
                 getUserTenant(tenant)
                     .then(() => eventBus.$emit('resource:ready'))
+                    .catch(err => {
+                        this.$notify({type: 'error', title: 'Could not load up the tenant'});
+                        log.error(err);
+                    });
             },
 
         },
@@ -126,8 +199,11 @@ Load (fully hydrate) the selected tenant on drag. Note: there is magic in here t
 Implement a hydration strategy across the API.
 
 ```js(path="...todo-aspnetcore/client/src/domain/tenant.js")
-import {cache} from 'semantic-link-cache';
-import {mapWaitAll} from 'semantic-link-cache/mixins/asyncCollection';
+import {getUri} from 'semantic-link';
+import {log} from 'logger';
+import {get, uriMappingResolver, sync} from 'semantic-network';
+import {getTodosWithTagsOnTenantTodos} from 'domain/todo';
+
 
 /***********************************
  *
@@ -137,51 +213,39 @@ import {mapWaitAll} from 'semantic-link-cache/mixins/asyncCollection';
 
 
 /**
- * Get the tenants that an authenticated user has access to
+ * Get the tenants that an authenticated user has access to (sparsely populated by default)
  *
  * Context: (api)
  * Access: -(me)-[tenants...]
  *
  * @param {ApiRepresentation} apiResource
- * @param {UtilOptions?} options
+ * @param {CacheOptions?} options
  * @returns {Promise<TenantCollectionRepresentation>}
  */
 export const getTenantsOnUser = (apiResource, options) =>
-    cache.getSingleton(apiResource, 'me', /me/, options)
-        .then(user => cache.getNamedCollectionAndItems(user, 'tenants', /tenants/, options));
+    get(apiResource, /me/, options)
+        .then(user => get(user, /tenants/, options));
+
 /**
  * Get the users that exist on a user tenant
  *
  * @param userTenantsCollection
- * @param {UtilOptions?} options
+ * @param {CacheOptions?} options
  * @returns {Promise<CollectionRepresentation>}
  */
 export const getTenantUsers = (userTenantsCollection, options) =>
-    cache.getNamedCollectionAndItems(userTenantsCollection, 'users', /users/, options);
+    get(userTenantsCollection, /users/, {includeItems: true, ...options});
 
 /**
  * Loads up a tenant to be copied with todos and users
  *
  * @param {TenantRepresentation} tenant
- * @param {UtilOptions?} options
+ * @param {CacheOptions?} options
  * @returns {Promise<TenantRepresentation>}
  */
 export const getUserTenant = (tenant, options) =>
     Promise.all([getTodosWithTagsOnTenantTodos(tenant.todos, options), getTenantUsers(tenant, options)])
         .then(() => tenant);
-
-/**
- *
- * Context: (user)-[todos...]
- * Looks for: -[todos...]+->[tags...]
- * @param {TenantCollectionRepresentation} userTenantsCollection
- * @param {UtilOptions?} options
- * @returns {Promise}
- */
-export const getTodosWithTagsOnTenantTodos = (userTenantsCollection, options) =>
-     cache.tryGetNamedCollectionAndItemsOnCollectionItems(userTenantsCollection, 'todos', /todos/, options)
-        .then(todosCollection => mapWaitAll(todosCollection, item =>
-            cache.tryGetNamedCollectionOnCollectionItems(item, 'tags', /tags/, options)));
 
 ```
 
@@ -190,12 +254,11 @@ export const getTodosWithTagsOnTenantTodos = (userTenantsCollection, options) =>
 <Instruction>
 
 
-
 ```js{12,65}(path="...todo-aspnetcore/client/src/components/app/Admin.vue")
 <template>
     <div>
          <ul>
-            <li v-for="tenant in tenants.items" v-cloak>
+            <li v-for="tenant in tenantCollection" v-cloak>
                 <span>{{ tenant.name }}</span>
                 <drag-and-droppable-model
                         :model="tenant"
@@ -220,6 +283,11 @@ export const getTodosWithTagsOnTenantTodos = (userTenantsCollection, options) =>
 
     export default {
         components: {DragAndDroppableModel, bButton, add, bTooltip},
+        computed: {
+            tenantCollection() {
+                return this.tenants.items ? this.tenants.items : [];
+            }
+        },
         methods: {
             /**
              * Update an existing tenant with existing (or new) todo lists with tags)
@@ -227,9 +295,10 @@ export const getTodosWithTagsOnTenantTodos = (userTenantsCollection, options) =>
              */
             createOrUpdateTenant(tenantDocument) {
 
-                syncTenant(this.$root.$api, tenantDocument);
+                syncTenant(this.$root.$api, tenantDocument, this.$root.options)
 
             },
+
         },
     };
 </script>
@@ -244,8 +313,8 @@ Implement a sync strategy across the API. Note: the implementation of `pooledTag
 ```js{93}(path="...todo-aspnetcore/client/src/domain/tenant.js")
 import {getUri} from 'semantic-link';
 import {log} from 'logger';
-import {pooledTagResourceResolver} from 'domain/tags';
-import {uriMappingResolver, sync, cache} from 'semantic-link-cache';
+import {get, uriMappingResolver, sync} from 'semantic-network';
+import {getTodosWithTagsOnTenantTodos} from 'domain/todo';
 
 /***********************************
  *
@@ -254,43 +323,7 @@ import {uriMappingResolver, sync, cache} from 'semantic-link-cache';
  */
 
 /**
- * Sync the tenant in the context of the tenant collection
- *
- * @param {TenantCollectionRepresentation} tenantCollection
- * @param {*|TenantCollectionRepresentation} aTenant
- * @param {{function(TenantRepresentation, LinkedRepresentation, UtilOptions):Promise}[]} strategies
- * @param {UtilOptions?} options
- * @returns {Promise}
- */
-const syncTenantStrategy = (tenantCollection, aTenant, strategies, options) =>
-    sync.getResourceInCollection(tenantCollection, aTenant, strategies, options);
-
-/**
- * Sync the todos in the context of a user collectoin
- *
- * @param {UserCollectionRepresentation} user
- * @param {*|UserCollectionRepresentation} aUser
- * @param {{function(UserCollectionRepresentation, LinkedRepresentation, UtilOptions):Promise}[]} strategies
- * @param {UtilOptions?} options
- * @returns {Promise}
- */
-const syncTodosStrategy = (user, aUser, strategies, options) =>
-    sync.getNamedCollectionInNamedCollection(user, 'todos', /todos/, aUser, strategies, options);
-
-/**
- * Sync the tags in the context of a todo
- *
- * @param {TodoRepresentation} todo
- * @param {*|TodoCollectionRepresentation} aTodo
- * @param {UtilOptions?} options
- * @returns {Promise}
- */
-const syncTagsStrategy = (todo, aTodo, options) =>
-    sync.getNamedCollectionInNamedCollection(todo, 'tags', /tags/, aTodo, [], options);
-
-
-/**
- * Clone a graph of tenant todo lists
+ * Clone a graph of aTenant todo lists
  *
  * Context: (api)-(me)-[tenants]
  * Access: [todos...]-[todos...]-[tags]
@@ -298,7 +331,7 @@ const syncTagsStrategy = (todo, aTodo, options) =>
  *
  * @param {ApiRepresentation} apiResource
  * @param {TenantRepresentation} aTenant
- * @param {UtilOptions?} options
+ * @param {CacheOptions?} options
  * @returns {Promise<TenantCollectionRepresentation>}
  */
 export const syncTenant = (apiResource, aTenant, options) => {
@@ -312,106 +345,34 @@ export const syncTenant = (apiResource, aTenant, options) => {
     return getTenantsOnUser(apiResource, options)
         .then(userTenants => {
             log.debug(`[Tenant] users loaded ${getUri(userTenants, /self/)}`);
-            return syncTenantStrategy(
-                userTenants,
-                aTenant,
-                [
-                    (usersRepresentation, usersDocument, options) => syncTodosStrategy(
-                        usersRepresentation,
-                        usersDocument,
-                        [
-                            (usersRepresentation, usersDocument, options) => syncTodosStrategy(
-                                usersRepresentation,
-                                usersDocument,
-                                [
-                                    (todoRepresentation, todoDocument, options) =>
-                                        syncTagsStrategy(todoRepresentation, todoDocument, options)
+            return sync({
+                resource: userTenants,
+                document: aTenant,
+                strategies: [syncResult => sync({
+                    ...syncResult,
+                    rel: /todos/,
+                    strategies: [syncResult => sync({
+                        ...syncResult,
+                        rel: /todos/,
+                        strategies: [({resource, document, options}) => sync(
+                            {
+                                resource,
+                                rel: /tags/,
+                                document,
+                                options: {...options, batchSize: 1}
+                            }),]
 
-                                ],
-                                options)
-                        ],
-                        options),
+                    })],
+                }),
                 ],
-                {
+                options: {
                     ...options,
-                    ...pooledTagResourceResolver(apiResource),
                     resolver: uriMappingResolver
-                });
+                }
+            });
         });
 
 };
-```
-
-</Instruction>
-
-<Instruction>
-
-Create a resolver for a resource outside of the tree (tags)
-
-```js(path="...todo-aspnetcore/client/src/domain/tags.js")
-import {PooledCollection} from 'semantic-link-cache';
-import {log} from 'logger';
-import {makeSparseResourceFromUri} from 'semantic-link-cache/cache/sparseResource';
-
-
-/**
- * A pooled resource is required by a resource to be resolved but lives outside the current scope of the resource for
- * resolution. This function provides that resolution service that is plugged in via the {@link UtilOptions} when syncing
- * resources.
- *
- * @example
- *
- *  The 'todos' collection in the userCollection requires a 'tags' collection that lives outside todos
- **
- *      return cache
- *          .getResource(user)
- *          .then(user =>
- *               sync.getResourceInNamedCollection(
- *                  user,
- *                  'todos',
- *                  /todos/,
- *                  userDocument,
- *                  [],
- *                  {
- *                      ...options,
- *                      ...pooledTagResourcesResolver(tenant)
- *                  }));
- *
- * @param {LinkedRepresentation} contextResource
- * @return {{resourceFactory: (function(*): LinkedRepresentation), resourceResolver: (function(string):Array<function(*, *)>)}} see {@link UtilOptions.resourceFactory} and {@link UtilOptions.resourceResolver}
- */
-export function pooledTagResourceResolver(contextResource) {
-
-    let resolve = (collectionName, collectionRel, type) =>
-        (resource, options) => PooledCollection
-            .getPooledCollection(contextResource, collectionName, collectionRel, resource, options)
-            .then(document => {
-                if (document) {
-                    return document;
-                } else {
-                    log.error(`TODO: make new pooled resource: ${type} '${resource.name || ''}'`);
-                    return undefined;
-                }
-            });
-
-    return {
-        resourceFactory: linkRel => makeSparseResourceFromUri(linkRel.href, {name: linkRel.title}),
-        resourceResolver: (type/*, context */) => {
-
-            const rel = {
-                tag: resolve('tags', /tags/, type),
-            };
-
-            if (rel[type]) {
-                return rel[type];
-            } else {
-                log.info(`Unable to resolve pooled resource '${type}', available: [${Object.keys(rel).join(',')}]`);
-                return () => Promise.resolve(undefined);
-            }
-        }
-    };
-
-}
 ```
 
 </Instruction>

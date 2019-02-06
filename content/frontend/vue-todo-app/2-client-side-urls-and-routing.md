@@ -1,10 +1,10 @@
 ---
 title: Client-side URLs and routing
 pageTitle: Learn how to think about client-side URLs and routing
-description: ""
-question: ?
-answers: ["", "", "", ""]
-correctAnswer: 0
+description: "Design your application around the holding and reconstructing client state through the URI in the browser location requires matching client views and the data it requires"
+question: A prerequisite of a bookmarkable URL holding state is?
+answers: ["A single-page application with a single entry point", "A known starting URI", "The ability to rewrite and decode URIs", "All of the above"]
+correctAnswer: 3
 ---
 
 ### Bookmarkable URL holding state

@@ -70,7 +70,7 @@ export default function CheckoutGraphcool() {
           </p>
           <a
             className="btn green small"
-            href="https://semanticlink.gitbub.com"
+            href="https://github.com/semanticlink/"
             target="_blank"
           >
             <Icon

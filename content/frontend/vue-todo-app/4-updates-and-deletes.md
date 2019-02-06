@@ -2,11 +2,14 @@
 title: Updates and deletes
 pageTitle: Updating and deleting items through the user interface
 description: "The application cache also deals with the updates and deletion of resources"
+question: The semantics of an update is
+answers: ["Put the original resource with changes","Put a representation of form fields filled in with a merge of original and new values","PUT on the self link relation of the form","All of the above"]
+correctAnswer: 1
 ---
 
-Dealing with updates and deletes is pretty straightforward. In a hypermedia-based app updates is the process of retrieving a form on resource, filling it in the desired values and submitting (a PUT) back to the server. Deleting, is submitting back (a DELETE) to the server. Each then need to be responded to appropriately on success/failure for redirection or retries. The semantic link cache code deals with most of these semantics.
+Dealing with updates and deletes is pretty straightforward. In a hypermedia-based app updates is the process of retrieving a form on resource, filling it in the desired values and submitting (a PUT) back to the server. Deleting, is submitting back (a DELETE) to the server. Each then need to be responded to appropriately on success/failure for redirection or retries. The semantic network code deals with most of these semantics for the application cache.
 
-[ TODO: image with update and delete ]
+![todo app](./todo-app.png)
 
 ### Update & Delete
 
@@ -93,16 +96,14 @@ Update is the most complex in the todo app because it does inline editing, multi
              * server-side
              */
             doneEdit() {
-                return update(this.item, this.editItem)
-                    .catch(err => log.error(err));
+                return update(this.item, this.editItem);
             },
 
             /**
              * Flush the delete back through the collection server-side
              */
             remove() {
-                return del(this.collection, this.item)
-                    .catch(err => log.error(err));
+                return del(this.collection, this.item);
             },
 
 

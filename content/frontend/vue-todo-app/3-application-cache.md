@@ -2,6 +2,10 @@
 title: Client-side application cache
 pageTitle: Bind views client-side application cache
 description: "Client need to have one copy of representations in the application cache"
+question: An application cache
+answers: ["Is a global, single version of what the clients has loaded","Requires that the developers access resources though link relations","Allows binding the UI to representations","All of the above"]
+correctAnswer: 3
+
 ---
 
 A client needs an application cache to ensure that there is self-consistency throughout the application (and avoid stale data). Doing this requires that the client is able to insert resources into the application state. It is usually the case that a client requires a URI inside the network and must insert it in the correct location for self-consistency. Without this approach each controller has its own copy of a resource. This tutorial demonstrates how use an existing application cache utility (rather than how to build one yourself).
@@ -14,7 +18,7 @@ A client needs an application cache to ensure that there is self-consistency thr
 * its position is relative to link relations
 * retrieving a representation is retrieved relative to the link relations of the context (and default context is root of the API)
 
-It is quite easy to loose control of this part of the code. One recommendation is to create separate code that uses link relations (the tip here is that semantic link cache import is never in a Vue component). This has multiple benefits: improves understanding of domain (link relations), avoids duplication, improves composition (reusability), improves its changability and, finally, makes it independently testable. Enough, some code!
+It is quite easy to loose control of this part of the code. One recommendation is to create separate code that uses link relations (the tip here is that semantic link cache import is never in a Vue component). This has multiple benefits: improves understanding of domain (link relations), avoids duplication, improves composition (reusability), improves its changeability and, finally, makes it independently testable. Enough, some code!
 
 <Instruction>
 

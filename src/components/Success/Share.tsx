@@ -74,7 +74,7 @@ export default function Share() {
         <p>Share this tutorial with your friends.</p>
         <a
           className="button twitter"
-          href="https://twitter.com/intent/tweet?text=How%20to%20hypermedia%3A%20hypermedia for the dedicated&via=semanticlink&url=https%3A%2F%2Fhowtohypermedia.semanticlink.io%2F&hashtags=hypermedia"
+          href="https://twitter.com/intent/tweet?text=How%20to%20hypermedia%3A%20hypermedia for the dedicated&via=semantic_link&url=https%3A%2F%2Fhowtohypermedia.semanticlink.io%2F&hashtags=hypermedia"
           target="_blank"
         >
           <Icon

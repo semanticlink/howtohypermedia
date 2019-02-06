@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="61.931512mm" height="48.541813mm"
+     viewBox="0 0 61.931512 48.541813"
+     xmlns="http://www.w3.org/2000/svg" version="1.1"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g>
+        <ellipse
+                style="fill:none;stroke:#fff;stroke-width:2.7;stroke-opacity:1.000000"
+                transform="matrix(0.967776,-0.25,0.25,0.97,-5.220393,7.747096)"
+                cx="27.659619"
+                cy="24.270910"
+                rx="22.527529"
+                ry="17.794462"
+        />
+        <ellipse
+                style="fill:none;stroke:#fff;stroke-width:2.3;stroke-opacity:1.000000"
+                transform="matrix(0.967776,-0.25,0.25,0.97,-7.527748,14.3)"
+                cx="52.103737"
+                cy="36.561999"
+                rx="7.155057"
+                ry="5.983272"
+        />
+    </g>
+</svg>

@@ -74,9 +74,9 @@ export default function CheckoutGraphcool() {
             target="_blank"
           >
             <Icon
-              src={require('../../assets/icons/semanticlink.svg')}
-              width={24}
-              height={24}
+              src={require('../../assets/icons/semanticlink-white.svg')}
+              width={48}
+              height={48}
             />
             <span>Get started with Semantic Link project</span>
           </a>

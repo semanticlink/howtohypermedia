@@ -31,7 +31,7 @@ Client URLs need to be able to hold state—that is, you can put them in the cli
 
 Initialise the starting URL and the mappers (include the router which is created below and the uriMapper implementation directly below)
 
-```js(path="...todo-hypermedia/client/src/app.js")
+```js{32}(path="...todo-hypermedia/client/src/app.js")
 import Vue from 'vue';
 import router from './router';
 import {log} from 'logger';
@@ -73,7 +73,7 @@ new Vue({
 
 <Instruction>
 
-Initialise the starting URL and the mappers
+Initialise the starting URL and the mappers.
 
 ```js(path="...todo-hypermedia/client/src/lib/semantic-link-utils/UriMapping.js")
 import {log} from 'logger';
@@ -238,6 +238,29 @@ class UriMapping {
 
 }
 
+/*
+ * Note the exports below should help us write simpler code even though there is a duplication in
+ * the form of wrappers.
+ *
+ * These allow us function calls as imports on the singleton
+ *
+ * @example import {toSitePath, makeRelative } from '/UriMapping'
+ */
+
+export function toSitePath(anApiUri, sitePrefix) {
+    if (instance) {
+        return instance.toSitePath(anApiUri, sitePrefix);
+    }
+    log.error('Mapper is not initialised. Instantiate first before calling this method');
+}
+
+export function makeAbsolute(path) {
+    if (instance) {
+        return instance.makeAbsolute(path);
+    }
+    log.error('Mapper is not initialised. Instantiate first before calling this method');
+}
+
 
 /**
  *
@@ -258,7 +281,7 @@ export default UriMapping;
 
 <Instruction>
 
-Create a router mechanism and inject it into Vue
+Create a router mechanism and inject it into Vue.
 
 ```js(path="...todo-hypermedia/client/src/router.js")
 import Vue from 'vue';

@@ -48,7 +48,7 @@ Update is the most complex in the todo app because it does inline editing, multi
 </template>
 
 <script>
-    import {cache} from 'semantic-link-cache';
+    import {del, update} from 'semantic-network';
     import * as link from 'semantic-link';
     import {log} from 'logger';
 
@@ -93,7 +93,7 @@ Update is the most complex in the todo app because it does inline editing, multi
              * server-side
              */
             doneEdit() {
-                return cache.updateResource(this.item, this.editItem)
+                return update(this.item, this.editItem)
                     .catch(err => log.error(err));
             },
 
@@ -101,7 +101,7 @@ Update is the most complex in the todo app because it does inline editing, multi
              * Flush the delete back through the collection server-side
              */
             remove() {
-                return cache.deleteCollectionItem(this.collection, this.item)
+                return del(this.collection, this.item)
                     .catch(err => log.error(err));
             },
 

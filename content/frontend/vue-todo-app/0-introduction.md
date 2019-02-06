@@ -1,7 +1,7 @@
 ---
 title: Introduction
 pageTitle: "Building a rich todo app tutorial"
-description: "Learn how to build a todo app over the top of a hypermedia API"
+description: "Learn how to build a todo app and admin functions over the top of a hypermedia API"
 ---
 
 ### Motivation

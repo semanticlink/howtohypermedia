@@ -129,7 +129,7 @@ Load the representation in the client URL into the cache, create reference that 
 
 </Instruction>
 
-Writing the code that walks the network of data is where you need to have the API diagram at hand. A todo list falls in the `root > me > todos > todos`. But it is a little more complicated because there are singletons (me), named collections and collections in there too. Read through the code and also look at the API itself and see if you can figure it out. This is as hard as it gets! Just note that we not dealing with the semantics of (HTTP) network requests at this level. It is all dealt with in the `cache` code.
+Writing the code that walks the network of data is where you need to have the API diagram at hand. A todo list falls in the `root > me > todos > todos`. But it is a little more complicated because there are singletons (me), named collections and collections of collections in there too. Read through the code and also look at the API itself and see if you can figure it out. This is as hard as it gets! Just note that we not dealing with the semantics of (HTTP) network requests at this level. It is all dealt with in the `semantic-network` code.
 
 ![see here](../../hypermedia/advanced/todo-api.png)
 

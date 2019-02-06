@@ -19,7 +19,7 @@ interface Props {
  * There are two types of links:
  *
  *    - group (no triple dots) client/src/components/Resource.vue
- *    - external ...todo-aspnetcore
+ *    - external ...todo-hypermedia
  *
  * @param group
  * @param path

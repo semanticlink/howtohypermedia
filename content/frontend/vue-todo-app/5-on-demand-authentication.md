@@ -149,7 +149,7 @@ The underlying http client is [axios](https://github.com/axios/axios) and thus w
 
 Setup the `401` interceptor on axios that sends a message that authentication is required
 
-```js(path="...todo-aspnetcore/client/src/lib/semantic-link-utils/http-interceptors.js")
+```js(path="...todo-hypermedia/client/src/lib/semantic-link-utils/http-interceptors.js")
 import axios from 'axios';
 import {log} from 'logger';
 import {httpQueue} from './HTTPQueue';
@@ -207,7 +207,7 @@ axios.interceptors.response.use(
 
 Include a listener on the Login component
 
-```js{11,19}(path="...todo-aspnetcore/client/src/components/authentication/Login.vue")
+```js{11,19}(path="...todo-hypermedia/client/src/components/authentication/Login.vue")
 <script>
     import {eventBus} from 'semantic-link-utils/EventBus';
     import {authRequired} from 'semantic-link-utils/authEvent';
@@ -243,7 +243,7 @@ Include a listener on the Login component
 
 Process the 401 response to determine the auth scheme details. This code only implements one scheme but switch between others. The basic logic is either get a valid token (new via user interface or renew quietly in the background). Note: The [AuthService](https://github.com/semanticlink/todo-aspnetcore/blob/master/client/src/lib/semantic-link-utils/AuthService.js) just wraps the auth0 client code and injects configuration via retrieving the `uri` from the `WWW-Authenticate` header.
 
-```js(path="...todo-aspnetcore/client/src/components/authentication/Login.vue")
+```js(path="...todo-hypermedia/client/src/components/authentication/Login.vue")
 <script>
     import {eventBus} from 'semantic-link-utils/EventBus';
     import {authRequired, authConfirmed} from 'semantic-link-utils/authEvent';
@@ -346,7 +346,7 @@ Process the 401 response to determine the auth scheme details. This code only im
 
 Add setting/clearing of `Authorization` header that is used in 'login' and 'logout'.
 
-```js(path="...todo-aspnetcore/client/src/lib/semantic-link-utils/http-interceptors.js")
+```js(path="...todo-hypermedia/client/src/lib/semantic-link-utils/http-interceptors.js")
 /**
  * Hold a reference so that it can be rejected/cleared
  */
@@ -416,7 +416,7 @@ export const JWT = 'jwt';
 
 Process the headers and then hand back to axios to process the requests and continue on
 
-```js(path="...todo-aspnetcore/client/src/components/authentication/Login.vue")
+```js(path="...todo-hypermedia/client/src/components/authentication/Login.vue")
 <script>
     import {eventBus} from 'semantic-link-utils/EventBus';
     import {authConfirmed} from 'semantic-link-utils/authEvent';

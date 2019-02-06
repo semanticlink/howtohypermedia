@@ -162,7 +162,7 @@ This information will be displayed on top of the code block and will link to the
 When adding a filename (without a slash between the dots and repository) to indicate that this code can be found as such in a file in the example project
 that is different to the current tutorial module:
 
-<pre><code>```js(path="...todo-aspnetcore-vue/client/src/components/api/Resource.vue")
+<pre><code>```js(path="...todo-hypermedia-vue/client/src/components/api/Resource.vue")
 &lt;template>
 
     &lt;b-form>

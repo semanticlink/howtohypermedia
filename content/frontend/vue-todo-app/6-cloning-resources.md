@@ -14,7 +14,7 @@ All of this is made possible because hypermedia uses forms to instruct the clien
 
 Load up the admin view on the todo app. Click Admin (bottom left), drag 'Rewire' onto the drop target next to Organisations. A Rewire will be created (note: you might need to refresh the page)
 
-![drag drop clone](drag-drop-clone.png)
+![processing-resource](../../hypermedia/advanced/processing-resource.png)
 
 </Instruction>
 
@@ -26,149 +26,54 @@ Load up the admin view on the todo app. Click Admin (bottom left), drag 'Rewire'
 
 ![engine](cloning.png)
 
-#### Two examples:
+#### Two operations
 
-1. Update existing resource: your client version is a copy of the server and all resource identities are the same; the only change is to remove some items and change a couple of attributes. This solution would do a mixture of DELETE and PUT requests.
-2. Clone a resource: your client version has a different root parent (ie it has an identitity that does not yet exists). The change is significant that the resources below to root need to be re-parented (or put differently a part of the tree is copied and grafted into a new parent). This solution would require POST throughout but also match new resource against the old ones (ie substitutions).
+1. Clone a resource: your client version has a different root parent (ie it has an identity that does not yet exists). The change is significant that the resources below to root need to be re-parented (or put differently a part of the tree is copied and grafted into a new parent). This solution would require POST throughout but also match new resource against the old ones (ie substitutions).
+2. Update existing resource: your client version is a copy of the server and all resource identities are the same; the only change is to remove some items and change a couple of attributes. This solution would do a mixture of DELETE and PUT requests.
 
-All of this done using the semantic link cache library and the purpose of this tutorial is show how it is used (not how to build it) and the mental model it requires.
+All of this done using the semantic network library and the purpose of this tutorial is show how it is used (not how to build it) and the mental model it requires.
 
 > Note: the drag'n'drop is just user-sugar to make the interaction practical. Again, if you want to understand the mechanics drag'n'drop look at the code (but the issue is that HTML5 API here is the right thing to do).
 
-### Update existing
+Both processes require first a copy to made. 
 
-1. Drag the organisation off onto the desktop (that will get a copy as JSON, aka hydrate)
-2. Update the JSON
-3. Drag back onto the same
-
-The instructions below are to process this
+### Have a copy
 
 <Instruction>
 
 Load (fully hydrate) the selected tenant on drag. Note: there is magic in here that the drag event is listening for an event because you can't communicate between events with promises.
 
-```js{10,64}(path="...todo-aspnetcore/client/src/components/app/Admin.vue")
+```js{13,41-48}(path="...todo-hypermedia/client/src/components/app/Admin.vue")
 <template>
-    <div class="hello">
-        <h1>Organisations
+ 
+    <ul>
+        <li v-for="tenant in tenantCollection" v-cloak>
+            <span>{{ tenant.name }}</span>
             <drag-and-droppable-model
-                    :model="this.$root.$api"
-                    :context="this.$root.$api"
+                    :model="tenant"
+                    :async="true"
                     media-type="application/json"
-                    :dropped="createTenantOnRoot">
+                    :dropped="createOrUpdateTenant">
                 <b-button
+                        @mousedown="hydrateTenant(tenant)"
                         variant="outline"
                         v-b-tooltip.hover.html.right
-                        title="Drop on to create">
-                    <add w="22px" h="22px"/>
+                        title="Drag off to take a copy or drop on to update"
+                >
+                    <add w="22px" h="22px" title="Drag"/>
                 </b-button>
             </drag-and-droppable-model>
-        </h1>
-        <ul>
-            <li v-for="tenant in tenantCollection" v-cloak>
-                <span>{{ tenant.name }}</span>
-                <drag-and-droppable-model
-                        :model="tenant"
-                        :async="true"
-                        media-type="application/json"
-                        :dropped="createOrUpdateTenant">
-                    <b-button
-                            @mousedown="hydrateTenant(tenant)"
-                            variant="outline"
-                            v-b-tooltip.hover.html.right
-                            title="Drag off to take a copy or drop on to update"
-                    >
-                        <add w="22px" h="22px" title="Drag"/>
-                    </b-button>
-                </drag-and-droppable-model>
 
-                <ul v-if="tenant && tenant.todos">
-                    <li v-for="todo in tenant.todos.items" v-cloak>
-                        <b-link @click="gotoTodo(todo)">{{ todo.name }}</b-link>
-                    </li>
-                </ul>
+        </li>
+    </ul>
 
-            </li>
-        </ul>
-    </div>
 </template>
 
 <script>
-    import {_} from 'underscore';
-    import {getUri} from 'semantic-link';
-    import {log} from 'logger';
-    import {redirectToTodo} from 'router';
-    import DragAndDroppableModel from '../DragAndDroppableModel.vue'
-    import {syncTenant} from '../../domain/tenant';
-    import bButton from 'bootstrap-vue/es/components/button/button';
-    import bLink from 'bootstrap-vue/es/components/link/link';
-    import Add from 'vue-ionicons/dist/md-cloud-upload.vue';
-    import bTooltip from 'bootstrap-vue/es/components/tooltip/tooltip'
-    import {eventBus} from 'semantic-link-utils/EventBus';
     import {getTenantsOnUser, getUserTenant} from 'domain/tenant';
-    import {getTodosWithTagsOnTenantTodos} from 'domain/todo';
-    import {isCollectionEmpty, normalise} from 'semantic-network/utils/collection';
-
 
     export default {
-        components: {DragAndDroppableModel, bButton, Add, bTooltip, bLink},
-        data() {
-            return {
-            
-                /**
-                 * Tenants available for the user
-                 */
-                tenants: {},
-            };
-        },
-        computed: {
-            tenantCollection() {
-                return this.tenants.items ? this.tenants.items : [];
-            }
-        },
-        created: function () {
-
-            log.info(`Loading tenants for user`);
-
-            /**
-             * Strategy One: use the first tenant from a provided list (when authenticated)
-             * @param {ApiRepresentation} apiResource
-             * @param {CacheOptions?} options
-             * @returns {Promise|*}
-             */
-            const loadTenantsWithTodoLists = (apiResource, options) => {
-
-                return getTenantsOnUser(apiResource, options)
-                    .then(tenants => {
-
-                        if (isCollectionEmpty(tenants)) {
-                            this.$notify({
-                                title: "You no longer have any organisation to belong to",
-                                type: 'info'
-                            });
-                            log.info('No tenants found');
-                        }
-
-                        // need to bind the api into the vm data so that
-                        // UI renders with the tree
-                        this.tenants = tenants;
-
-                        return tenants;
-                    })
-                    .then(tenants => getTodosWithTagsOnTenantTodos(tenants, options))
-                    .catch(err => {
-                        this.$notify({
-                            text: err,
-                            type: 'error'
-                        });
-                        log.error(err);
-                    });
-            };
-
-            return loadTenantsWithTodoLists(this.$root.$api, this.$root.options);
-
-        },
-        methods: {
+         methods: {
 
             /**
              * Helper that when a tenant is on start drag that the entire graph is hydrated. Once that is done
@@ -194,29 +99,21 @@ Load (fully hydrate) the selected tenant on drag. Note: there is magic in here t
 
 </Instruction>
 
+The `semantic-network` library provides `get` (as well as `create`, `update` and `delete`) to help build up a cache of network of data based on link relations. Study the implementation below to see that primarily all the developer needs to know is the link relation and can optionally add strategies for eager and lazy loading, for instance. In this implementation, the knowledge of the link relations is kept out of the framework specific code (hence in the `domain` folder) for the usual reasons of reuse, testing and intention. Also, note that types are explicitly defined and are used in parameters and return types. 
+
 <Instruction>
 
 Implement a hydration strategy across the API.
 
-```js(path="...todo-aspnetcore/client/src/domain/tenant.js")
-import {getUri} from 'semantic-link';
-import {log} from 'logger';
-import {get, uriMappingResolver, sync} from 'semantic-network';
+```js(path="...todo-hypermedia/client/src/domain/tenant.js")
+import {get} from 'semantic-network';
 import {getTodosWithTagsOnTenantTodos} from 'domain/todo';
-
-
-/***********************************
- *
- * Retrieve tenant information
- * ===========================
- */
-
 
 /**
  * Get the tenants that an authenticated user has access to (sparsely populated by default)
  *
  * Context: (api)
- * Access: -(me)-[tenants...]
+ * Access: (me)-[tenants...]
  *
  * @param {ApiRepresentation} apiResource
  * @param {CacheOptions?} options
@@ -231,7 +128,7 @@ export const getTenantsOnUser = (apiResource, options) =>
  *
  * @param userTenantsCollection
  * @param {CacheOptions?} options
- * @returns {Promise<CollectionRepresentation>}
+ * @returns {Promise<UserCollectionRepresentation[]>}
  */
 export const getTenantUsers = (userTenantsCollection, options) =>
     get(userTenantsCollection, /users/, {includeItems: true, ...options});
@@ -246,48 +143,38 @@ export const getTenantUsers = (userTenantsCollection, options) =>
 export const getUserTenant = (tenant, options) =>
     Promise.all([getTodosWithTagsOnTenantTodos(tenant.todos, options), getTenantUsers(tenant, options)])
         .then(() => tenant);
-
 ```
 
 </Instruction>
 
+## Create new
+
 <Instruction>
 
+Create a drop target. The drop target specifies the context in which the representation needs to be sync'd against. In this case, a tenant in the context of the root of the api (the implementation of that sync is in the next section).
 
-```js{12,65}(path="...todo-aspnetcore/client/src/components/app/Admin.vue")
+```js{4-6,29}(path="...todo-hypermedia/client/src/components/app/Admin.vue")
 <template>
-    <div>
-         <ul>
-            <li v-for="tenant in tenantCollection" v-cloak>
-                <span>{{ tenant.name }}</span>
-                <drag-and-droppable-model
-                        :model="tenant"
-                        :async="true"
-                        media-type="application/json"
-                        :dropped="createOrUpdateTenant">
-                    ...
-                </drag-and-droppable-model>
-            </li>
-        </ul>
-    </div>
+   <h1>Organisations
+        <droppable-model
+                :context="this.$root.$api"
+                media-type="application/json"
+                :dropped="createTenantOnRoot">
+            <b-button
+                    variant="outline"
+                    v-b-tooltip.hover.html.right
+                    title="Drop on to create">
+                <add w="22px" h="22px"/>
+            </b-button>
+        </droppable-model>
+    </h1>
 </template>
 
 <script>
-    import {log} from 'logger';
-    import DragAndDroppableModel from '../DragAndDroppableModel.vue'
-    import bButton from 'bootstrap-vue/es/components/button/button';
-    import bTooltip from 'bootstrap-vue/es/components/tooltip/tooltip'
-    import Add from 'vue-ionicons/dist/md-cloud-upload.vue';
-    import {eventBus} from 'semantic-link-utils/EventBus';
-    import {getTenantsOnUser, getUserTenant, getTodosWithTagsOnTenantTodos} from 'domain/tenant';
+    import {syncTenant} from '../../domain/tenant';
 
     export default {
-        components: {DragAndDroppableModel, bButton, add, bTooltip},
-        computed: {
-            tenantCollection() {
-                return this.tenants.items ? this.tenants.items : [];
-            }
-        },
+        components: {DroppableModel: DragAndDroppableModel},
         methods: {
             /**
              * Update an existing tenant with existing (or new) todo lists with tags)
@@ -306,28 +193,31 @@ export const getUserTenant = (tenant, options) =>
 
 </Instruction>
 
+
+The `semantic-network` library provides `sync` to walk the network of data based on link relations loading up representations and their forms and then working out whether to update, create or delete based on the presented representation/document. Study the implementation below to see that:
+
+* on each link relation (eg `rel: /todos/`) the `strategies` provides a recursive structure for depth and width control. 
+* short form parameter spread (`...syncResult`) that passes through necessary parameters
+* long form parameter destructuring (`{resource, document, options})` where you want to include options 
+* using a resolver for forward references and references to collections that are naturally parented outside the current tree (ie tags are parented across tenants)
+* changing batch size (ie concurrent versus serial operations).
+
+
 <Instruction>
 
-Implement a sync strategy across the API. Note: the implementation of `pooledTagResourceResolver` follows
+Implement a sync strategy across the API (see explanation directly above).
 
-```js{93}(path="...todo-aspnetcore/client/src/domain/tenant.js")
+```js{93}(path="...todo-hypermedia/client/src/domain/tenant.js")
 import {getUri} from 'semantic-link';
 import {log} from 'logger';
 import {get, uriMappingResolver, sync} from 'semantic-network';
 import {getTodosWithTagsOnTenantTodos} from 'domain/todo';
-
-/***********************************
- *
- * Sync
- * ====
- */
 
 /**
  * Clone a graph of aTenant todo lists
  *
  * Context: (api)-(me)-[tenants]
  * Access: [todos...]-[todos...]-[tags]
- * Pool: (api)-[tags]
  *
  * @param {ApiRepresentation} apiResource
  * @param {TenantRepresentation} aTenant
@@ -348,18 +238,18 @@ export const syncTenant = (apiResource, aTenant, options) => {
             return sync({
                 resource: userTenants,
                 document: aTenant,
-                strategies: [syncResult => sync({
+                strategies: [syncResult => sync({                             // strategies is an array although here there is only one strategy wide                 
                     ...syncResult,
                     rel: /todos/,
-                    strategies: [syncResult => sync({
-                        ...syncResult,
+                    strategies: [syncResult => sync({                         // short form
+                        ...syncResult,                                        // spread contains resource, docmument, options
                         rel: /todos/,
-                        strategies: [({resource, document, options}) => sync(
+                        strategies: [({resource, document, options}) => sync( // long form destructing to access update options
                             {
                                 resource,
                                 rel: /tags/,
                                 document,
-                                options: {...options, batchSize: 1}
+                                options: {...options, batchSize: 1}           // serial operations
                             }),]
 
                     })],
@@ -387,29 +277,29 @@ In the sample, you can force a create by changing the root resource identity. Th
 
 Force create a new tenant
 
-```js{13-7 }(path="...todo-hypermedia/client/src/components/app/Admin.vue")
-        methods: {
-            /**
-             * Create a new tenant and clones existing lists/tags onto this tenant
-             *
-             * Note: demo version just creates its own new tenant with random numbers
-             *
-             * @param tenantDocument
-             * @param apiResource
-             */
-            createTenantOnRoot(tenantDocument, apiResource) {
+```js{13-17}(path="...todo-hypermedia/client/src/components/app/Admin.vue")
+    methods: {
+        /**
+         * Create a new tenant and clones existing lists/tags onto this tenant
+         *
+         * Note: demo version just creates its own new tenant with random numbers
+         *
+         * @param tenantDocument
+         * @param apiResource
+         */
+        createTenantOnRoot(tenantDocument, apiResource) {
 
-                // Ensure the survey name and code are 'unique' (To Be Deleted)
-                tenantDocument.name = `${tenantDocument.name || 'New tenant'} (${Date.now() % 1000000})`;
-                tenantDocument.code = `${Date.now() % 1000000}.${tenantDocument.code }`;
-                if ('links' in tenantDocument) {
-                    delete tenantDocument.links;
-                }
+            // Ensure the survey name and code are 'unique' (To Be Deleted)
+            tenantDocument.name = `${tenantDocument.name || 'New tenant'} (${Date.now() % 1000000})`;
+            tenantDocument.code = `${Date.now() % 1000000}.${tenantDocument.code }`;
+            if ('links' in tenantDocument) {
+                delete tenantDocument.links;
+            }
 
-                this.$notify('Starting create new tenant');
+            this.$notify('Starting create new tenant');
 
-                this.createOrUpdateTenant(tenantDocument);
-            },
+            this.createOrUpdateTenant(tenantDocument);
+        },
 
 ```
 
@@ -417,7 +307,7 @@ Force create a new tenant
 
 <Instruction>
 
-Alternatively, drag the tenant into a JSON file and change the JSON
+Alternative create method, drag the tenant into a JSON file and change the JSON and then drag back onto the top drop location
 
 ```text
 {
@@ -495,6 +385,63 @@ Here's the diff file of above
    "todos": {
      "links": [
 
+```
+
+</Instruction>
+
+### Update existing
+
+1. Drag the organisation off onto the desktop (that will get a copy as JSON, aka hydrate)
+2. Update the JSON
+3. Drag back onto the same organisation
+
+<Instruction>
+
+To update, drag the tenant into a JSON file and change the JSON and then drag back onto the original drag as a drop location
+
+```text
+{
+  "links": [   <b><---- Leave all this because this is where the identity comes from</b>
+    {
+      "rel": "self",
+      "href": "http://localhost:5000/user/933bcca4e2/tenant/9e27499f9a"
+    },
+    {
+      "rel": "canonical",
+      "href": "http://localhost:5000/tenant/9e27499f9a"
+    },
+    {
+      "rel": "edit-form",
+      "href": "http://localhost:5000/tenant/form/edit"
+    }
+  ],
+  "name": "Rewire [new]",                 
+  "code": "[new]rewire.semanticlink.io",  
+  "description": "A new description",  <b><---- Update here</b>
+  "todos": {
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:5000/user/933bcca4e2/todolist"
+      },
+      {
+        "rel": "create-form",
+        "href": "http://localhost:5000/todolist/form/create"
+      }
+    ],
+    "items": [
+      {
+        "links": [
+          {
+            "rel": "self",
+            "href": "http://localhost:5000/todolist/1dedfe1c43"
+          }
+        ],
+        "name": "Shopping Todo List"   <b><---- Or this even!</b>
+      }
+    ]
+  }
+}
 ```
 
 </Instruction>

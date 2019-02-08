@@ -6,7 +6,7 @@ description: "Learn the code mechanics of a edit forms on a collection resource 
 
 This example adds an edit form to a tag collection with different mime-types (eg `uri-list` and `application/json-patch+json`) for use to update a the resources on a collection. This example updates a tags collection. Navigate to this resource from the home via the 'me' > 'todos' > pick a todo list > 'todos' > pick a todo > 'tags'.
 
-![update todo resource](update-resource.png)
+![update todo collection](update-collection.png)
 
 ### Goal
 
@@ -15,6 +15,8 @@ This example adds an edit form to a tag collection with different mime-types (eg
 * An introduction to `application/json-patch+json` for PATCH (make collection based on a series of change sets)
 
 > Note: both are constrained versions of adding/removing tags (items) from the collection and not updating the tag resources themselves
+
+> Note: editing a collection can also be performed by adding items (ie create-form) and/or removing via following the item link and then deleting. 
 
 ### Anatomy of update
 

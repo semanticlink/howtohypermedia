@@ -6,7 +6,7 @@ description: "Learn the code mechanics of a virtual resource with the user resou
 
 This example constructs a virtual (user) resource resource. Navigate to this resource from the home via the 'me' link relation.
 
-![virtual user resource](singleton-user.png)
+![virtual user resource](virtual-user.png)
 
 ### Goal
 

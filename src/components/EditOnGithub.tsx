@@ -13,7 +13,7 @@ export default function EditOnGithub({ post }: Props) {
   const slug = removeTrailingSlash(post.fields.slug)
   const group = extractGroup(post.fields.slug)
   const stack = data.find(s => s.key === group)
-  const stackType = stack ? stack.type : 'graphql'
+  const stackType = stack ? stack.type : 'hypermedia'
   const stackTypeString = slug.includes('choose') || slug.includes('success')
     ? ''
     : `/${stackType}`

@@ -17,6 +17,8 @@ These tutorials put up for grabs a collection-based implementation of hypermedia
 
 Engineering matters when building systems at scale (more correctly, across multiple scales). Working with hypermedia is one part of a REST-style of architecture and it appears that there are few dedicated enough to build web applications the way the web works. Hopefully, these tutorials will help reduce the gap between hypermedia as niche and something that is a wider option in the mainstream because it is not the domain of experts (ie the right thing to do) but rather because it is easy to do the right thing!
 
+## Give it a REST!
+
 Finally, hypermedia is part of a REST-style of architecture and a good summary of its challenges and benefits have been [already well outlined](https://blog.goodapi.co/rest-vs-graphql-a-critical-review-5f77392658e7):
  
 > ### REST pros

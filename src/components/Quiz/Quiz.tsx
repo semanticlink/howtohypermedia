@@ -1,19 +1,19 @@
-import * as React from 'react'
-import { Step } from '../../types'
-import Checkmark from '../Checkmark'
-import * as cn from 'classnames'
-import Unlocked from './Unlocked'
-import NextChapter from './NextChapter'
-import { smoothScrollTo } from '../../utils/smoothScroll'
-import RememberDecision from './RememberDecision'
-import { connect } from 'react-redux'
-import { defaultReaction, QuizState } from '../../reducers/quiz'
+import * as React from "react";
+import { Step } from "../../types";
+import Checkmark from "../Checkmark";
+import * as cn from "classnames";
+import Unlocked from "./Unlocked";
+import NextChapter from "./NextChapter";
+import { smoothScrollTo } from "../../utils/smoothScroll";
+import RememberDecision from "./RememberDecision";
+import { connect } from "react-redux";
+import { defaultReaction, QuizState } from "../../reducers/quiz";
 import {
   addAnswer,
   answerCorrectly,
   setRememberSkipped,
-  skip,
-} from '../../actions/quiz'
+  skip
+} from "../../actions/quiz";
 
 interface Props {
   question?: string
@@ -38,26 +38,27 @@ class Quiz extends React.Component<Props & QuizState, {}> {
       showBonus,
       path,
       correctAnswerIndex,
-      rememberSkipped,
-    } = this.props
-    const reaction = this.props.quizReactions[path] || defaultReaction
-    const { skipped, answeredCorrectly } = reaction
-    const answerIndeces = reaction.answerIndeces || []
+      rememberSkipped
+    } = this.props;
+    const reaction = this.props.quizReactions[path] || defaultReaction;
+    const { skipped, answeredCorrectly } = reaction;
+    const answerIndeces = reaction.answerIndeces || [];
+
 
     const bonusChapter: Step = {
-      description: `In this chapter, you'll learn about the core concepts of hypermedia`,
-      link: '/advanced/0-clients/',
-      title: 'Clients',
-    }
+      description: `In this chapter, you'll learn about some pros and cons of REST`,
+      link: "/advanced/5-give-it-a-rest/",
+      title: "Give it a REST!"
+    };
 
-    const hasQuestion = Boolean(question) && !skipped
+    const hasQuestion = Boolean(question) && !skipped;
     const showNextChapter =
-      skipped || answeredCorrectly || rememberSkipped || !hasQuestion
-    const showUnlock = !rememberSkipped
-    const showQuestion = !rememberSkipped && !skipped
+      skipped || answeredCorrectly || rememberSkipped || !hasQuestion;
+    const showUnlock = !rememberSkipped;
+    const showQuestion = !rememberSkipped && !skipped;
 
     return (
-      <div className={cn('quiz', { hasQuestion })}>
+      <div className={cn("quiz", { hasQuestion })}>
         <style jsx={true}>{`
           .quiz {
           }
@@ -121,115 +122,117 @@ class Quiz extends React.Component<Props & QuizState, {}> {
           }
         `}</style>
         {question &&
-          showQuestion &&
-          <div className="quiz-title">
-            <div className="title">Unlock the next chapter</div>
-          </div>}
+        showQuestion &&
+        <div className="quiz-title">
+          <div className="title">Unlock the next chapter</div>
+        </div>}
         {question && showQuestion && <div className="question">{question}</div>}
         {answers &&
-          answers.length === 4 &&
-          showQuestion &&
-          <div className="center-container">
-            <div className="answers">
-              <div className="answer-row">
-                <Answer
-                  text={answers[0]}
-                  onClick={this.handleAnswerClick.bind(this, 0)}
-                  checked={answerIndeces.includes(0)}
-                  correct={correctAnswerIndex === 0}
-                />
-                <Answer
-                  text={answers[1]}
-                  onClick={this.handleAnswerClick.bind(this, 1)}
-                  checked={answerIndeces.includes(1)}
-                  correct={correctAnswerIndex === 1}
-                />
-              </div>
-              <div className="answer-row">
-                <Answer
-                  text={answers[2]}
-                  onClick={this.handleAnswerClick.bind(this, 2)}
-                  checked={answerIndeces.includes(2)}
-                  correct={correctAnswerIndex === 2}
-                />
-                <Answer
-                  text={answers[3]}
-                  onClick={this.handleAnswerClick.bind(this, 3)}
-                  checked={answerIndeces.includes(3)}
-                  correct={correctAnswerIndex === 3}
-                />
-              </div>
-              {!answeredCorrectly &&
-                <div className="skip" onClick={this.skip}>Skip</div>}
+        answers.length === 4 &&
+        showQuestion &&
+        <div className="center-container">
+          <div className="answers">
+            <div className="answer-row">
+              <Answer
+                text={answers[0]}
+                onClick={this.handleAnswerClick.bind(this, 0)}
+                checked={answerIndeces.includes(0)}
+                correct={correctAnswerIndex === 0}
+              />
+              <Answer
+                text={answers[1]}
+                onClick={this.handleAnswerClick.bind(this, 1)}
+                checked={answerIndeces.includes(1)}
+                correct={correctAnswerIndex === 1}
+              />
             </div>
-          </div>}
+            <div className="answer-row">
+              <Answer
+                text={answers[2]}
+                onClick={this.handleAnswerClick.bind(this, 2)}
+                checked={answerIndeces.includes(2)}
+                correct={correctAnswerIndex === 2}
+              />
+              <Answer
+                text={answers[3]}
+                onClick={this.handleAnswerClick.bind(this, 3)}
+                checked={answerIndeces.includes(3)}
+                correct={correctAnswerIndex === 3}
+              />
+            </div>
+            {!answeredCorrectly &&
+            <div className="skip" onClick={this.skip}>Skip</div>}
+          </div>
+        </div>}
         {showNextChapter &&
-          <div>
-            {!skipped && question && showUnlock && <Unlocked n={n} />}
-            <div className="center-container">
-              <div className="next-chapters">
+        <div>
+          {!skipped && question && showUnlock && <Unlocked n={n}/>}
+          <div className="center-container">
+            <div className="next-chapters">
+              <NextChapter
+                step={this.props.nextChapter}
+                small={showBonus}
+                onClick={this.autoSkip}
+              />
+
+              {/* effectively commented out */false && showBonus &&
                 <NextChapter
-                  step={this.props.nextChapter}
-                  small={showBonus}
+                  step={bonusChapter}
+                  isBonus={true}
+                  small={true}
                   onClick={this.autoSkip}
-                />
-                {showBonus &&
-                  <NextChapter
-                    step={bonusChapter}
-                    isBonus={true}
-                    small={true}
-                    onClick={this.autoSkip}
-                  />}
-              </div>
+                />}
+
             </div>
-          </div>}
+          </div>
+        </div>}
         {(skipped || rememberSkipped) &&
-          <RememberDecision
-            onChangeRemember={this.toggleRememberSkip}
-            remember={this.props.rememberSkipped}
-          />}
+        <RememberDecision
+          onChangeRemember={this.toggleRememberSkip}
+          remember={this.props.rememberSkipped}
+        />}
       </div>
-    )
+    );
   }
 
   private toggleRememberSkip = () => {
-    this.props.setRememberSkipped(!this.props.rememberSkipped)
-  }
+    this.props.setRememberSkipped(!this.props.rememberSkipped);
+  };
 
   private autoSkip = () => {
     if (this.props.rememberSkipped) {
-      this.props.skip(this.props.path)
+      this.props.skip(this.props.path);
     }
-  }
+  };
 
   private skip = () => {
-    this.props.skip(this.props.path)
-    this.scrollDown()
-  }
+    this.props.skip(this.props.path);
+    this.scrollDown();
+  };
 
   private handleAnswerClick = i => {
-    const { path } = this.props
-    const reaction = this.props.quizReactions[path] || defaultReaction
-    const { answeredCorrectly } = reaction
-    const answerIndeces = reaction.answerIndeces || []
-    if (answeredCorrectly || answerIndeces.includes(i))  {
-      return
+    const { path } = this.props;
+    const reaction = this.props.quizReactions[path] || defaultReaction;
+    const { answeredCorrectly } = reaction;
+    const answerIndeces = reaction.answerIndeces || [];
+    if (answeredCorrectly || answerIndeces.includes(i)) {
+      return;
     }
-    this.props.addAnswer(path, i)
+    this.props.addAnswer(path, i);
     if (this.props.correctAnswerIndex === i) {
-      this.props.answerCorrectly(path)
-      this.scrollDown()
+      this.props.answerCorrectly(path);
+      this.scrollDown();
     }
-  }
+  };
 
   private scrollDown = () => {
     setTimeout(() => {
-      const container = document.getElementById('tutorials-left-container')
+      const container = document.getElementById("tutorials-left-container");
       if (container) {
-        smoothScrollTo(container, container.scrollHeight, 600)
+        smoothScrollTo(container, container.scrollHeight, 600);
       }
-    }, 0)
-  }
+    }, 0);
+  };
 }
 
 interface AnswerProps {
@@ -241,7 +244,7 @@ interface AnswerProps {
 
 function Answer({ text, onClick, checked, correct }: AnswerProps) {
   return (
-    <div className={cn('answer', { checked, correct })} onClick={onClick}>
+    <div className={cn("answer", { checked, correct })} onClick={onClick}>
       <style jsx={true}>{`
         .answer {
           @p: .flex, .itemsStart, .w50, .pointer, .lhCopy;
@@ -277,16 +280,16 @@ function Answer({ text, onClick, checked, correct }: AnswerProps) {
         }
       `}</style>
       <div className="checkmark">
-        <Checkmark checked={checked && correct} crossed={checked && !correct} />
+        <Checkmark checked={checked && correct} crossed={checked && !correct}/>
       </div>
       <span>{text}</span>
     </div>
-  )
+  );
 }
 
 export default connect(state => state.quiz, {
   addAnswer,
   answerCorrectly,
   setRememberSkipped,
-  skip,
-})(Quiz)
+  skip
+})(Quiz);

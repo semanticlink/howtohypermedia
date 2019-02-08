@@ -24,7 +24,7 @@ It is quite easy to loose control of this part of the code. One recommendation i
 
 Start with a root representation that has at least the 'self' link and uri (ie sparsely populated). And yes, we have a single (root/global) cache on `this.$root.$api`. This will always be invoked before client routing.
 
-```js(path="...todo-hypermedia/client/src/App.vue")
+```js(path="...todo-hypermedia/client/src/component/app/App.vue")
 // App.vue
 <script>
     import {query} from 'semantic-network';

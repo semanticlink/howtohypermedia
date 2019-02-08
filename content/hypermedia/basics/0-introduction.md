@@ -24,7 +24,7 @@ Later approaches to applications using HTTP have followed this hypermedia approa
 
 ![](follow-your-nose.png)
 
-### Why *How to Hyperemdia*?
+### Why *How to Hypermedia*?
 
 Hypermedia does feel like it is for the dedicated. These tutorials have grown out of a frustration that there aren't enough examples making concrete discussion quite hard around the pros and cons of designs. Examples are notoriously hard to get right in the sweetspot between simplicity and complexity. There are other trends that align with hypermedia remaining niche:
 

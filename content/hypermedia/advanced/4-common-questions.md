@@ -50,3 +50,4 @@ That on getting some examples built that are comparable, there is a pragmatic st
 * Steve Klabnik: [Designing Hypermedia APIs](http://www.designinghypermediaapis.com/)and [Video](https://www.youtube.com/watch?v=g4sqydY3hHU)
 * Roy Fielding: [Representational State Transfer (REST)”](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
 * [API StyleBook](http://apistylebook.com/): collection of resources for API designers (from various providers like Atlassian, Google, Microsoft, PayPal, Redhat)
+* [REST vs. GraphQL: A Critical Review](https://blog.goodapi.co/rest-vs-graphql-a-critical-review-5f77392658e7): great section on REST cons (suggesting that hypermedia is for the dedicated)!

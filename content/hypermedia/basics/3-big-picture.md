@@ -22,15 +22,3 @@ The version of hypermedia enacted in these tutorials is part of the last wave of
  * **Monolithic:** a single, self contained construction, held together strongly by internal coupling of its parts to keep stability and robustness
  * **Atomised:** decouple dynamics by atomising into components (eg microservices), weakly coupling them for greater stability (although at the same time this diversification requires adding coordination and indirection to make them useful for solving business problems, resulting in perhaps a greater level of brittle coupling than expected)—and then note as the atomisation goes too far and uncertainty kicks in there is a swing back to unification
  * **Distributed:** add semantics for balancing simplicity and complexity over multiple scales (the attempt here is to balance atomicity and stability through understanding that instability revolves around two axes of vulnerability: thresholds and intrinsic scales; and misinterpreted and misintentioned messages)—the idea here is to add constraints which helps with a tolerance of diversity and a more effective exploitation of robust growth because the client gets increased responsibility and contextual knowledge
-
-### Hypermedia for the dedicated
-
-These tutorials put up for grabs a collection-based implementation of hypermedia that is hopefully pragmatic as it attempts to balance between simplicity and flexibility for the current context:
-
-* _collections:_ proven to work well enough for most business-type conditions (different parts can move independently and cooperate)
-* _pragmatic:_ can be coded and tested in general purpose languages and with standards without the need for more specialised tooling
-* _simplicity:_ can be reasoned about by developers to model business processes without elaborate tooling
-* _flexibility:_ the underlying abstractions can be serialised (across-the-wire representations) into preferred microformats
-* _current context:_ it surprising how, regardless of technology changes, developers (and tooling/library makers) still find ways to reimplement antipatterns from the past using shiny new technology
-
-Engineering matters when building systems at scale (more correctly, across multiple scales). Working with hypermedia is one part of a REST-style of architecture and it appears that there are few dedicated enough to build web applications the way the web works. Hopefully, these tutorials will help reduce the gap between hypermedia as niche and something that is a wider option in the mainstream because it is not the domain of experts (ie the right thing to do) but rather because it is easy to do the right thing!

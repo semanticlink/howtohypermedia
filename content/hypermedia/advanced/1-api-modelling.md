@@ -26,7 +26,7 @@ Representations are generally referred to as a singleton or collection resource.
 
 Structurally
 
-```bash
+```bash(path="...todo-hypermedia/api")
 .
 └── Representation
     ├── Singleton

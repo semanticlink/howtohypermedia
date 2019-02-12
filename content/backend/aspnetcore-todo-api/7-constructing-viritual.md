@@ -21,7 +21,7 @@ Below, you see on overview of the code, then you see the implementation.
 
 Read and start to grok the layout of the underlying code base
 
-```bash
+```bash(path="...todo-hypermedia/api")
 .
 └── Api
     ├── Controllers
@@ -78,7 +78,7 @@ public static class ApiRepresentationExtensions
 
 Create a `UriFactory` implementation as an extension method which creates a URI string based on the route as configured up in the controller. Note: the URL construction is part of the MVC framework itself and thus needs to be handed through.
 
-```
+```csharp(path="...todo-hypermedia/api/Api/UriFactory/UserUriFactory.cs")
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.UriFactory

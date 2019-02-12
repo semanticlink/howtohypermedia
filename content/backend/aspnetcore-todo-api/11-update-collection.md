@@ -40,7 +40,7 @@ Below, you see on overview of the code, then you see the implementation.
 
 Read and start to grok the layout of the underlying code base. Note that updates to tags exist on the TodoController because tags list are in fact a todo's list of tags.
 
-```bash
+```bash(path="...todo-hypermedia/api/Api")
 .
 └── Api
     ├── Controllers
@@ -353,7 +353,7 @@ Below, you see on overview of the code, then you see the implementation.
 
 Read and start to grok the layout of the underlying code base
 
-```bash
+```bash(path="...todo-hypermedia/api")
 .
 └── Api
 │   ├── Controllers
@@ -438,7 +438,7 @@ namespace Api.Controllers
 
 Other code required found in SemanticLink.AspNetCore that wraps Microsoft.AspNetCore
 
-```
+```csharp(path="...todo-hypermedia/api/Api")
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
@@ -715,7 +715,7 @@ namespace Api.Controllers
 
 Create an incoming patch feed representation that is the list of tag URIs.
 
-```js(path="...todo-hypermedia/api/SemanticLink-AspnetCore/PatchRepresentationExtensions.cs")
+```csharp(path="...todo-hypermedia/api/SemanticLink-AspnetCore/PatchRepresentationExtensions.cs")
 using System.Collections.Generic;
 
 namespace SemanticLink

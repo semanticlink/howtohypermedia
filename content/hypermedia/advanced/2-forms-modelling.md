@@ -24,8 +24,7 @@ There are a number of situations that use forms:
 
 Semantic Link has these three top-level pre-baked forms
 
-```bash
-.
+```bash(path="...todo-hypermedia/api/SemanticLink/Form").
 └── Form
     ├── CreateFormRepresentation
     ├── EditFormRepresentation
@@ -50,7 +49,7 @@ HTML forms model most aspects of a hypermedia form:
 
 Here are the main types of fields found:
 
-```bash
+```bash(path="...todo-hypermedia/api/SemanticLink/Form").
 .
 └── Form
     ├── CheckInputFormItemRepresentation
@@ -76,7 +75,7 @@ But HTML also needs a bit more modelling:
 
 Here are the main types of fields found:
 
-```bash
+```bash(path="...todo-hypermedia/api/SemanticLink/Form").
 .
 └── Form
     ├── CollectionInputFormItemRepresentation

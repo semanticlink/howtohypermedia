@@ -36,7 +36,7 @@ Below, you see on overview of the code, then you see the implementation.
 
 Read and start to grok the layout of the underlying code base
 
-```bash
+```bash(path="...todo-hypermedia/api/Api")
 .
 └── Api
     ├── RepresentationExtensions
@@ -84,7 +84,7 @@ public static class ApiRepresentationExtensions
 
 Create a `UriFactory` implementation as an extension method which creates a URI string based on the route as configured up in the controller. Note: the URL construction is part of the MVC framework itself and thus needs to be handed through.
 
-```
+```csharp(path="...todo-hypermedia/api/Api/UriFactory/TenantUriFactory.cs")
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.UriFactory
@@ -121,7 +121,7 @@ Below, you see on overview of the code, then you see the implementation.
 
 Read and start to grok the layout of the underlying code base
 
-```bash
+```bash(path="...todo-hypermedia/api/Api")
 .
 └── Api
     ├── Controllers
@@ -269,7 +269,7 @@ namespace Api.RepresentationExtensions
 
 Create a `UriFactory` implementation as an extension method which creates a URI string based on the route as configured up in the controller. Note: the URL construction is part of the MVC framework itself and thus needs to be handed through.
 
-```
+```csharp(path="...todo-hypermedia/api/Api/UriFactory/UserUriFactory.cs")
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.UriFactory
@@ -304,7 +304,7 @@ Below, you see on overview of the code, then you see the implementation.
 
 Read and start to grok the layout of the underlying code base
 
-```bash
+```bash(path="...todo-hypermedia/api")
 .
 ├── Api
 │   ├── Controllers
@@ -382,7 +382,7 @@ namespace Api.Controllers
 
 Create a `ToTenantSearchFormRepresentation` method that generates the search form with a `submit` link rel.
 
-```js(path="...todo-hypermedia/api/Api/RepresentationExtensions/TenantFormRepresentationExtensions.cs")
+```csharp(path="...todo-hypermedia/api/Api/RepresentationExtensions/TenantFormRepresentationExtensions.cs")
 using Api.UriFactory;
 using Domain.LinkRelations;
 using Domain.Models;
@@ -440,7 +440,7 @@ namespace Api.RepresentationExtensions
 
 Grok the Forms code that builds on form representations. Here for completeness.
 
-```
+```csharp(path="...todo-hypermedia/api/SemanticLink/Form")
 using System.Runtime.Serialization;
 
 namespace SemanticLink.Form
@@ -638,7 +638,7 @@ Below, you see on overview of the code, then you see the implementation.
 
 Read and start to grok the layout of the underlying code base
 
-```bash
+```bash(path="...todo-hypermedia/api")
 .
 └── Api
 │   ├── Controllers
@@ -657,7 +657,7 @@ Read and start to grok the layout of the underlying code base
 
 Create an incoming tenant search representation that has the search fields (in this case, just 'search').
 
-```js(path="...todo-hypermedia/api/Domain/Representation/TenantSearchRepresentation.cs")
+```csharp(path="...todo-hypermedia/api/Domain/Representation/TenantSearchRepresentation.cs")
 using System.Runtime.Serialization;
 
 namespace Domain.Representation

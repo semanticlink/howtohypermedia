@@ -24,7 +24,7 @@ Below, you see on overview of the code, then you see the implementation.
 
 Read and start to grok the layout of the underlying code base
 
-```bash
+```bash(path="...todo-hypermedia/api")
 .
 ├── Api
 │   ├── Controllers

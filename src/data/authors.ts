@@ -11,10 +11,10 @@ export interface Author {
 const authors: Author[] = [
   {
     avatar: require("../assets/icons/semanticlink.svg"),
-    bio: "the team",
-    job: "Every-think",
+    bio: "Bringing boilerplate hypermedia to the masses.",
+    job: "Being dedicated",
     link: "https://twitter.com/semantic_link",
-    name: "semantic link project"
+    name: "semantic link project team"
   }
 ];
 

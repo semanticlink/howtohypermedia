@@ -14,7 +14,7 @@ The API uses the Semantic Link model as it basis. Go check out api modelling in 
 
 Read the underlying code base.
 
-```bash
+```bash(path="...todo-hypermedia/api")
 .
 │
 └── SemanticLink

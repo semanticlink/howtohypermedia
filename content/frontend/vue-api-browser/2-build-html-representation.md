@@ -103,7 +103,7 @@ Read [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiatio
 
 Inspect the request headers on your browser for your request above (eg in [Chrome](https://www.mkyong.com/computer-tips/how-to-view-http-headers-in-google-chrome/) or [Firefox](https://o7planning.org/en/11637/how-to-view-http-headers-in-firefox)) and look the `Accept` header.
 
-```js{8}
+```curl{8}
 GET / HTTP/1.1
 Host: localhost:5000
 Connection: keep-alive

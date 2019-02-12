@@ -10,7 +10,7 @@ description: "Learn how to diagram the API textually and get also get visual out
 
 Read the underlying code base. The custom link relations are specific to the application (hence in Domain) and the reused anatomy is in an external library (but inline for the tutorial!)
 
-```bash
+```bash(path="...todo-hypermedia/api")
 .
 │
 ├── ApiResources.puml  <-- the overview diagram is <b>really important</b>

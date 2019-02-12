@@ -34,7 +34,7 @@ Below, you see on overview of the code, then you see the implementation.
 
 Read and start to grok the layout of the underlying code base
 
-```bash
+```bash(path="...todo-hypermedia/api/Api")
 .
 └── Api
     ├── Controllers
@@ -168,7 +168,7 @@ namespace Api.RepresentationExtensions
 
 Create a `UriFactory` implementation as an extension method which creates a URI string based on the route as configured up in the controller. Note: the URL construction is part of the MVC framework itself and thus needs to be handed through.
 
-```
+```csharp(path="...todo-hypermedia/api/Api/UriFactory/TodoUriFactory.cs")
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.UriFactory
@@ -201,7 +201,7 @@ Below, you see on overview of the code, then you see the implementation.
 
 Read and start to grok the layout of the underlying code base
 
-```bash
+```bash(path="...todo-hypermedia/api")
 .
 ├── Api
 │   ├── Controllers
@@ -280,7 +280,7 @@ namespace Api.Controllers
 
 Create a `ToTodoCreateFormRepresentation` method that generates the create form (without a `submit` link rel).
 
-```js(path="...todo-hypermedia/api/Api/RepresentationExtensions/TodoFormRepresentationExtensions.cs")
+```csharp(path="...todo-hypermedia/api/Api/RepresentationExtensions/TodoFormRepresentationExtensions.cs")
 using Api.UriFactory;
 using Domain.Representation;
 using Domain.Representation.Enum;
@@ -370,7 +370,7 @@ namespace Api.RepresentationExtensions
 
 Grok the Forms code that builds on form representations. Here for completeness.
 
-```
+```csharp(path="...todo-hypermedia/api/SemanticLink/Form")
 using System.Runtime.Serialization;
 
 namespace SemanticLink.Form
@@ -601,7 +601,7 @@ Below, you see on overview of the code, then you see the implementation.
 
 Read and start to grok the layout of the underlying code base
 
-```bash
+```bash(path="...todo-hypermedia/api")
 .
 └── Api
 │   ├── Controllers
@@ -620,7 +620,7 @@ Read and start to grok the layout of the underlying code base
 
 Create an incoming tenant search representation that has the search fields (in this case, just 'search').
 
-```js(path="...todo-hypermedia/api/Domain/Representation/TodoCreateDataRepresentation.cs")
+```csharp(path="...todo-hypermedia/api/Domain/Representation/TodoCreateDataRepresentation.cs")
 using System.Runtime.Serialization;
 
 namespace Domain.Representation

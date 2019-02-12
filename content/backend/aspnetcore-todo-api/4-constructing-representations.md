@@ -34,7 +34,7 @@ you start to remember it! Remember, this is essentially the pattern of code you'
 
 Read and start to grok the layout of the underlying code base
 
-```bash
+```bash(path="...todo-hypermedia/api")
 .
 ├── Api
 │   ├── Controllers

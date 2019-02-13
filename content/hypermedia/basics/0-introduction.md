@@ -34,21 +34,21 @@ Hypermedia does feel like it is for the dedicated. These tutorials have grown ou
 
 ### Approach
 
-**How to Hypermedia** is a series of tutorials structured to guide you through code extracts from the samples. Each tutorial is code heavy as to provide clear examples of different implementations in different languages across both the API and client. These tutorials are for developers wanted to know how some has coded out an approach. Because the code samples are working samples, the tutorials guide you through the essential complexity of the solution relative to producing and consuming hypermedia. The writers of tutorials have done their best to put to the aside accidental complexity in the solutions because these parts will change with frameworks and solutions (yet, it is all there if you need it by checking out the repositories).
+**How to Hypermedia** is a series of tutorials structured to guide you through code extracts from the samples. Each tutorial is code heavy as to provide clear examples of different implementations in different languages across both the API and client. These tutorials are for developers wanting to know how someone else has coded out an approach. Because the code samples are working samples, the tutorials guide you through the essential complexity of the solution relative to producing and consuming hypermedia. The writers of tutorials have done their best to put to the aside accidental complexity in the solutions because these parts will change with frameworks and solutions (yet, it is all there if you need it by checking out the repositories).
 
 ### The `todo` application as the example
 
-Examples that show just the right level of complexity are difficult. Previous books in this area have already covered coffee ordering system, shopping carts and task processing. In the area of tutorials and comparisons for languages and framworks, [TodoMVC](http://todomvc.com/) has proved effective. How to hypermedia has used this as a basis for GUI-based clients for ease of implementation. However, a todo list by itself does not have enough complexity to demonstrate some of the key aspects of an application. The todo app is hoped to add enough complexity that people can grok without being overwhelmed by the domain. The application required tenanting, child collections, static collections and some recursive structures too!
+Examples that show just the right level of complexity are difficult. Previous books in this area have already covered coffee ordering system, shopping carts and task processing. In the area of tutorials and comparisons for languages and framworks, [TodoMVC](http://todomvc.com/) has proved effective. How to Hypermedia has used this as a basis for GUI-based clients for ease of implementation. However, a todo list by itself does not have enough complexity to demonstrate some of the key aspects of an application. The todo app is hoped to add enough complexity that people can grok without being overwhelmed by the domain. The application required tenanting, child collections, static collections and some recursive structures too!
 
-If you want to understand more about design then the Hypermedia fundamentals and advanced should be read by clicking of go to next chapter below. Otherwise, go straight for the code!
+If you want to understand more about design then the Hypermedia Fundamentals and Hypermedia Advanced sections should be read by clicking of go to next chapter below. Otherwise, go straight for the code!
 
 ### Samples: `API` and `client` structure
 
 Tutorials are split between the API and the client. The api is the thing that we work against—it needs to replace the database in our thinking as 'the' integration point of solutions. The client is something that can work against the api and there can multiple clients to an api, be developed at a different rate to the api development and consume the api to varying levels of complexity and scale.
 
-The essence of these tutorials are to present in diffferent language and frameworks implementations where there is:
+The essence of these tutorials are to present in different languages and frameworks implementations where there is:
 
-- one API: all clients walk its network of data
-- three clients: rich-client user interface, general-purpose client to navigate the API, machine-to-machine provisioning client
+- a single API: all clients walk its network of data
+- multiple (ie three) clients: rich-client user interface, general-purpose client to navigate the API, machine-to-machine provisioning client
 
-All tutorial code can be cloned and are outlined in each Getting Started section.
+All tutorial code can be cloned and are outlined in each Getting Started section of each tutorial.

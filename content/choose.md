@@ -24,4 +24,4 @@ Here's an overview of the frontend tutorials we offer:
 
 ### Contribute a Tutorial
 
-Don't find the tutorial with your favorite technology? Maybe you want to contribute and create it yourself? [Get in touch!](mailto:howtohypermedia@semanticlink.io)
+Don't find the tutorial with your favorite technology? Maybe you want to contribute and create it yourself? [Get in touch!](mailto:howtohypermedia@semanticlink.io?subject=Contributing)

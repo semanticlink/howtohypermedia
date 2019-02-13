@@ -13,9 +13,9 @@ The goal of the API is to allow for the right compromise between adaptability an
 
 The client (or clients) in turn need to be able to follow these rules for a desired end. More importantly, the approach is convergent toward an end state through semantic processes. These tutorials show some different implementations that demonstrate this. With convergence, in the tutorials, the implementations demonstrate ways in which data is transposed onto the client ready for processing and then it uses semantic processing around forms as a way to set the new state.
 
-![big picture](big-picture.png)
-
 #### Keeping it together by pulling it apart
+
+![big picture](big-picture.png)
 
 The version of hypermedia enacted in these tutorials is part of the last wave of informational diversity in a wider trend (actually more a cyclical pattern destined to repeat itself) based on Toffler's three waves explained [here](http://markburgess.org/certainty.html):
 

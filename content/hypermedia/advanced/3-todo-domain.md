@@ -9,9 +9,9 @@ correctAnswer: 2
 
 ### Modelling the API (via collections)
 
-Below is a diagram of the Todo domain that is the API. Its notion is explained in [a previous chapter api modelling](../1-api-modelling). The key point of this diagram is to be able to reason about the context and paths of resources. Its goal is not to see everthing but rather to see the essential complexity of the domain. Link relations like self, up and even edit-form, create-form and submit are accidental complexity at this level of abstraction.
+Below is a diagram of the Todo domain that is the API. The key point of this diagram is to be able to reason about the context and paths of resources. Its goal is not to see everything but rather to see the essential complexity of the domain. Link relations like self, up and even edit-form, create-form and submit are accidental complexity at this level of abstraction.
 
-This model is best understood in the context of a working knowledge with the netword of data itself—which is why the API needs a general purpose client to make browsing the API part of the discovery (and learning process) of the domain. You can [browse the API here](https://api.todo.semanticlink.io).
+This model is best understood in the context of a working knowledge with the network of data itself (and the attributes of resources)—which is why the API needs a general purpose client to make browsing the API part of the discovery (and learning process) of the domain. Browse the [API here](https://api.todo.semanticlink.io).
 
 > Note: this diagram is a logical model of the domain and contains the heart of the domain including future resources. It also doesn't contain authorisation/authentication aspects.
 

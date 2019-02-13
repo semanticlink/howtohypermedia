@@ -132,7 +132,7 @@ class Intro extends React.Component<Props, null> {
             and consuming hypermedia APIs.
           </p>
           <p>
-            <i>Less talk, more code</i>: the tutorials walk you through full working examples of the API and clients.
+            <i>Less talk, more code</i>: the tutorials walk you through full working examples of the <b>API</b> and the <b>client</b>.
           </p>
           <div className="center-container btn-container">
             <Link to="/basics/0-introduction/">

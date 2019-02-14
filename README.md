@@ -30,6 +30,8 @@ As the whole project is open-source, you're more than welcome to fix typos and o
 
 ## Installation & Running locally
 
+> Currently, this site runs on gatsby v1.0 and some older plugins. This (in all likelihood) requires running an earlier version of node. The dev team currently runs `7.9.0` via `nvm`. The source code has a `.nvmrc` doing this work if you have `nvm` installed. There is talk of upgrades to gatsby v2 (and later versions of react too).
+
 You can run a local instance by executing the following commands in a terminal:
 
 ```sh

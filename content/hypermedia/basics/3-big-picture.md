@@ -5,6 +5,7 @@ description: "Learn that distributed applications have trended towards data and 
 question: Which of these statements is not true?
 answers: ["Hypermedia enables easier transposing of data to the client", "Business logic should not be enacted on the server", "A network of data is the atoms of a reliable structure", "Trick question: this shift to the client is subtle and confusing"]
 correctAnswer: 1
+duration: 1
 ---
 
 _How to Hypermedia_ is focused on building and consuming hypermedia APIs that are part of a wider trend towards data and business logic being process at the client edge. As such, the API shows an implementation where the construction of the network of data is merely a thin layer over persistence. The client contains an increasing amount of processing logic that has been provided on-demand toward business processes that while may have human intervention operates as though it is a machine-to-machine interaction.

@@ -5,6 +5,7 @@ description: "Learn some techniques that will ease the server and client develop
 question: Which of these statements is not true?
 answers: ["Hypermedia does have a huge barrier to entry in training and learning", "REST requires discipline on all sides", "Hypermedia works with any representation", "Hypermedia over fetches"]
 correctAnswer: 3
+duration: 1
 ---
 
 These tutorials put up for grabs a collection-based implementation of hypermedia that is hopefully pragmatic as it attempts to balance between simplicity and flexibility for the current context:

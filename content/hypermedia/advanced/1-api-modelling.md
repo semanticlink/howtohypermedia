@@ -5,6 +5,7 @@ description: "Learn about how collections and singletons are modelled in hyperme
 question: Which statement about hypermedia servers is not correct?
 answers: ["Modelling hypermedia on collections is not the only approach", "Modelling on collections can be separated from the across-the-wire microformat", "Collections are just sets of singleton resources", "None of the above"]
 correctAnswer: 3
+duration: 5
 ---
 
 ### Introduction

@@ -5,6 +5,7 @@ description: "Links and Forms are used to update resources and controlled by the
 question: Why do forms work as affordances to hypermedia?
 answers: ["A form tells the client how to process properties on an in-memory resource", "The client has control of what is sent back to the server", "It's a synonym for HTML", "Trick question: none of this makes sense"]
 correctAnswer: 3
+duration: 3
 ---
 
 Hypermedia benefits from affordances. These are hints from the server about what the client is able to ask the server to do. The most underutilised affordance is forms. Forms are templates and in practice are based on HTML forms. In the context of a resource, a form provides message framing details about how to send information back to the server and in what form.

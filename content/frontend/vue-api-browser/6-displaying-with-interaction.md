@@ -2,6 +2,8 @@
 title: Displaying with interaction
 pageTitle: "How the client processes JSON to make a rich interaction"
 description: "Learn how to process JSON to make delete, create and update"
+question: A generalised client is all about
+answers: ["Avoiding having to write HTML to work with customers", "Make the domain easily accessible early on for the team", "Because it is the only way to do hypermedia", "None of the above"]
 ---
 
 Once the across-the-wire representation (application/json) arrives, the API browser (in pretty print mode) creates an improved, human readable and interactable display. In short, URIs are made clickable, and and button are added to link relations are.

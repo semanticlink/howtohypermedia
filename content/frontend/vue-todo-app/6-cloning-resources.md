@@ -2,6 +2,9 @@
 title: Cloning Resources
 pageTitle: Easily make copies of trees of data using HTML5 drag and drop
 description: "Forms in hypermedia make cloning of trees straightforward and we can leverage that with drag and drop functionality alongside the client-side application cache"
+question: Cloning resources usually requires knowing
+answers: ["link relations", "depth vs width strategies", "using forms", "all of the above"]
+correctAnswer: 4
 ---
 
 The are lots of ways to walk the API: the todo app displays it with a user interface; the general api browser walks and allows simple updates. Cloning resources extends the general purpose client and programmatically makes it possible to deal with complicated updates—its purpose is to make copies in bulk without people intervention. One easy example is the business problem of moving data between environments (eg between test to another test environment, or bringing production data back into another environment or from a production staging/testing into production).

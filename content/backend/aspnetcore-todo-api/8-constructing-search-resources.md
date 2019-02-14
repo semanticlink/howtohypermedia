@@ -1,7 +1,10 @@
 ---
 title: Constructing Searchable Resources
 pageTitle: Construct a search form on a collection via the 'search' link relation
-description: "Learn the code mechanics of a search formss on a collection"
+description: "Learn the code mechanics of a search forms on a collection"
+question: A search is
+answers: ["A GET", "A POST", "A POST and then at least one GET", "A GET, POST, GET ... GET"]
+correctAnswer: 3
 ---
 
 This example constructs a search form and searchable collection resource. Navigate to this resource from the home via the 'tenants' link relation. Then search back on the collection.

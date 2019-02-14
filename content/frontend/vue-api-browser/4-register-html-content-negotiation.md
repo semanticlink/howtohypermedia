@@ -2,6 +2,9 @@
 title: Register text/html
 pageTitle: "How to respond to HTML content negotiation in the pipeline"
 description: "Learn how to respond to HTML content negotiation in ASP.NET Core"
+question: Responding to HTML should be
+answers: ["Orthogonal", "Middleware", "Transparent to controllers", "All of the above"]
+correctAnswer: 3
 ---
 
 Content negotiation should be orthogonal and only be required to be configured up in the pipeline (rather than be added throughout controllers).

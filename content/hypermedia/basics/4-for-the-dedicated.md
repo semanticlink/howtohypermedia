@@ -29,10 +29,12 @@ Finally, hypermedia is part of a REST-style of architecture and a good summary o
 > * Affordance-centric
 > * Server-driven application state (server tells you what you can call an when)
 > * Full decoupling of client and server enabling the independent evolution
-> ###REST neutral
+>
+> ### REST neutral
 > * Design first, you have to think about use cases upfront, design resources and affordances accordingly.
 > * Multiple APIs (or dedicated resources) for specific client needs
 > * No reference documentation needed
+>
 > ### REST cons
 > * Huge entry barrier in training and learning, which most of us never overcome
 > * The big change in the paradigm shift from SOAP, challenging for enterprises to change the mindset

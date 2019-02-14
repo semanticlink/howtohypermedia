@@ -2,9 +2,12 @@
 title: GET application/json
 pageTitle: "How the client requests JSON"
 description: "Learn how to request JSON from the client"
+question: Making a request for application/json probably requires
+answers: ["Adding to the Accept header", "Adding a Authorization header with JWT", "Ensuring application/json has a high q value", "All of the above"]
+correctAnswer: 3
 ---
 
-Each. request for a resource has a similar pattern. Request the HTML, load and excute the javascript that in turn make an authenticated request for the JSON (assume for now you are authenticated)
+Each. request for a resource has a similar pattern. Request the HTML, load and execute the javascript that in turn make an authenticated request for the JSON (assume for now you are authenticated)
 
 #### Summary
 

@@ -2,6 +2,9 @@
 title: Constructing Collections
 pageTitle: Construct a user as a singleton
 description: "Learn the code mechanics of a singleton resource with the user resource"
+question: The role of the UriFactories are
+answers: ["Ensure that URI are never hand constructed", "Provide good IDE support ", "Ensure the code is DRY", "All of the above" ]
+correctAnswer: 3
 ---
 
 This example constructs a collection (todo) resource. Navigate to this resource from the user via the 'todos' named collection link relation.

@@ -2,6 +2,9 @@
 title: Displaying forms
 pageTitle: "How the client translates forms to display"
 description: "Learn how to process form values for create and edit forms"
+question: The main limitation of forms at the moment
+answers: ["Place of the field on the page", "Binding to the native type of field", "Widgets are specific to the implementation", "All of the above"]
+correctAnswer: 3
 ---
 
 Displaying forms is about allowing users to easily values the API requires the client to send back in its request. This tutorials demonstrates one way to map these values to the user and the current values in the representation. This is currently an underdeveloped as aspect of hypermedia clients and the extend to which to generalise this is up for debate.

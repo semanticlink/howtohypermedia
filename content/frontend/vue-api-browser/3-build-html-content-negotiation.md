@@ -2,6 +2,9 @@
 title: Generate HTML
 pageTitle: "How to build HTML as content negotiation"
 description: "Learn how to respond as HTML in ASP.NET Core"
+question: Can an HTML representation include javascript?
+answers: ["Yes", "No", "It is mandatory", "All of the above"]
+correctAnswer: 0
 ---
 
 Content negotiation is the process of the server responding to a client's request for a specific type of representation. You need to write a formatter that makes the HTML version of the resource.

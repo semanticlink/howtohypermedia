@@ -3,7 +3,7 @@ title: Todo Domain
 pageTitle: "TODO app domain API"
 description: "Learn about domain of the API"
 question: How do you best learn about how to use an API?
-answers: ["Read the documentation", "Try the API and explore data required", "Build up your knowledge in the context of a map and learn the specifics of conntectedness through practice", "Trick question: all APIs are hard to learn and use"]
+answers: ["Read the documentation", "Try the API and explore data required", "Build up your knowledge in the context of a map and learn the specifics of connectedness through practice", "Trick question: all APIs are hard to learn and use"]
 correctAnswer: 2
 ---
 

@@ -2,6 +2,9 @@
 title: Constructing Singletons
 pageTitle: Construct a user as a singleton
 description: "Learn the code mechanics of a singleton resource with the user resource"
+question: The primary role of the Domain Representation class (UserRepresentation) is
+answers: ["Allow for and make explicit the impedance mistmatch with persistence objects", "Make it easy to write in the fluent style through the language construct of static extension methods", "To allow for mappers and validators", "All of the above"]
+correctAnswer: 3
 ---
 
 This example constructs a singleton (user) resource. Navigate to the resource from the root via the 'me' link relation.

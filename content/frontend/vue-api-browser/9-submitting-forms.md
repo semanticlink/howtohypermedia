@@ -2,6 +2,10 @@
 title: Submitting forms
 pageTitle: "How the client uses forms from the API to know what to send back"
 description: "Learn how to process creates (POST) and updates (PUT) on a resource"
+question: The semantics of form submission are
+answers: ["Following what the form says", "A cascading set of known decision points to get to an end goal", "An optimisation strategy", "Throwing away everything HTTP was figuring out for the last 20 years"]
+correctAnswer: 6
+
 ---
 
 Using forms is about allowing the API to describe to the client what the client needs to send back in its request. What the form has is beyond this part of the tutorial but at this stage the simple answer is that the guidelines of HTML semantics are used. Rather this tutorial describes how we wire up the rules of what a form contains.

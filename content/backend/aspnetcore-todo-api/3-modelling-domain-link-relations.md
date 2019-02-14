@@ -2,6 +2,9 @@
 title: Modelling Domain
 pageTitle: The domain of the API is modelled primarily through link relations
 description: "Learn how to diagram the API textually and get also get visual output"
+question: PUML can be good for domain models because
+answers: ["Easy to produce in plain text", "Easily versionable", "Central to giving an overview", "All of the above"]
+correctAnswer: 3
 ---
 
 ![todo api](../../hypermedia/advanced/todo-api.png)

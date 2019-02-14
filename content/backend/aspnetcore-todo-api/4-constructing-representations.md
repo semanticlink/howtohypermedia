@@ -2,9 +2,9 @@
 title: Constructing Representations
 pageTitle: Construct the simplest representation - the root/home of the API
 description: "Learn the code mechanics of request/response of representation in an MVC framework with the root API representation containing links and a version"
-question: ?
-answers: ["", "", "", ""]
-correctAnswer: 0
+question: How should we version an API?
+answers: ["We shouldn't as well known authors tell us", "In the URI", "With a header", "As a field in the root as a known place because really we don't need versioning that much"]
+correctAnswer: 3
 ---
 
 This is an introduction to core five classes required to constructing a representation from the controller, this case the root of the API because it is the simplest. This pattern is the mainstay that variation emanate from and the files *tend* to live across two projects. The tutorial provides various views:

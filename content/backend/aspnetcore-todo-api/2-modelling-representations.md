@@ -2,9 +2,10 @@
 title: Modelling Representations
 pageTitle: Modelling linked representations
 description: "Learn how the linked representation is the base to singletons and collections but collections are modelled through feed representations."
+question: The Semantic Link model is RFC based because
+answer: "It is RFC 4222", "It is an implementation of the ATOM Syndication Format RFC 4287", "It's so simple why bother", "Semantic Link is not centrally about microformats but about how they are produced and consumed as collections"]
+correctAnswer: 3
 ---
-
-
 
 ### Semantic Link model
 

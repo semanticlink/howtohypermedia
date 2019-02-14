@@ -2,6 +2,9 @@
 title: Create Resource
 pageTitle: Construct a resource on a collection based on a create-form link relation
 description: "Learn the code mechanics of a create forms on a collection"
+question: How cacheable should a form be?
+answers: ["Always publically cacheable because everyone can always use it", "Always private because the form always has the URI of the resource to POST/PUT/PATCH on", "Nothing, let the client decide", "As much as possible but depends on the payload of the form"]
+correctAnswer: 3
 ---
 
 This example constructs a create form for use to create a resource on a collection. This example creates a todo item on a todo list. Navigate to this resource from the home via the 'me' > 'todos' > pick a todo list > 'todos'.

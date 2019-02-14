@@ -2,6 +2,9 @@
 title: Update Collection Resource
 pageTitle: Update a collection based on a edit-form link relation
 description: "Learn the code mechanics of a edit forms on a collection resource that uses different mime-types"
+question: Updating a collection is going to require responding to which verb(s)?
+answers: ["POST", "PUT", "PUT & PATCH", "POST, PUT & PATCH"]
+correctAnswer: 3
 ---
 
 This example adds an edit form to a tag collection with different mime-types (eg `uri-list` and `application/json-patch+json`) for use to update a the resources on a collection. This example updates a tags collection. Navigate to this resource from the home via the 'me' > 'todos' > pick a todo list > 'todos' > pick a todo > 'tags'.

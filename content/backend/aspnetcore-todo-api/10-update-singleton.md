@@ -2,6 +2,9 @@
 title: Update Singleton Resource
 pageTitle: Update a resource on a singleton based on a edit-form link relation
 description: "Learn the code mechanics of a edit forms on a singleton resource"
+question: Updating a singleton is going to require responding to which verb(s)?
+answers: ["POST", "PUT", "PUT & PATCH", "POST, PUT & PATCH"]
+correctAnswer: 1
 ---
 
 This example constructs an edit form for use to update a resource on a singleton resource. This example updates a todo resource (wither a list or item). Navigate to this resource from the home via the 'me' > 'todos' > pick a todo list.

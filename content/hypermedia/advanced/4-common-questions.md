@@ -47,6 +47,7 @@ Currently, at this stage it is easier to keep everything in one repository keepi
     * [Building Hypermedia APIs with HTML5 and Node: Creating Evolvable Hypermedia Applications](http://shop.oreilly.com/product/0636920020530.do)
     * [RESTful Web APIs: Services for a Changing World](http://shop.oreilly.com/product/0636920028468.do)
     * [RESTful Web Clients: Enabling Reuse Through Hypermedia](http://shop.oreilly.com/product/0636920037958.do)
+    * [Five API Styles](http://dret.net/lectures/www-2019/2019-05-www-api-styles.pdf)
 * Irakli Nadareishvili: [Video](http://youtu.be/_UG7u7ARTfM%3Ft=35m25s) and [Transcript](https://www.freshblurbs.com/blog/2013/10/22/web-of-apis-hypermedia-collection-document.html) of a Talk on Hypermedia
 * Steve Klabnik: [Designing Hypermedia APIs](http://www.designinghypermediaapis.com/)and [Video](https://www.youtube.com/watch?v=g4sqydY3hHU)
 * Roy Fielding: [Representational State Transfer (REST)](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
